@@ -1,9 +1,12 @@
 import Image from "next/image";
 import React from 'react';
-import HalleDeBere from '@/components/HalleDeBere';
+import dynamic from 'next/dynamic';
 
 export default function Home() {
-  
+  const HalleDeBere = dynamic(() => import('@/components/HalleDeBere'), { 
+    ssr: false 
+  });
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-4">
       <HalleDeBere/>
