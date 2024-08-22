@@ -1,0 +1,89 @@
+'use client';
+import React, { useState, useEffect, useRef } from 'react';
+import HalleDeBereVide from '@/atoms/HalleDeBereVide';
+import { getSeats } from '@/atoms/getSeats';
+
+export default function Home() {
+  const seats:any[] = getSeats();
+  const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
+
+  const toggleSeat = (id:string) => {
+    setSelectedSeats(prev =>
+      prev.includes(id) ? prev.filter(seat => seat !== id) : [...prev, id]
+    );
+  };
+  const svgRef = useRef<SVGSVGElement | null>(null);
+
+  useEffect(() => {
+    // Load the script dynamically and initialize it
+    import('svg-pan-zoom').then(svgPanZoom => {
+      svgPanZoom(svgRef.current, {
+        zoomEnabled: true,
+        controlIconsEnabled: true,
+        fit: true,
+        center: true,
+      });
+    });
+    Array.from(document.querySelectorAll('#seats text')).forEach(t=>{
+      var text = t as SVGTextElement;
+      var rect = document.getElementById(text.attributes['data-for'].value) as unknown as SVGRectElement | null;
+      if(rect) {
+        // Get the rectangle's dimensions and position
+        const rectX = parseFloat(rect.getAttribute('x'));
+        const rectY = parseFloat(rect.getAttribute('y'));
+        const rectWidth = parseFloat(rect.getAttribute('width'));
+        const rectHeight = parseFloat(rect.getAttribute('height'));
+      
+        // Get the bounding box of the text
+        const bbox = text.getBBox();
+        const textWidth = bbox.width;
+        const textHeight = bbox.height;
+      
+        // Calculate the position to center the text
+        const centerX = rectX + (rectWidth - textWidth) / 2;
+        const centerY = rectY + (rectHeight + textHeight) / 2 - 5;
+      
+        // Set the x and y attributes to center the text
+        text.setAttribute('x', ''+centerX);
+        text.setAttribute('y', ''+centerY);
+      }
+    })
+
+  }, []);
+
+  return (
+    <svg ref={svgRef} id="halledebere" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" width="100%" height="500px" viewBox="920 300 3300 1768" preserveAspectRatio="xMidYMid meet" className="cursor-grab border-2">
+      <g enableBackground="new">
+        <HalleDeBereVide/>
+        <g id="seats">
+          {seats.map(seat => (
+            <rect
+              key={seat.id}
+              id={seat.id}
+              x={seat.x}
+              y={seat.y}
+              width={seat.w}
+              height={seat.h}
+              fill={selectedSeats.includes(seat.id) ? 'green' : 'grey'}
+              onClick={() => toggleSeat(seat.id)}
+              className="cursor-pointer"
+            />
+          ))}
+          {seats.map(seat => (
+            <text 
+              key={'seat-'+seat.id}
+              id={'seat-'+seat.id}
+              data-for={seat.id}
+              x={seat.x+seat.w/4} 
+              y={seat.y+seat.h/40+10+seat.h/5} 
+              fill="white" 
+              stroke="white"
+              fontSize="20"
+              className="cursor-pointer"
+              onClick={() => toggleSeat(seat.id)}>{seat.id}</text>
+          ))}
+        </g>
+        </g>
+      </svg>
+  );
+}

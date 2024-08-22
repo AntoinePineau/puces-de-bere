@@ -23,7 +23,7 @@ exports.handler = async (event, context) => {
         });
 
         if (total > 0) {
-            const helloAssoUrl = `https://www.helloasso.com/associations/votre-association/evenements/votre-evenement/paiement?amount=${total}`;
+            const helloAssoUrl = `https://www.helloasso.com/associations/rotary-club-chateaubriant/evenements/puces-de-bere/paiement?amount=${total}`;
             return {
                 statusCode: 200,
                 body: JSON.stringify({ url: helloAssoUrl }),
