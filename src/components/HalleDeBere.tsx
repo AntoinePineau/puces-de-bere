@@ -73,6 +73,7 @@ export default function Home() {
               height={seat.h}
               fill={selectedSeats.includes(seat.id) ? 'green' : 'grey'}
               onClick={() => toggleSeat(seat.id)}
+              onTouchStart={() => toggleSeat(seat.id)}
               className="cursor-pointer"
             />
           ))}
@@ -87,7 +88,8 @@ export default function Home() {
               stroke="white"
               fontSize="20"
               className="cursor-pointer"
-              onClick={() => toggleSeat(seat.id)}>{seat.id}</text>
+              onClick={() => toggleSeat(seat.id)}              
+              onTouchStart={() => toggleSeat(seat.id)}>{seat.id}</text>
           ))}
         </g>
         </g>
