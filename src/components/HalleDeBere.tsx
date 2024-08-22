@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import HalleDeBereVide from '@/atoms/HalleDeBereVide';
 import { getSeats } from '@/atoms/getSeats';
+import 'svg-pan-zoom';
 
 export default function Home() {
   const seats:any[] = getSeats();
@@ -16,36 +17,42 @@ export default function Home() {
 
   useEffect(() => {
     // Load the script dynamically and initialize it
-    import('svg-pan-zoom').then(svgPanZoom => {
-      svgPanZoom(svgRef.current, {
-        zoomEnabled: true,
-        controlIconsEnabled: true,
-        fit: true,
-        center: true,
-      });
+    import('svg-pan-zoom').then(module => {
+      const svgPanZoom = module.default;
+      if(svgRef.current) {
+        svgPanZoom(svgRef.current, {
+          zoomEnabled: true,
+          controlIconsEnabled: true,
+          fit: true,
+          center: true,
+        });
+      }
     });
     Array.from(document.querySelectorAll('#seats text')).forEach(t=>{
       var text = t as SVGTextElement;
-      var rect = document.getElementById(text.attributes['data-for'].value) as unknown as SVGRectElement | null;
-      if(rect) {
-        // Get the rectangle's dimensions and position
-        const rectX = parseFloat(rect.getAttribute('x'));
-        const rectY = parseFloat(rect.getAttribute('y'));
-        const rectWidth = parseFloat(rect.getAttribute('width'));
-        const rectHeight = parseFloat(rect.getAttribute('height'));
-      
-        // Get the bounding box of the text
-        const bbox = text.getBBox();
-        const textWidth = bbox.width;
-        const textHeight = bbox.height;
-      
-        // Calculate the position to center the text
-        const centerX = rectX + (rectWidth - textWidth) / 2;
-        const centerY = rectY + (rectHeight + textHeight) / 2 - 5;
-      
-        // Set the x and y attributes to center the text
-        text.setAttribute('x', ''+centerX);
-        text.setAttribute('y', ''+centerY);
+      const dataForAttr = text.attributes.getNamedItem('data-for');
+      if(dataForAttr) {
+        var rect = document.getElementById(dataForAttr.value) as unknown as SVGRectElement | null;
+        if(rect) {
+          // Get the rectangle's dimensions and position
+          const rectX = parseFloat(rect.getAttribute('x') ?? '0');
+          const rectY = parseFloat(rect.getAttribute('y') ?? '0');
+          const rectWidth = parseFloat(rect.getAttribute('width') ?? '0');
+          const rectHeight = parseFloat(rect.getAttribute('height') ?? '0');
+        
+          // Get the bounding box of the text
+          const bbox = text.getBBox();
+          const textWidth = bbox.width;
+          const textHeight = bbox.height;
+        
+          // Calculate the position to center the text
+          const centerX = rectX + (rectWidth - textWidth) / 2;
+          const centerY = rectY + (rectHeight + textHeight) / 2 - 5;
+        
+          // Set the x and y attributes to center the text
+          text.setAttribute('x', ''+centerX);
+          text.setAttribute('y', ''+centerY);
+        }
       }
     })
 
