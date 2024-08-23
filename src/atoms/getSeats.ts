@@ -38,7 +38,22 @@ export function getSeats():any[] {
   col = col + seatWidth+2;
   addColumn(seats, seatWidth, seatHeight, col, 'I', 1);
 
-  col = col + seatWidth*5/2;
+  col = col + seatWidth*2 + seatWidth/4;
+
+  // Column I9 ... A12
+  for(var i=1;i<=12;i++) { 
+    seats.push({ id: `I${8+i}`, x: col, y: 1185+(seatHeight+2)*i, w: seatWidth, h: seatHeight });
+  }
+
+  // Line N
+  for(var i=1;i<=43;i++) { 
+    seats.push({ id: `N${i}`, x: 1310+(seatHeight+2)*i, y: 1085, w: seatHeight, h: seatWidth });
+  }
+
+  // Line R
+  for(var i=1;i<=43;i++) { 
+    seats.push({ id: `R${i}`, x: 1310+(seatHeight+2)*i, y: 1828, w: seatHeight, h: seatWidth });
+  }
 
   return seats;
 }
