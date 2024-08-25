@@ -23,7 +23,7 @@ export async function getAvailableTickets(accessToken) {
   });
 
   const data = await response.json();
-  return data.data.filter(item => item.availableQuantity > 0); // Filtrez pour les emplacements disponibles
+  return data.data; //.filter(item => item.availableQuantity > 0); // Filtrez pour les emplacements disponibles
 };
 
 export async function createOrder(token, orderDetails) {
