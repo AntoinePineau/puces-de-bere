@@ -1,22 +1,26 @@
 function addColumn(seats:any[], seatWidth:number, seatHeight:number, xCol:number, letter:string, startIndex:number) {
-  seats.push({ id: `${letter}${startIndex}`, x: xCol, y: 1311, w: seatWidth, h: seatHeight*2 }); // A13
+  seats.push({ id: `${letter}${startIndex}`, description: "1m20 linéaire avec angle sans table à l'intérieur", available: true, 
+    price:1800, x: xCol, y: 1311, w: seatWidth, h: seatHeight*2 }); // A13
   for(var i=1;i<=6;i++) { // A14 ... A19
-    seats.push({ id: `${letter}${startIndex+i}`, x: xCol, y: 1352+(seatHeight+2)*i, w: seatWidth, h: seatHeight });
+    seats.push({ id: `${letter}${startIndex+i}`, description: "1m20 linéaire sans angle sans table à l'intérieur", available: true, 
+      price:600, x: xCol, y: 1352+(seatHeight+2)*i, w: seatWidth, h: seatHeight });
   }
-  seats.push({ id: `${letter}${startIndex+7}`, x: xCol, y: 1647, w: seatWidth, h: seatHeight*2 }); // A20
+  seats.push({ id: `${letter}${startIndex+7}`, description: "1m20 linéaire avec angle sans table à l'intérieur", available: true, 
+    price:1800, x: xCol, y: 1647, w: seatWidth, h: seatHeight*2 }); // A20
 }
 
-export function getSeats():any[] {
+export function getSeats():Seat[] {
   
   const seatWidth = 80; //2m40 (table 60cm + 1m80 d'espace derrière)
   const seatHeight = 40; // 1m20
 
-  const seats = [];
+  const seats:Seat[] = [];
 
   // Column A1 ... A12
   var col = 1310;
   for(var i=1;i<=12;i++) { // A1 ... A12
-    seats.push({ id: `A${i}`, x: col, y: 1185+(seatHeight+2)*i, w: seatWidth, h: seatHeight });
+    seats.push({ id: `A${i}`, description: "1m20 linéaire sans angle sans table à l'intérieur", available: true, 
+      price:600, x: col, y: 1185+(seatHeight+2)*i, w: seatWidth, h: seatHeight });
   }
   
   // Column A1 ... A20
@@ -42,18 +46,41 @@ export function getSeats():any[] {
 
   // Column I9 ... A12
   for(var i=1;i<=12;i++) { 
-    seats.push({ id: `I${8+i}`, x: col, y: 1185+(seatHeight+2)*i, w: seatWidth, h: seatHeight });
+    seats.push({ id: `I${8+i}`, description: "1m20 linéaire sans angle sans table à l'intérieur", available: true, 
+      price:600, x: col, y: 1185+(seatHeight+2)*i, w: seatWidth, h: seatHeight });
   }
 
   // Line N
   for(var i=1;i<=43;i++) { 
-    seats.push({ id: `N${i}`, x: 1310+(seatHeight+2)*i, y: 1085, w: seatHeight, h: seatWidth });
+    const seat:Seat = { 
+      id: `N${i}`, 
+      description: "1m20 linéaire sans angle sans table à l'intérieur", 
+      available: true, 
+      price:600, 
+      x: 1310+(seatHeight+2)*i, 
+      y: 1085,
+      w: seatHeight, 
+      h: seatWidth
+    };
+    seats.push(seat);
   }
 
-  // Line R
+  // Line S
   for(var i=1;i<=43;i++) { 
-    seats.push({ id: `R${i}`, x: 1310+(seatHeight+2)*i, y: 1828, w: seatHeight, h: seatWidth });
+    seats.push({ id: `S${i}`, description: "1m20 linéaire sans angle sans table à l'intérieur", available: true, 
+      price:600, x: 1310+(seatHeight+2)*i, y: 1828, w: seatHeight, h: seatWidth });
   }
 
   return seats;
+}
+
+export type Seat = {
+  id: string;  // The ID of the seat, e.g., 'A1'
+  description: string;  // The description of the seat
+  available: boolean;  // The availability of the seat
+  price: number;   // The price of the seat
+  x: number;   // The x-coordinate of the seat
+  y: number;   // The y-coordinate of the seat
+  w: number;   // The width of the seat
+  h: number;   // The height of the seat
 }

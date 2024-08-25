@@ -1,14 +1,27 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import HalleDeBereVide from '@/atoms/HalleDeBereVide';
-import { getSeats } from '@/atoms/getSeats';
+import { Seat, getSeats } from '@/atoms/getSeats';
+import { useCart } from '../context/CartContext';
 import 'svg-pan-zoom';
 
-export default function Home() {
-  const seats:any[] = getSeats();
+export default function HalleDeBere() {
+  const seats:Seat[] = getSeats();
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
+  const { dispatch } = useCart();
 
   const toggleSeat = (id:string) => {
+    const seatToggled:Seat = seats.find(seat => seat.id === id) as Seat;
+    selectedSeats.includes(id) ? 
+      dispatch({
+        type: 'REMOVE_ITEM',
+        id: id ,
+      }) : 
+      dispatch({
+        type: 'ADD_ITEM',
+        item: { id:id, description:seatToggled.description, price:seatToggled.price, quantity: 1 },
+      });
+    
     setSelectedSeats(prev =>
       prev.includes(id) ? prev.filter(seat => seat !== id) : [...prev, id]
     );
