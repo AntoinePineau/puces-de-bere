@@ -1,8 +1,8 @@
-import { getAccessToken, createOrder } from '@/utils/helloasso';
+import { getAccessToken, createOrder } from '../../utils/helloasso';
 
-export default async function POST(req, res) {
+export default async function GET(req, res) {
   const token = await getAccessToken();
-  const tickets = await createOrder(token, 'rotary-club-chateaubriant', 'puces-de-bere', req.body);
+  const tickets = await createOrder(token, req.body);
   
   res.status(200).json(tickets);
 }
