@@ -1,6 +1,6 @@
 import { getAccessToken, getAvailableTickets } from '../../utils/helloasso';
 
-export default async function handler(req, res) {
+export async function GET(req, res) {
   const token = await getAccessToken();
   const tickets = await getAvailableTickets(token);
   
