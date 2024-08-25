@@ -1,5 +1,3 @@
-// pages/api/reserve-seat.js
-
 const getAccessToken = async () => {
   const response = await fetch('https://api.helloasso.com/oauth2/token', {
       method: 'POST',
@@ -17,7 +15,7 @@ const getAccessToken = async () => {
   return data.access_token;
 };
 
-const getAvailableSeats = async (accessToken, organizationId, formId) => {
+const getAvailableTickets = async (accessToken, organizationId, formId) => {
   const response = await fetch(`https://api.helloasso.com/v5/organizations/${organizationId}/forms/${formId}/items`, {
       headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -27,6 +25,21 @@ const getAvailableSeats = async (accessToken, organizationId, formId) => {
   const data = await response.json();
   return data.data.filter(item => item.availableQuantity > 0); // Filtrez pour les emplacements disponibles
 };
+
+const createOrder = async (token, organizationId, formId, orderDetails) => {
+  const response = await fetch(`https://api.helloasso.com/v5/organizations/${organizationId}/forms/${formId}/orders`, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(orderDetails),
+  });
+
+  const data = await response.json();
+  return data;
+};
+
 
 const createReservation = async (accessToken, organizationId, formId, itemId, buyerInfo) => {
   const response = await fetch(`https://api.helloasso.com/v5/organizations/${organizationId}/forms/${formId}/transactions`, {
