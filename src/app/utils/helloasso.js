@@ -1,3 +1,8 @@
+/** 
+ * curl -X POST https://api.helloasso.com/oauth2/token -H 'content-type: application/x-www-form-urlencoded' -d 'grant_type=client_credentials&client_id=b7c71585559547c99f2bbd7a4b1155cd&client_secret=z8rI5UVEZcxzRBIbZ83yPN82x5AKxnu4'
+ *
+ */
+
 export async function getAccessToken() {
   const response = await fetch('https://api.helloasso.com/oauth2/token', {
       method: 'POST',
@@ -8,6 +13,7 @@ export async function getAccessToken() {
           grant_type: 'client_credentials',
           client_id: process.env.HELLOASSO_CLIENT_ID,
           client_secret: process.env.HELLOASSO_CLIENT_SECRET,
+          scope: 'AccessPublicData AccessTransactions FormAdmin OrganizationAdmin'
       }),
   });
 
@@ -16,7 +22,7 @@ export async function getAccessToken() {
 };
 
 export async function getAvailableTickets(accessToken) {
-  const response = await fetch(`https://api.helloasso.com/v5/organizations/${process.env.HELLOASSO_ORGANIZATION_ID}/forms/${process.env.HELLOASSO_FORM_ID}/items`, {
+  const response = await fetch(`https://api.helloasso.com/v5/organizations/${process.env.HELLOASSO_ORGANIZATION_ID}/forms/event/${process.env.HELLOASSO_FORM_ID}/items`, {
       headers: {
           Authorization: `Bearer ${accessToken}`,
       },
@@ -26,8 +32,22 @@ export async function getAvailableTickets(accessToken) {
   return data.data; //.filter(item => item.availableQuantity > 0); // Filtrez pour les emplacements disponibles
 };
 
+export async function initCheckout(token, orderDetails) {
+  const response = await fetch(`https://api.helloasso.com/v5/organizations/${process.env.HELLOASSO_ORGANIZATION_ID}/checkout-intents`, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(orderDetails)
+  });
+
+  const data = await response.json();
+  return data;
+};
+
 export async function createOrder(token, orderDetails) {
-  const response = await fetch(`https://api.helloasso.com/v5/organizations/${process.env.HELLOASSO_ORGANIZATION_ID}/forms/${process.env.HELLOASSO_FORM_ID}/orders`, {
+  const response = await fetch(`https://api.helloasso.com/v5/organizations/${process.env.HELLOASSO_ORGANIZATION_ID}/forms/event/${process.env.HELLOASSO_FORM_ID}/orders`, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${token}`,
