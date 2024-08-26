@@ -1,5 +1,4 @@
 'use client' 
-// /src/context/CartContext.tsx
 import React, { createContext, useContext, useReducer, useEffect, ReactNode } from 'react';
 
 type CartItem = {
@@ -42,7 +41,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
       };
     case 'INIT_CART':
       return {
-        items: action.items ?? [{id:'table',description:'1m20 x 60cm', price:100, quantity:0}],
+        items: action.items ?? [],
       };
     case 'CLEAR_CART':
       return {
@@ -63,7 +62,11 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     if (typeof window !== 'undefined') {
       const storedCart = localStorage.getItem('cart');
       if (storedCart) {
-        dispatch({ type: 'INIT_CART', items: JSON.parse(storedCart) });
+        var cart = JSON.parse(storedCart);
+        if(cart.filter((i:CartItem)=>i.id==='table').length===0) {
+          cart.push({id:'table',description:'1m20 x 60cm', price:100, quantity:0});
+        }
+        dispatch({ type: 'INIT_CART', items: cart });
       }
     }
   }, []);
