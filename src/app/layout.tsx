@@ -15,13 +15,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  /**
-   * 
-        <CartProvider>
-          <section id="cart"></section>
-          <section>{children}</section>
-        </CartProvider>
-   */
   return (
     <html lang="fr">
       <body className={inter.className}>
