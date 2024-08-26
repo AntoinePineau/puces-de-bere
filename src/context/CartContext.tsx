@@ -64,7 +64,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
       if (storedCart) {
         var cart = JSON.parse(storedCart);
         if(cart.filter((i:CartItem)=>i.id==='table').length===0) {
-          cart.push({id:'table',description:'1m20 x 60cm', price:100, quantity:0});
+          cart.push({id:'Table',description:'1m20 x 60cm', price:100, quantity:0});
         }
         dispatch({ type: 'INIT_CART', items: cart });
       }
