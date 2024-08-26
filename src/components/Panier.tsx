@@ -1,4 +1,5 @@
 // /src/components/Panier.tsx
+'use client'
 import React from 'react';
 import { useCart } from '../context/CartContext';
 

@@ -1,5 +1,5 @@
 // /src/app/panier/page.tsx
-import Panier from '../../components/Panier';
+import Panier from '@/components/Panier';
 
 export default function PanierPage() {
   return (

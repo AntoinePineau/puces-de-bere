@@ -13,21 +13,31 @@ type CartState = {
   items: CartItem[];
 };
 
+interface CartAction {
+  type: string;
+  item?: CartItem;
+  id?: string;
+  quantity?: number;
+  items?: CartItem[];
+}
+/*
 type CartAction =
   | { type: 'ADD_ITEM'; item: CartItem }
   | { type: 'REMOVE_ITEM'; id: string }
   | { type: 'UPDATE_QUANTITY'; id: string; quantity: number }
   | { type: 'INIT_CART'; items: CartItem[] }
   | { type: 'CLEAR_CART' };
-
+*/
 const CartContext = createContext<{ state: CartState; dispatch: React.Dispatch<CartAction> } | undefined>(undefined);
 
 function cartReducer(state: CartState, action: CartAction): CartState {
   switch (action.type) {
     case 'ADD_ITEM':
-      return {
-        items: [...state.items, action.item],
-      };
+      if (action.item) {
+        return {
+          items: [...state.items, action.item],
+        };
+      }
     case 'REMOVE_ITEM':
       return {
         items: state.items.filter((item) => item.id !== action.id),
@@ -35,12 +45,12 @@ function cartReducer(state: CartState, action: CartAction): CartState {
     case 'UPDATE_QUANTITY':
       return {
         items: state.items.map((item) =>
-          item.id === action.id ? { ...item, quantity: action.quantity } : item
+          item.id === action.id ? { ...item, quantity: action.quantity ?? 1 } : item
         ),
       };
     case 'INIT_CART':
       return {
-        items: action.items,
+        items: action.items ?? [],
       };
     case 'CLEAR_CART':
       return {
