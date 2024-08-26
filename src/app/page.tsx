@@ -2,7 +2,7 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
 import Panier from '@/components/Panier';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const HalleDeBere = dynamic(() => import('@/components/HalleDeBere'), { 
@@ -33,7 +33,7 @@ export default function Home() {
     .then(response => response.json()) // Parse the JSON response
     .then(data => localStorage.setItem('checkoutUrl', data.redirectUrl)) // Handle the response data
     .catch(error => console.error('Error:', error)); // Handle errors
-    
+
     router.push('/panier');
   }
 
