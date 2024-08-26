@@ -16,10 +16,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="fr">
       <body className={inter.className}>
-        <section id="cart"><CartProvider/></section>
-        <section>{children}</section>
+        <CartProvider>
+          <section id="cart"></section>
+          <section>{children}</section>
+        </CartProvider>
       </body>
     </html>
   );
