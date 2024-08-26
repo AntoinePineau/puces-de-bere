@@ -5,7 +5,7 @@ import { useCart } from '../context/CartContext';
 const Panier = () => {
   const { state, dispatch } = useCart();
 
-  const handleQuantityChange = (id, quantity) => {
+  const handleQuantityChange = (id:string, quantity:number) => {
     dispatch({ type: 'UPDATE_QUANTITY', id, quantity });
   };
 
