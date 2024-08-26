@@ -58,14 +58,18 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, { items: [] });
 
   useEffect(() => {
-    const storedCart = localStorage.getItem('cart');
-    if (storedCart) {
-      dispatch({ type: 'INIT_CART', items: JSON.parse(storedCart) });
+    if (typeof window !== 'undefined') {
+      const storedCart = localStorage.getItem('cart');
+      if (storedCart) {
+        dispatch({ type: 'INIT_CART', items: JSON.parse(storedCart) });
+      }
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(state.items));
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('cart', JSON.stringify(state.items));
+    }
   }, [state.items]);
 
   return (
