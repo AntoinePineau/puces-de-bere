@@ -20,14 +20,6 @@ interface CartAction {
   quantity?: number;
   items?: CartItem[];
 }
-/*
-type CartAction =
-  | { type: 'ADD_ITEM'; item: CartItem }
-  | { type: 'REMOVE_ITEM'; id: string }
-  | { type: 'UPDATE_QUANTITY'; id: string; quantity: number }
-  | { type: 'INIT_CART'; items: CartItem[] }
-  | { type: 'CLEAR_CART' };
-*/
 const CartContext = createContext<{ state: CartState; dispatch: React.Dispatch<CartAction> } | undefined>(undefined);
 
 function cartReducer(state: CartState, action: CartAction): CartState {
@@ -50,7 +42,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
       };
     case 'INIT_CART':
       return {
-        items: action.items ?? [],
+        items: action.items ?? [{id:'table',description:'1m20 x 60cm', price:100, quantity:0}],
       };
     case 'CLEAR_CART':
       return {
