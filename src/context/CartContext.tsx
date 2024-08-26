@@ -1,3 +1,4 @@
+'use client' 
 // /src/context/CartContext.tsx
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
 
