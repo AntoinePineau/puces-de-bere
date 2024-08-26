@@ -9,7 +9,7 @@ const Panier = () => {
     dispatch({ type: 'UPDATE_QUANTITY', id, quantity });
   };
 
-  const handleRemove = (id) => {
+  const handleRemove = (id:string) => {
     dispatch({ type: 'REMOVE_ITEM', id });
   };
 
