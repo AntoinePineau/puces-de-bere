@@ -21,7 +21,7 @@ export async function getAccessToken() {
   return data.access_token;
 };
 
-export async function getAvailableTickets(accessToken) {
+export async function getSoldTickets(accessToken) {
   const response = await fetch(`https://api.helloasso.com/v5/organizations/${process.env.HELLOASSO_ORGANIZATION_ID}/forms/event/${process.env.HELLOASSO_FORM_ID}/items`, {
       headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -29,7 +29,18 @@ export async function getAvailableTickets(accessToken) {
   });
 
   const data = await response.json();
-  return data.data; //.filter(item => item.availableQuantity > 0); // Filtrez pour les emplacements disponibles
+  return data.data; 
+};
+
+export async function getAllTickets(accessToken) {
+  const response = await fetch(`https://api.helloasso.com/v5/organizations/${process.env.HELLOASSO_ORGANIZATION_ID}/forms/event/${process.env.HELLOASSO_FORM_ID}/public`, {
+      headers: {
+          Authorization: `Bearer ${accessToken}`,
+      },
+  });
+
+  const data = await response.json();
+  return data.tiers; 
 };
 
 export async function initCheckout(token, orderDetails) {

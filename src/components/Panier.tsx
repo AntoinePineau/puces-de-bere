@@ -44,6 +44,7 @@ const Panier = () => {
             />
           </>
           }
+          <div>TOTAL: {state.items.reduce((total, item) => { return total + item.price * item.quantity }, 0)}</div>
         </div>
       ))}
     </div>
