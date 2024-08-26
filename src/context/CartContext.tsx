@@ -1,6 +1,6 @@
 'use client' 
 // /src/context/CartContext.tsx
-import React, { createContext, useContext, useReducer, useEffect } from 'react';
+import React, { createContext, useContext, useReducer, useEffect, ReactNode } from 'react';
 
 type CartItem = {
   id: string;
@@ -51,7 +51,10 @@ function cartReducer(state: CartState, action: CartAction): CartState {
   }
 }
 
-export const CartProvider: React.FC = ({ children }) => {
+interface CartProviderProps {
+  children: ReactNode;
+}
+export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, { items: [] });
 
   useEffect(() => {
