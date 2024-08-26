@@ -26,8 +26,8 @@ function enrichTickets(allTickets, soldTickets) {
       if (soldTicket) {
           return {
               ...ticket,
-              isPaid: true,
-              details: {
+              available: false,
+              paymentDetails: {
                   orderId: soldTicket.order.id,
                   payer: soldTicket.payer,
                   user: soldTicket.user,
@@ -41,7 +41,7 @@ function enrichTickets(allTickets, soldTickets) {
           // Si le ticket n'a pas été payé, ajouter une indication
           return {
               ...ticket,
-              isPaid: false
+              available: true
           };
       }
   });
