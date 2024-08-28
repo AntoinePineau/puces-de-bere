@@ -38,6 +38,7 @@ export default function HalleDeBere() {
           controlIconsEnabled: true,
           fit: true,
           center: true,
+          preventMouseEventsDefault: false,
         });
       }
     });
