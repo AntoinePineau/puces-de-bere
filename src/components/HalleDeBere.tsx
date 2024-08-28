@@ -56,7 +56,10 @@ export default function HalleDeBere() {
 
         svgRef.current.addEventListener('touchstart', handleTouchStart, { passive: false });
         svgRef.current.addEventListener('touchmove', handleTouchMove, { passive: false });
-
+        svgRef.current.addEventListener('gesturestart', (e) => {
+          e.preventDefault();  // Prevent page zoom
+        }, { passive: false });
+        
         // Clean up event listeners on component unmount
         return () => {
           if (svgRef.current) {
