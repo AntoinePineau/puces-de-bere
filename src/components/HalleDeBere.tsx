@@ -38,54 +38,39 @@ export default function HalleDeBere() {
           fit: true,
           center: true,
           minZoom: 0.5,
-          maxZoom: 10,
-          zoomScaleSensitivity: 0.3,
+          maxZoom: 4,
         });
 
-        let initialPinchDistance = 0;
-        let initialZoom = 1;
-        let isZooming = false;
-
+        // Improved touch event handling
+        let lastTouchDistance = 0;
         const handleTouchStart = (e: TouchEvent) => {
           if (e.touches.length === 2) {
-            initialPinchDistance = getPinchDistance(e.touches);
-            initialZoom = panZoomRef.current?.getZoom() || 1;
-            isZooming = false;
+            lastTouchDistance = getTouchDistance(e.touches);
           }
         };
 
         const handleTouchMove = (e: TouchEvent) => {
           if (e.touches.length === 2) {
-            e.preventDefault();
-            const currentDistance = getPinchDistance(e.touches);
-            const distanceDelta = Math.abs(currentDistance - initialPinchDistance);
+            e.preventDefault(); // Prevent default to allow custom zoom
+            const currentDistance = getTouchDistance(e.touches);
+            const zoomFactor = currentDistance / lastTouchDistance;
             
-            // Only zoom if the distance has changed significantly
-            if (distanceDelta > 10) {
-              isZooming = true;
-              const zoomFactor = currentDistance / initialPinchDistance;
-              
-              if (panZoomRef.current) {
-                const newZoom = initialZoom * zoomFactor;
-                panZoomRef.current.zoom(newZoom);
-              }
+            if (panZoomRef.current) {
+              const currentZoom = panZoomRef.current.getZoom();
+              panZoomRef.current.zoom(currentZoom * zoomFactor);
             }
+            
+            lastTouchDistance = currentDistance;
           }
-        };
-
-        const handleTouchEnd = () => {
-          isZooming = false;
         };
 
         svgRef.current.addEventListener('touchstart', handleTouchStart, { passive: false });
         svgRef.current.addEventListener('touchmove', handleTouchMove, { passive: false });
-        svgRef.current.addEventListener('touchend', handleTouchEnd);
 
         return () => {
           if (svgRef.current) {
             svgRef.current.removeEventListener('touchstart', handleTouchStart);
             svgRef.current.removeEventListener('touchmove', handleTouchMove);
-            svgRef.current.removeEventListener('touchend', handleTouchEnd);
           }
           if (panZoomRef.current) {
             panZoomRef.current.destroy();
@@ -98,13 +83,13 @@ export default function HalleDeBere() {
   }, []);
 
   useEffect(() => {
-    // Ensure text is visible and centered in seats
-    const centerTextInSeats = () => {
-      seats.forEach(seat => {
-        const rect = document.getElementById(seat.id) as SVGRectElement | null;
-        const text = document.getElementById(`seat-${seat.id}`) as SVGTextElement | null;
-        
-        if (rect && text) {
+    // Center text in seats
+    Array.from(document.querySelectorAll('#seats text')).forEach(t => {
+      const text = t as SVGTextElement;
+      const dataForAttr = text.attributes.getNamedItem('data-for');
+      if (dataForAttr) {
+        const rect = document.getElementById(dataForAttr.value) as SVGRectElement | null;
+        if (rect) {
           const rectX = parseFloat(rect.getAttribute('x') ?? '0');
           const rectY = parseFloat(rect.getAttribute('y') ?? '0');
           const rectWidth = parseFloat(rect.getAttribute('width') ?? '0');
@@ -115,31 +100,16 @@ export default function HalleDeBere() {
           const textHeight = bbox.height;
         
           const centerX = rectX + (rectWidth - textWidth) / 2;
-          const centerY = rectY + (rectHeight + textHeight) / 2;
+          const centerY = rectY + (rectHeight + textHeight) / 2 - 5;
         
           text.setAttribute('x', '' + centerX);
           text.setAttribute('y', '' + centerY);
-          
-          // Ensure text is visible
-          text.style.pointerEvents = 'none';
-          text.style.userSelect = 'none';
         }
-      });
-    };
+      }
+    });
+  }, []);
 
-    // Run once after initial render
-    centerTextInSeats();
-
-    // Set up a MutationObserver to watch for changes in the SVG
-    const observer = new MutationObserver(centerTextInSeats);
-    if (svgRef.current) {
-      observer.observe(svgRef.current, { childList: true, subtree: true, attributes: true });
-    }
-
-    return () => observer.disconnect();
-  }, [seats]);
-
-  const getPinchDistance = (touches: TouchList): number => {
+  const getTouchDistance = (touches: TouchList): number => {
     const dx = touches[0].clientX - touches[1].clientX;
     const dy = touches[0].clientY - touches[1].clientY;
     return Math.sqrt(dx * dx + dy * dy);
@@ -176,6 +146,7 @@ export default function HalleDeBere() {
               />
               <text 
                 id={`seat-${seat.id}`}
+                data-for={seat.id}
                 fill="white" 
                 stroke="white"
                 fontSize="20"
