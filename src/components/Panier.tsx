@@ -40,7 +40,7 @@ const Panier = () => {
                 <p className="text-sm text-gray-600">{item.description}</p>
               </div>
               <div className="flex items-center">
-                <span className="font-semibold mr-4">{formatPrice(item.price * item.quantity / 100)} €</span>
+                <span className="font-semibold mr-4">{formatPrice(item.price * item.quantity / 100)}€</span>
                 {item.id !== 'table' ? (
                   <div className="flex items-center">
                     <button
@@ -83,7 +83,7 @@ const Panier = () => {
               Vider le panier
             </button>
             <div className="text-xl font-bold">
-              TOTAL: {formatPrice(state.items.reduce((total, item) => total + (item.price * item.quantity / 100), 0))} €
+              TOTAL: {formatPrice(state.items.reduce((total, item) => total + (item.price * item.quantity / 100), 0))}€
             </div>
           </div>
           <button
