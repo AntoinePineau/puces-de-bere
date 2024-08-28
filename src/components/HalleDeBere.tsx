@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import HalleDeBereVide from '@/atoms/HalleDeBereVide';
 import { Seat, getSeats } from '@/atoms/getSeats';
 import { useCart } from '../context/CartContext';
@@ -6,21 +6,16 @@ import 'svg-pan-zoom';
 
 export default function HalleDeBere() {
   const seats: Seat[] = getSeats();
-  const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
   const { state, dispatch } = useCart();
   const svgRef = useRef<SVGSVGElement | null>(null);
 
-  useEffect(() => {
-    // Initialize selectedSeats based on the cart state
-    const cartSeats = state.items
-      .filter(item => item.id !== 'Table')
-      .map(item => item.id);
-    setSelectedSeats(cartSeats);
-  }, [state.items]);
+  const isSeatSelected = (id: string) => {
+    return state.items.some(item => item.id === id);
+  };
 
   const toggleSeat = (id: string) => {
     const seatToggled: Seat = seats.find(seat => seat.id === id) as Seat;
-    if (selectedSeats.includes(id)) {
+    if (isSeatSelected(id)) {
       dispatch({
         type: 'REMOVE_ITEM',
         id: id,
@@ -34,7 +29,6 @@ export default function HalleDeBere() {
   };
 
   useEffect(() => {
-    // SVG Pan Zoom initialization
     import('svg-pan-zoom').then(module => {
       const svgPanZoom = module.default;
       if (svgRef.current) {
@@ -46,7 +40,6 @@ export default function HalleDeBere() {
           preventMouseEventsDefault: true
         });
 
-        // Touch event handlers
         const handleTouchStart = (e: TouchEvent) => {
           if (e.touches.length > 1) {
             e.preventDefault();
@@ -74,7 +67,6 @@ export default function HalleDeBere() {
       }
     });
 
-    // Center text in seats
     Array.from(document.querySelectorAll('#seats text')).forEach(t => {
       var text = t as SVGTextElement;
       const dataForAttr = text.attributes.getNamedItem('data-for');
@@ -113,7 +105,7 @@ export default function HalleDeBere() {
               y={seat.y}
               width={seat.w}
               height={seat.h}
-              fill={selectedSeats.includes(seat.id) ? 'green' : 'grey'}
+              fill={isSeatSelected(seat.id) ? 'green' : 'grey'}
               onClick={() => toggleSeat(seat.id)}
               onTouchStart={() => toggleSeat(seat.id)}
               className="cursor-pointer"
