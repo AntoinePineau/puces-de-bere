@@ -38,8 +38,32 @@ export default function HalleDeBere() {
           controlIconsEnabled: true,
           fit: true,
           center: true,
-          preventMouseEventsDefault: false,
+          preventMouseEventsDefault: true
         });
+
+        // Add event listeners to handle pinch-zoom
+        const handleTouchStart = (e: TouchEvent) => {
+          if (e.touches.length > 1) {
+            e.preventDefault();  // Prevent the page from zooming
+          }
+        };
+
+        const handleTouchMove = (e: TouchEvent) => {
+          if (e.touches.length > 1) {
+            e.preventDefault();  // Prevent the page from zooming
+          }
+        };
+
+        svgRef.current.addEventListener('touchstart', handleTouchStart, { passive: false });
+        svgRef.current.addEventListener('touchmove', handleTouchMove, { passive: false });
+
+        // Clean up event listeners on component unmount
+        return () => {
+          if (svgRef.current) {
+            svgRef.current.removeEventListener('touchstart', handleTouchStart);
+            svgRef.current.removeEventListener('touchmove', handleTouchMove);
+          }
+        };
       }
     });
     Array.from(document.querySelectorAll('#seats text')).forEach(t=>{
