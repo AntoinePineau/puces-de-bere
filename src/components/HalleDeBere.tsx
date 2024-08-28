@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useRef } from 'react';
 import HalleDeBereVide from '@/atoms/HalleDeBereVide';
 import { Seat, getSeats } from '@/atoms/getSeats';
