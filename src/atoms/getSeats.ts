@@ -1,32 +1,32 @@
 function addColumn(seats:any[], seatWidth:number, seatHeight:number, xCol:number, letter:string, startIndex:number) {
   seats.push({ id: `${letter}${startIndex}`, description: "1m20 linéaire avec angle sans table à l'intérieur", available: true, 
-    price:1800, x: xCol, y: 1311, w: seatWidth, h: seatHeight*2 }); // A13
-  for(var i=1;i<=6;i++) { // A14 ... A19
+    price:1800, x: xCol, y: 1153, w: seatWidth, h: seatHeight*2 }); // A11
+  for(var i=1;i<=6;i++) { // A12 ... A17
     seats.push({ id: `${letter}${startIndex+i}`, description: "1m20 linéaire sans angle sans table à l'intérieur", available: true, 
-      price:600, x: xCol, y: 1352+(seatHeight+2)*i, w: seatWidth, h: seatHeight });
+      price:600, x: xCol, y: 1251+(seatHeight+2)*i, w: seatWidth, h: seatHeight });
   }
   seats.push({ id: `${letter}${startIndex+7}`, description: "1m20 linéaire avec angle sans table à l'intérieur", available: true, 
-    price:1800, x: xCol, y: 1647, w: seatWidth, h: seatHeight*2 }); // A20
+    price:1800, x: xCol, y: 1647, w: seatWidth, h: seatHeight*2 }); // A18
 }
 
 export function getSeats():Seat[] {
   
   const seatWidth = 96; //2m40 (table 60cm + 1m80 d'espace derrière)
   const seatHeight = 48; // 1m20
-  const space = seatWidth*2 + seatWidth/4 - 8;
+  const space = seatWidth*2 + seatWidth/4 - 16;
 
   const seats:Seat[] = [];
 
-  // Column A1 ... A12
+  // Column A1 ... A10
   var col = 1310;
-  for(var i=1;i<=12;i++) { // A1 ... A12
+  for(var i=1;i<=10;i++) { // A1 ... A10
     seats.push({ id: `A${i}`, description: "1m20 linéaire sans angle sans table à l'intérieur", available: true, 
       price:600, x: col, y: 1185+(seatHeight+2)*i, w: seatWidth, h: seatHeight });
   }
   
-  // Column A1 ... A20
+  // Column A11 ... A28
   col = col + space;
-  addColumn(seats, seatWidth, seatHeight, col, 'A', 13);
+  addColumn(seats, seatWidth, seatHeight, col, 'A', 11);
   
   for (let charCode = 'B'.charCodeAt(0); charCode <= 'H'.charCodeAt(0); charCode++) {
     var letter = String.fromCharCode(charCode);
