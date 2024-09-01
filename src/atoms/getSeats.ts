@@ -3,17 +3,17 @@ function addColumn(seats:any[], seatWidth:number, seatHeight:number, xCol:number
     price:1800, x: xCol, y: 1153, w: seatWidth, h: seatHeight*2 }); // A11
   for(var i=1;i<=6;i++) { // A12 ... A17
     seats.push({ id: `${letter}${startIndex+i}`, description: "1m20 linéaire sans angle sans table à l'intérieur", available: true, 
-      price:600, x: xCol, y: 1251+(seatHeight+2)*i, w: seatWidth, h: seatHeight });
+      price:600, x: xCol, y: 1290+(seatHeight+2)*i, w: seatWidth, h: seatHeight });
   }
   seats.push({ id: `${letter}${startIndex+7}`, description: "1m20 linéaire avec angle sans table à l'intérieur", available: true, 
-    price:1800, x: xCol, y: 1647, w: seatWidth, h: seatHeight*2 }); // A18
+    price:1800, x: xCol, y: 1640, w: seatWidth, h: seatHeight*2 }); // A18
 }
 
 export function getSeats():Seat[] {
   
   const seatWidth = 96; //2m40 (table 60cm + 1m80 d'espace derrière)
   const seatHeight = 48; // 1m20
-  const space = seatWidth*2 + seatWidth/4 - 16;
+  const space = seatWidth*2 + seatWidth/4 - 24;
 
   const seats:Seat[] = [];
 
