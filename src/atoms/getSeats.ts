@@ -11,8 +11,9 @@ function addColumn(seats:any[], seatWidth:number, seatHeight:number, xCol:number
 
 export function getSeats():Seat[] {
   
-  const seatWidth = 80; //2m40 (table 60cm + 1m80 d'espace derrière)
-  const seatHeight = 40; // 1m20
+  const seatWidth = 96; //2m40 (table 60cm + 1m80 d'espace derrière)
+  const seatHeight = 48; // 1m20
+  const space = seatWidth*2 + seatWidth/4 - 8;
 
   const seats:Seat[] = [];
 
@@ -24,7 +25,7 @@ export function getSeats():Seat[] {
   }
   
   // Column A1 ... A20
-  col = col + seatWidth*2 + seatWidth/4;
+  col = col + space;
   addColumn(seats, seatWidth, seatHeight, col, 'A', 13);
   
   for (let charCode = 'B'.charCodeAt(0); charCode <= 'H'.charCodeAt(0); charCode++) {
@@ -34,7 +35,7 @@ export function getSeats():Seat[] {
     addColumn(seats, seatWidth, seatHeight, col, letter, 1);
 
     // Column B9 ... B16 to H9 ... H16
-    col = col + seatWidth*2 + seatWidth/4;
+    col = col + space;
     addColumn(seats, seatWidth, seatHeight, col, letter, 9);
   }
 
@@ -42,7 +43,7 @@ export function getSeats():Seat[] {
   col = col + seatWidth+2;
   addColumn(seats, seatWidth, seatHeight, col, 'I', 1);
 
-  col = col + seatWidth*2 + seatWidth/4;
+  col = col + space;
 
   // Column I9 ... A12
   for(var i=1;i<=12;i++) { 
