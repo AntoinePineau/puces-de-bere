@@ -11,8 +11,8 @@ function addColumn(seats:any[], seatWidth:number, seatHeight:number, xCol:number
 
 export function getSeats():Seat[] {
   
-  const seatWidth = 94; //2m40 (table 60cm + 1m80 d'espace derrière)
-  const seatHeight = 47; // 1m20
+  const seatWidth = 93; //2m40 (table 60cm + 1m80 d'espace derrière)
+  const seatHeight = 46.5; // 1m20
   const space = seatWidth*2 + 5;
 
   const seats:Seat[] = [];
