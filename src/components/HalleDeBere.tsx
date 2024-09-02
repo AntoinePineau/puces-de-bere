@@ -5,8 +5,8 @@ import { Seat, getSeats } from '@/atoms/getSeats';
 import { useCart } from '../context/CartContext';
 import 'svg-pan-zoom';
 
-export default function HalleDeBere() {
-  const seats: Seat[] = getSeats();
+export default async function HalleDeBere() {
+  const seats: Seat[] = await getSeats();
   const { state, dispatch } = useCart();
   const svgRef = useRef<SVGSVGElement | null>(null);
 
