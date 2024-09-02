@@ -6,7 +6,7 @@ const descSansExterieur = "1m20 linéaire sans angle sans table à l'extérieur"
 function addSeat(seats:Seat[], seatId:string, seatWidth:number, seatHeight:number, xCol:number, yLine:number, defaultDescription:String, defaultPrice:number, existingSeatIds:any) {
   var existingSeat = existingSeatIds ? existingSeatIds.get(seatId) : undefined;
   const seat:Seat = { id: seatId, description: existingSeat?existingSeat.description:defaultDescription, available: existingSeat?existingSeat.available:true, 
-    price:existingSeat?existingSeat.price:defaultPrice, x: xCol, y: yLine, w: seatWidth, h: seatHeight };
+    price:existingSeat?existingSeat.price:defaultPrice, x: xCol, y: yLine, w: seatWidth, h: seatHeight, inHelloAsso: existingSeat!==undefined };
   seats.push(seat);
 }
 
@@ -103,6 +103,7 @@ export type Seat = {
   id: string;  // The ID of the seat, e.g., 'A1'
   description: string;  // The description of the seat
   available: boolean;  // The availability of the seat
+  inHelloAsso: boolean;
   price: number;   // The price of the seat
   x: number;   // The x-coordinate of the seat
   y: number;   // The y-coordinate of the seat

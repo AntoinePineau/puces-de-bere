@@ -114,7 +114,7 @@ export default async function HalleDeBere() {
               y={seat.y}
               width={seat.w}
               height={seat.h}
-              fill={!seat.available ? 'red' : isSeatSelected(seat.id) ? 'green' : 'grey'}
+              fill={!seat.available ? 'red' : isSeatSelected(seat.id) ? 'green' : !seat.inHelloAsso ? 'black' : 'grey'}
               onClick={seat.available ? () => toggleSeat(seat.id) : undefined}
               onTouchStart={seat.available ? () => toggleSeat(seat.id) : undefined}
               style={{ cursor: seat.available ? "pointer" : "not-allowed" }}
