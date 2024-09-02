@@ -18,10 +18,10 @@ export function getSeats():Seat[] {
   const seats:Seat[] = [];
 
   // Column A1 ... A9
-  var col = 1305;
+  var col = 1306;
   for(var i=1;i<=9;i++) { // A1 ... A9
     seats.push({ id: `A${i}`, description: "1m20 linéaire sans angle sans table à l'intérieur", available: true, 
-      price:600, x: col, y: 1200+(seatHeight+1)*i, w: seatWidth, h: seatHeight });
+      price:600, x: col, y: 1222+(seatHeight+1)*i, w: seatWidth, h: seatHeight });
   }
   
   // Column A11 ... A28
@@ -53,17 +53,8 @@ export function getSeats():Seat[] {
 
   // Line N
   for(var i=1;i<=50;i++) { 
-    const seat:Seat = { 
-      id: `N${i}`, 
-      description: "1m20 linéaire sans angle sans table à l'intérieur", 
-      available: true, 
-      price:600, 
-      x: 1257+(seatHeight+1)*i, //1315
-      y: 1083,
-      w: seatHeight, 
-      h: seatWidth
-    };
-    seats.push(seat);
+    seats.push({id: `N${i}`, description: "1m20 linéaire sans angle sans table à l'intérieur", available: true, 
+      price:600, x: 1258+(seatHeight+1)*i, /*1315*/ y: 1083, w: seatHeight, h: seatWidth });
   }
 
   // Line S
