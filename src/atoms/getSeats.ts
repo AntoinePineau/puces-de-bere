@@ -18,7 +18,7 @@ export function getSeats():Seat[] {
   const seats:Seat[] = [];
 
   // Column A1 ... A10
-  var col = 1310;
+  var col = 1304;
   for(var i=1;i<=10;i++) { // A1 ... A10
     seats.push({ id: `A${i}`, description: "1m20 linéaire sans angle sans table à l'intérieur", available: true, 
       price:600, x: col, y: 1185+(seatHeight+1)*i, w: seatWidth, h: seatHeight });
