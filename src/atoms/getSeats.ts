@@ -31,7 +31,7 @@ export async function getSeats():Promise<Seat[]> {
   existingSeats.forEach(seat => existingSeatIds.set(seat.label, seat));
 
   // Column A1 ... A10
-  var col = 1306;
+  var col = 1308;
   
   addSeat(seats, `A0`, seatWidth, seatHeight*2, col, 1206,  descAvecInterieur, prixAvecInterieur, existingSeatIds); // A1
   for(var i=2;i<=7;i++) { // A2 ... A7
@@ -67,7 +67,7 @@ export async function getSeats():Promise<Seat[]> {
 
   // Line N
   for(var i=1;i<=50;i++) { 
-    addSeat(seats, `N${i}`, seatHeight, seatWidth, 1258+(seatHeight+1)*i /*1315*/, 1083, descSansInterieur, prixSansInterieur, existingSeatIds);
+    addSeat(seats, `N${i}`, seatHeight, seatWidth, 1315+(seatHeight+1)*i, 1083, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
 
   // Line S
