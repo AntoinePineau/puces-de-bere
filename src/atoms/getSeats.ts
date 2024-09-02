@@ -2,7 +2,7 @@ const descAvecInterieur = "1m20 linéaire avec angle sans table à l'intérieur"
 const descSansInterieur = "1m20 linéaire sans angle sans table à l'intérieur"; const prixSansInterieur = 600;
 const descSansExterieur = "1m20 linéaire sans angle sans table à l'extérieur"; const prixSansExterieur = 400;
 
-function addSeat(seats:Seat[], seatId:String, seatWidth:number, seatHeight:number, xCol:number, yLine:number, defaultDescription:String, defaultPrice:number, existingSeatIds:any) {
+function addSeat(seats:Seat[], seatId:string, seatWidth:number, seatHeight:number, xCol:number, yLine:number, defaultDescription:String, defaultPrice:number, existingSeatIds:any) {
   var existingSeat = existingSeatIds.get(seatId);
   const seat:Seat = { id: seatId, description: existingSeat?existingSeat.description:defaultDescription, available: !existingSeat, 
     price:existingSeat?existingSeat.price:defaultPrice, x: xCol, y: yLine, w: seatWidth, h: seatHeight };
@@ -98,8 +98,8 @@ export function getSeats():Seat[] {
 }
 
 export type Seat = {
-  id: String;  // The ID of the seat, e.g., 'A1'
-  description: String;  // The description of the seat
+  id: string;  // The ID of the seat, e.g., 'A1'
+  description: string;  // The description of the seat
   available: boolean;  // The availability of the seat
   price: number;   // The price of the seat
   x: number;   // The x-coordinate of the seat
