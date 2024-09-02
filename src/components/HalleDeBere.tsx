@@ -1,14 +1,22 @@
 'use client'
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import HalleDeBereVide from '@/atoms/HalleDeBereVide';
 import { Seat, getSeats } from '@/atoms/getSeats';
 import { useCart } from '../context/CartContext';
 import 'svg-pan-zoom';
 
 export default async function HalleDeBere() {
-  const seats: Seat[] = await getSeats();
+  const [seats, setSeats] = useState<Seat[]>([]);
   const { state, dispatch } = useCart();
   const svgRef = useRef<SVGSVGElement | null>(null);
+
+  useEffect(() => {
+    async function fetchSeats() {
+      const fetchedSeats = await getSeats();
+      setSeats(fetchedSeats);
+    }
+    fetchSeats();
+  }, []);
 
   const isSeatSelected = (id: string) => {
     return state.items.some(item => item.id === id);
