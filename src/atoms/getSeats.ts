@@ -3,8 +3,8 @@ const descSansInterieur = "1m20 linéaire sans angle sans table à l'intérieur"
 const descSansExterieur = "1m20 linéaire sans angle sans table à l'extérieur"; const prixSansExterieur = 400;
 
 function addSeat(seats:Seat[], seatId:string, seatWidth:number, seatHeight:number, xCol:number, yLine:number, defaultDescription:String, defaultPrice:number, existingSeatIds:any) {
-  var existingSeat = existingSeatIds ? existingSeatIds[seatId] : undefined;
-  console.log(`seat ${seatId} is `+(!existingSeat?'not ':'')+`existing: ${existingSeatIds}`)
+  var existingSeat = existingSeatIds ? existingSeatIds.get(seatId) : undefined;
+  console.log(`seat ${seatId} is `+(!existingSeat?'not ':'')+`existing: ${JSON.stringify(Object.fromEntries(existingSeatIds), null, 2)}`)
   const seat:Seat = { id: seatId, description: existingSeat?existingSeat.description:defaultDescription, available: !existingSeat, 
     price:existingSeat?existingSeat.price:defaultPrice, x: xCol, y: yLine, w: seatWidth, h: seatHeight };
   seats.push(seat);
@@ -27,7 +27,8 @@ export function getSeats():Seat[] {
   const space = seatWidth*2 + 11;
 
   const seats:Seat[] = [];
-  const existingSeatIds = new Set(existingSeats.map(seat => seat.label));
+  const existingSeatIds = new Map();
+  existingSeats.forEach(seat => existingSeatIds.set(seat.label, seat));
 
   // Column A1 ... A10
   var col = 1306;
