@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getAccessToken, getAllTickets, getSoldTickets } from '../../utils/helloasso';
+import { getAccessToken, getAllTickets, getSoldTickets } from '@/app/utils/helloasso';
 
 export async function GET() {
   try {
