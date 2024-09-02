@@ -1,6 +1,4 @@
 
-import { getAccessToken, getAllTickets, getSoldTickets } from '@/app/utils/helloasso';
-
 const descAvecInterieur = "1m20 linéaire avec angle sans table à l'intérieur"; const prixAvecInterieur = 1800;
 const descSansInterieur = "1m20 linéaire sans angle sans table à l'intérieur"; const prixSansInterieur = 600;
 const descSansExterieur = "1m20 linéaire sans angle sans table à l'extérieur"; const prixSansExterieur = 400;
@@ -22,15 +20,9 @@ function addColumn(seats:any[], seatWidth:number, seatHeight:number, xCol:number
 }
 
 export async function getSeats():Promise<Seat[]> {
-  //var existingSeats:any[] = [];
+  var existingSeats:any[] = [];
   console.log('get seats');
-  const token = await getAccessToken();
-  const allTickets = await getAllTickets(token);
-  const soldTickets = await getSoldTickets(token);
-
-  const existingSeats = enrichTickets(allTickets, soldTickets);
-  
-  //await fetch('/api/tickets').then(response => response.json()).then(data => existingSeats = data);
+  await fetch('/api/tickets').then(response => response.json()).then(data => existingSeats = data);
   
   const seatWidth = 94; //2m40 (table 60cm + 1m80 d'espace derrière)
   const seatHeight = 47; // 1m20
@@ -118,35 +110,4 @@ export type Seat = {
   y: number;   // The y-coordinate of the seat
   w: number;   // The width of the seat
   h: number;   // The height of the seat
-}
-
-
-
-
-function enrichTickets(allTickets, soldTickets) {
-  return allTickets.map(ticket => {
-      const soldTicket = soldTickets.find(p => p.tierId === ticket.id);
-
-      if (soldTicket) {
-          return {
-              ...ticket,
-              available: false,
-              paymentDetails: {
-                  orderId: soldTicket.order.id,
-                  payer: soldTicket.payer,
-                  user: soldTicket.user,
-                  ticketUrl: soldTicket.ticketUrl,
-                  qrCode: soldTicket.qrCode,
-                  amount: soldTicket.amount,
-                  state: soldTicket.state
-              }
-          };
-      } else {
-          // Si le ticket n'a pas été payé, ajouter une indication
-          return {
-              ...ticket,
-              available: true
-          };
-      }
-  });
 }
