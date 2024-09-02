@@ -6,7 +6,7 @@ import { useCart } from '../context/CartContext';
 import 'svg-pan-zoom';
 
 export default function HalleDeBere() {
-  const seats: Seat[] = getSeats([]);
+  const seats: Seat[] = getSeats();
   const { state, dispatch } = useCart();
   const svgRef = useRef<SVGSVGElement | null>(null);
 
