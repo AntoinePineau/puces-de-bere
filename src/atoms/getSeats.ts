@@ -5,8 +5,7 @@ const descSansExterieur = "1m20 linéaire sans angle sans table à l'extérieur"
 
 function addSeat(seats:Seat[], seatId:string, seatWidth:number, seatHeight:number, xCol:number, yLine:number, defaultDescription:String, defaultPrice:number, existingSeatIds:any) {
   var existingSeat = existingSeatIds ? existingSeatIds.get(seatId) : undefined;
-  //console.log(`seat ${seatId} is `+(!existingSeat?'not ':'')+`existing`)
-  const seat:Seat = { id: seatId, description: existingSeat?existingSeat.description:defaultDescription, available: !existingSeat, 
+  const seat:Seat = { id: seatId, description: existingSeat?existingSeat.description:defaultDescription, available: existingSeat?existingSeat.available:true, 
     price:existingSeat?existingSeat.price:defaultPrice, x: xCol, y: yLine, w: seatWidth, h: seatHeight };
   seats.push(seat);
 }
@@ -21,7 +20,6 @@ function addColumn(seats:any[], seatWidth:number, seatHeight:number, xCol:number
 
 export async function getSeats():Promise<Seat[]> {
   var existingSeats:any[] = [];
-  console.log('get seats');
   await fetch('/api/tickets').then(response => response.json()).then(data => existingSeats = data);
   
   const seatWidth = 94; //2m40 (table 60cm + 1m80 d'espace derrière)
