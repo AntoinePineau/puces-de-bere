@@ -4,7 +4,7 @@ const descSansExterieur = "1m20 linéaire sans angle sans table à l'extérieur"
 
 function addSeat(seats:Seat[], seatId:string, seatWidth:number, seatHeight:number, xCol:number, yLine:number, defaultDescription:String, defaultPrice:number, existingSeatIds:any) {
   var existingSeat = existingSeatIds ? existingSeatIds.get(seatId) : undefined;
-  console.log(`seat ${seatId} is `+(!existingSeat?'not ':'')+`existing: ${JSON.stringify(Object.fromEntries(existingSeatIds), null, 2)}`)
+  console.log(`seat ${seatId} is `+(!existingSeat?'not ':'')+`existing`)
   const seat:Seat = { id: seatId, description: existingSeat?existingSeat.description:defaultDescription, available: !existingSeat, 
     price:existingSeat?existingSeat.price:defaultPrice, x: xCol, y: yLine, w: seatWidth, h: seatHeight };
   seats.push(seat);
