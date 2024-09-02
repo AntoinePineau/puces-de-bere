@@ -107,13 +107,9 @@ export default function HalleDeBere() {
               width={seat.w}
               height={seat.h}
               fill={!seat.available ? 'red' : isSeatSelected(seat.id) ? 'green' : 'grey'}
-              {...!seat.available && (
-                <>
-                  onClick={() => toggleSeat(seat.id)}
-                  onTouchStart={() => toggleSeat(seat.id)}
-                  className="cursor-pointer"
-                </>
-              )}
+              onClick={seat.available ? () => toggleSeat(seat.id) : undefined}
+              onTouchStart={seat.available ? () => toggleSeat(seat.id) : undefined}
+              className={seat.available ? "cursor-pointer" : "not-allowed"}
             />
           ))}
           {seats.map(seat => (
@@ -126,13 +122,9 @@ export default function HalleDeBere() {
               fill="white" 
               stroke="white"
               fontSize="20"
-              {...!seat.available && (
-                <>
-                  onClick={() => toggleSeat(seat.id)}
-                  onTouchStart={() => toggleSeat(seat.id)}
-                  className="cursor-pointer"
-                </>
-              )}
+              onClick={seat.available ? () => toggleSeat(seat.id) : undefined}
+              onTouchStart={seat.available ? () => toggleSeat(seat.id) : undefined}
+              className={seat.available ? "cursor-pointer" : "not-allowed"}
             >
               {seat.id}
             </text>
