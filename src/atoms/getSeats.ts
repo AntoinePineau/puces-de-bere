@@ -3,7 +3,7 @@ const descSansInterieur = "1m20 linéaire sans angle sans table à l'intérieur"
 const descSansExterieur = "1m20 linéaire sans angle sans table à l'extérieur"; const prixSansExterieur = 400;
 
 function addSeat(seats:Seat[], seatId:string, seatWidth:number, seatHeight:number, xCol:number, yLine:number, defaultDescription:String, defaultPrice:number, existingSeatIds:any) {
-  var existingSeat = existingSeatIds.get(seatId);
+  var existingSeat = existingSeatIds ? existingSeatIds.get(seatId) : undefined;
   const seat:Seat = { id: seatId, description: existingSeat?existingSeat.description:defaultDescription, available: !existingSeat, 
     price:existingSeat?existingSeat.price:defaultPrice, x: xCol, y: yLine, w: seatWidth, h: seatHeight };
   seats.push(seat);
