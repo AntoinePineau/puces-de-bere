@@ -1,7 +1,7 @@
 
-const descAvecInterieur = "DEF 1m20 linéaire avec angle sans table à l'intérieur"; const prixAvecInterieur = 1800;
-const descSansInterieur = "DEF 1m20 linéaire sans angle sans table à l'intérieur"; const prixSansInterieur = 600;
-const descSansExterieur = "DEF 1m20 linéaire sans angle sans table à l'extérieur"; const prixSansExterieur = 400;
+const descAvecInterieur = "1m20 linéaire avec angle sans table à l'intérieur"; const prixAvecInterieur = 1800;
+const descSansInterieur = "1m20 linéaire sans angle sans table à l'intérieur"; const prixSansInterieur = 600;
+const descSansExterieur = "1m20 linéaire sans angle sans table à l'extérieur"; const prixSansExterieur = 400;
 
 function addSeat(seats:Seat[], seatId:string, seatWidth:number, seatHeight:number, xCol:number, yLine:number, defaultDescription:String, defaultPrice:number, existingSeatIds:any) {
   var existingSeat = existingSeatIds ? existingSeatIds.get(seatId) : undefined;
