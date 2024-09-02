@@ -1,6 +1,6 @@
 function addColumn(seats:any[], seatWidth:number, seatHeight:number, xCol:number, letter:string, startIndex:number) {
   seats.push({ id: `${letter}${startIndex}`, description: "1m20 linéaire avec angle sans table à l'intérieur", available: true, 
-    price:1800, x: xCol, y: 1185, w: seatWidth, h: seatHeight*2 }); // A11
+    price:1800, x: xCol, y: 1291, w: seatWidth, h: seatHeight*2 }); // A11
   for(var i=1;i<=6;i++) { // A12 ... A17
     seats.push({ id: `${letter}${startIndex+i}`, description: "1m20 linéaire sans angle sans table à l'intérieur", available: true, 
       price:600, x: xCol, y: 1286+(seatHeight+2)*i, w: seatWidth, h: seatHeight });
@@ -13,7 +13,7 @@ export function getSeats():Seat[] {
   
   const seatWidth = 96; //2m40 (table 60cm + 1m80 d'espace derrière)
   const seatHeight = 48; // 1m20
-  const space = seatWidth*2 + seatWidth/4;
+  const space = seatWidth*2;
 
   const seats:Seat[] = [];
 
@@ -58,7 +58,7 @@ export function getSeats():Seat[] {
       description: "1m20 linéaire sans angle sans table à l'intérieur", 
       available: true, 
       price:600, 
-      x: 1310+(seatHeight+2)*i, 
+      x: 1315+(seatHeight+2)*i, 
       y: 1070,
       w: seatHeight, 
       h: seatWidth
@@ -69,7 +69,7 @@ export function getSeats():Seat[] {
   // Line S
   for(var i=1;i<=43;i++) { 
     seats.push({ id: `S${i}`, description: "1m20 linéaire sans angle sans table à l'intérieur", available: true, 
-      price:600, x: 1310+(seatHeight+2)*i, y: 1828, w: seatHeight, h: seatWidth });
+      price:600, x: 1310+(seatHeight+2)*i, y: 1820, w: seatHeight, h: seatWidth });
   }
 
   return seats;
