@@ -13,7 +13,7 @@ export function getSeats():Seat[] {
   
   const seatWidth = 94; //2m40 (table 60cm + 1m80 d'espace derrière)
   const seatHeight = 47; // 1m20
-  const space = seatWidth*2 + 5;
+  const space = seatWidth*2 + 10;
 
   const seats:Seat[] = [];
 
@@ -21,7 +21,7 @@ export function getSeats():Seat[] {
   var col = 1306;
   for(var i=1;i<=9;i++) { // A1 ... A9
     seats.push({ id: `A${i}`, description: "1m20 linéaire sans angle sans table à l'intérieur", available: true, 
-      price:600, x: col, y: 1236+(seatHeight+1)*i, w: seatWidth, h: seatHeight });
+      price:600, x: col, y: 1234+(seatHeight+1)*i, w: seatWidth, h: seatHeight });
   }
   
   // Column A11 ... A28
