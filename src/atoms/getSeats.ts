@@ -107,11 +107,17 @@ export async function getSeats():Promise<Seat[]> {
   for(var i=1;i<=7;i++) { 
     xy = addSeat(seats, `S${8+i}`, seatHeight, seatWidth, xy.x, 1815, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
-  xy = addSeat(seats, `S16`, seatHeight, seatWidth, xy.x+seatHeight/4, 1815, descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `S16`, seatHeight, seatWidth, xy.x+seatHeight/2, 1815, descSansInterieur, prixSansInterieur, existingSeatIds);
   xy = addSeat(seats, `S17`, seatHeight, seatWidth, xy.x, 1815, descSansInterieur, prixSansInterieur, existingSeatIds);
   xy = addSeat(seats, `S18`, seatHeight, seatWidth, xy.x+seatHeight*2, 1815, descSansInterieur, prixSansInterieur, existingSeatIds);
   for(var i=1;i<=7;i++) { 
     xy = addSeat(seats, `S${18+i}`, seatHeight, seatWidth, xy.x, 1815, descSansInterieur, prixSansInterieur, existingSeatIds);
+  }
+  xy = addSeat(seats, `S26`, seatHeight, seatWidth, xy.x+seatHeight/2, 1815, descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `S27`, seatHeight, seatWidth, xy.x, 1815, descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `S28`, seatHeight, seatWidth, xy.x+seatHeight*2, 1815, descSansInterieur, prixSansInterieur, existingSeatIds);
+  for(var i=1;i<=7;i++) { 
+    xy = addSeat(seats, `S${28+i}`, seatHeight, seatWidth, xy.x, 1815, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
 
   // Line R
