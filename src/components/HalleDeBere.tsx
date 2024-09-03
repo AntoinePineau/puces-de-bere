@@ -82,7 +82,6 @@ export default function HalleDeBere() {
   useEffect(() => {
     if (svgRef.current) {
       Array.from(document.querySelectorAll('#seats text')).forEach(t => {
-        console.log('center texts in rect')
         var text = t as SVGTextElement;
         const dataForAttr = text.attributes.getNamedItem('data-for');
         if (dataForAttr) {

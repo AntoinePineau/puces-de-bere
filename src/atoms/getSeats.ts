@@ -78,7 +78,7 @@ export async function getSeats():Promise<Seat[]> {
   addSeat(seats, `N4`, seatWidth-8, seatHeight, xy.x+seatWidth+6, 1083-seatHeight-1, descSansInterieur, prixSansInterieur, existingSeatIds);
   xy = addSeat(seats, `N5`, seatHeight*2, seatWidth, xy.x+seatWidth+6, 1083, descAvecInterieur, prixAvecInterieur, existingSeatIds);
   xy = addSeat(seats, `N6`, seatHeight*2, seatWidth, xy.x, 1083, descAvecInterieur, prixAvecInterieur, existingSeatIds);
-  addSeat(seats, `N7`, seatWidth-8, seatHeight, xy.x-seatWidth+7, 1083-seatHeight-1, descSansInterieur, prixSansInterieur, existingSeatIds);
+  addSeat(seats, `N7`, seatWidth-7, seatHeight, xy.x-seatWidth+6, 1083-seatHeight-1, descSansInterieur, prixSansInterieur, existingSeatIds);
 
   // Line S
   for(var i=1;i<=43;i++) { 
