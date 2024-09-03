@@ -157,11 +157,11 @@ export async function getSeats():Promise<Seat[]> {
     xy = addSeat(seats, `R${i}`, seatWidth, seatHeight, xy.x, 896, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
   xy.x = 2075;
-  for(var i=52;i>=49;i--) { 
+  for(var i=51;i>=49;i--) { 
     xy = addSeat(seats, `R${i}`, seatWidth, seatHeight, xy.x, xy.y-seatHeight-1, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
   xy.x = 1803;
-  for(var i=50;i>=49;i--) { 
+  for(var i=53;i>=52;i--) { 
     xy = addSeat(seats, `R${i}`, seatWidth, seatHeight, xy.x, 967, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
 
