@@ -79,8 +79,16 @@ export async function getSeats():Promise<Seat[]> {
   xy = addSeat(seats, `N5`, seatHeight*2, seatWidth, xy.x+seatWidth+5, 1083, descAvecInterieur, prixAvecInterieur, existingSeatIds);
   xy = addSeat(seats, `N6`, seatHeight*2, seatWidth, xy.x, 1083, descAvecInterieur, prixAvecInterieur, existingSeatIds);
   addSeat(seats, `N7`, seatWidth-7, seatHeight, xy.x-seatWidth+5, 1083-seatHeight-1, descSansInterieur, prixSansInterieur, existingSeatIds);
-  xy = addSeat(seats, `N8`, seatHeight*2, seatWidth, xy.x+seatWidth, 1083, descAvecInterieur, prixAvecInterieur, existingSeatIds);
-  for(var i=9;i<=25;i++) { 
+  xy = addSeat(seats, `N8`, seatHeight*2, seatWidth, xy.x+seatWidth-10, 1083, descAvecInterieur, prixAvecInterieur, existingSeatIds);
+  for(var i=9;i<=23;i++) { 
+    xy = addSeat(seats, `S${i}`, seatHeight, seatWidth, xy.x, 1083, descSansInterieur, prixSansInterieur, existingSeatIds);
+  }
+  xy = addSeat(seats, `N24`, seatHeight, seatWidth, xy.x+seatWidth/2, 1083, descAvecInterieur, prixAvecInterieur, existingSeatIds);
+  for(var i=25;i<=30;i++) { 
+    xy = addSeat(seats, `S${i}`, seatHeight, seatWidth, xy.x, 1083, descSansInterieur, prixSansInterieur, existingSeatIds);
+  }
+  xy = addSeat(seats, `N31`, seatHeight, seatWidth, xy.x+seatWidth/2, 1083, descAvecInterieur, prixAvecInterieur, existingSeatIds);
+  for(var i=32;i<=36;i++) { 
     xy = addSeat(seats, `S${i}`, seatHeight, seatWidth, xy.x, 1083, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
 
