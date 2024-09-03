@@ -1,7 +1,7 @@
 
 const descAvecInterieur = "1m20 linéaire avec angle sans table à l'intérieur"; const prixAvecInterieur = 1800;
 const descSansInterieur = "1m20 linéaire sans angle sans table à l'intérieur"; const prixSansInterieur = 600;
-const descSansExterieur = "1m20 linéaire sans angle sans table à l'extérieur"; const prixSansExterieur = 400;
+const descExterieur = "1m20 linéaire sans angle sans table à l'extérieur"; const prixExterieur = 400;
 
 function addSeat(seats:Seat[], seatId:string, seatWidth:number, seatHeight:number, xCol:number, yLine:number, defaultDescription:String, defaultPrice:number, existingSeatIds:any) {
   var existingSeat = existingSeatIds ? existingSeatIds.get(seatId) : undefined;
@@ -129,21 +129,21 @@ export async function getSeats():Promise<Seat[]> {
 
   // Line X
   for(var i=1;i<=33;i++) { 
-    addSeat(seats, `X${i}`, seatHeight, seatWidth, 3640+(seatHeight+1)*i, 1870, descSansExterieur, prixSansExterieur, existingSeatIds);
+    addSeat(seats, `X${i}`, seatHeight, seatWidth, 3640+(seatHeight+1)*i, 1870, descExterieur, prixExterieur, existingSeatIds);
   }
 
   // Line Y
   for(var i=1;i<=20;i++) { 
-    addSeat(seats, `Y${i}`, seatHeight, seatWidth, 3640+(seatHeight+1)*i, 1133, descSansExterieur, prixSansExterieur, existingSeatIds);
+    addSeat(seats, `Y${i}`, seatHeight, seatWidth, 3640+(seatHeight+1)*i, 1133, descExterieur, prixExterieur, existingSeatIds);
   }
-  xy = addSeat(seats, `Y21`, seatWidth, seatHeight, 3800, 1413, descSansExterieur, prixSansExterieur, existingSeatIds);
+  xy = addSeat(seats, `Y21`, seatWidth, seatHeight, 3700, 1413, descExterieur, prixExterieur, existingSeatIds);
   for(var i=1;i<=5;i++) { 
-    xy = addSeat(seats, `Y${21+i}`, seatWidth, seatHeight, xy.x-seatWidth-1, xy.y, descSansExterieur, prixSansExterieur, existingSeatIds);
+    xy = addSeat(seats, `Y${21+i}`, seatWidth, seatHeight, xy.x-seatWidth-1, xy.y, descExterieur, prixExterieur, existingSeatIds);
   }
 
   // Line Z
   for(var i=1;i<=43;i++) { 
-    addSeat(seats, `Z${i}`, seatHeight, seatWidth, 4200+(seatHeight+1)*i, 805, descSansExterieur, prixSansExterieur, existingSeatIds);
+    addSeat(seats, `Z${i}`, seatHeight, seatWidth, 4200+(seatHeight+1)*i, 805, descExterieur, prixExterieur, existingSeatIds);
   }
   
   return seats;

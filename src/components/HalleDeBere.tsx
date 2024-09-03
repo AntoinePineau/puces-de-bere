@@ -143,6 +143,7 @@ export default function HalleDeBere() {
               style={{ cursor: seat.available ? "pointer" : "not-allowed" }}
             >
               {seat.id}
+              <title>{seat.tip}</title>
             </text>
           ))}
         </g>
