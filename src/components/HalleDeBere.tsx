@@ -78,6 +78,7 @@ export default function HalleDeBere() {
     });
 
     Array.from(document.querySelectorAll('#seats text')).forEach(t => {
+      console.log('center texts in rect')
       var text = t as SVGTextElement;
       const dataForAttr = text.attributes.getNamedItem('data-for');
       if (dataForAttr) {
@@ -120,7 +121,7 @@ export default function HalleDeBere() {
               onTouchStart={seat.available ? () => toggleSeat(seat.id) : undefined}
               style={{ cursor: seat.available ? "pointer" : "not-allowed" }}
             >
-              <title></title>
+              <title>{seat.tip}</title>
             </rect>
           ))}
           {seats.map(seat => (
