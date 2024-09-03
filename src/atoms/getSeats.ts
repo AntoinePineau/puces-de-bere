@@ -130,11 +130,11 @@ export async function getSeats():Promise<Seat[]> {
   addSeat(seats, `R7`, seatWidth, seatHeight, xy.x, xy.y-seatHeight-seatWidth-2, descSansInterieur, prixSansInterieur, existingSeatIds);
   xy = addSeat(seats, `R8`, seatHeight, seatWidth, 1893, xy.y-seatWidth*2-2, descSansInterieur, prixSansInterieur, existingSeatIds);
   xy = addSeat(seats, `R9`, seatHeight, seatWidth, xy.x, xy.y-seatWidth-1, descSansInterieur, prixSansInterieur, existingSeatIds);
-  xy = addSeat(seats, `R10`, seatHeight*2, seatWidth, 3230, 757, descAvecInterieur, prixAvecInterieur, existingSeatIds);  
+  xy = addSeat(seats, `R10`, seatHeight*2, seatWidth, 3230, 750, descAvecInterieur, prixAvecInterieur, existingSeatIds);  
   for(var i=11;i<=17;i++) { 
     xy = addSeat(seats, `R${i}`, seatHeight, seatWidth, xy.x, xy.y-seatWidth-1, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
-  xy = addSeat(seats, `R18`, seatHeight, seatWidth, 3818, 750, descAvecInterieur, prixAvecInterieur, existingSeatIds);  
+  xy = addSeat(seats, `R18`, seatHeight, seatWidth, 3818, 745, descAvecInterieur, prixAvecInterieur, existingSeatIds);  
   for(var i=19;i<=23;i++) { 
     xy = addSeat(seats, `R${i}`, seatHeight, seatWidth, xy.x, xy.y-seatWidth-1, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
@@ -146,11 +146,23 @@ export async function getSeats():Promise<Seat[]> {
   for(var i=35;i>=28;i--) { 
     xy = addSeat(seats, `R${i}`, seatHeight, seatWidth, xy.x, xy.y-seatWidth-1, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
-  xy = addSeat(seats, `R38`, seatWidth, seatHeight, 3590, 920-seatHeight/2, descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `R38`, seatWidth, seatHeight, 3592, 925-seatHeight/2, descSansInterieur, prixSansInterieur, existingSeatIds);
   xy = addSeat(seats, `R37`, seatWidth, seatHeight, xy.x, xy.y-seatHeight-1, descSansInterieur, prixSansInterieur, existingSeatIds);
   xy = addSeat(seats, `R45`, seatHeight, seatWidth, 2900, 920, descSansInterieur, prixSansInterieur, existingSeatIds);
   for(var i=44;i>=39;i--) { 
     xy = addSeat(seats, `R${i}`, seatHeight, seatWidth, xy.x, xy.y-seatWidth-1, descSansInterieur, prixSansInterieur, existingSeatIds);
+  }
+  xy.x = 2694;
+  for(var i=46;i>=45;i--) { 
+    xy = addSeat(seats, `R${i}`, seatWidth, seatHeight, xy.x, 896, descSansInterieur, prixSansInterieur, existingSeatIds);
+  }
+  xy.x = 2075;
+  for(var i=48;i>=47;i--) { 
+    xy = addSeat(seats, `R${i}`, seatWidth, seatHeight, xy.x, xy.y-seatHeight-1, descSansInterieur, prixSansInterieur, existingSeatIds);
+  }
+  xy.x = 1803;
+  for(var i=50;i>=49;i--) { 
+    xy = addSeat(seats, `R${i}`, seatWidth, seatWidth, xy.x, 920, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
 
   // Line X
