@@ -66,31 +66,6 @@ export default function HalleDeBere() {
         svgRef.current.addEventListener('gesturestart', (e) => {
           e.preventDefault();
         }, { passive: false });
-        
-        Array.from(document.querySelectorAll('#seats text')).forEach(t => {
-          console.log('center texts in rect')
-          var text = t as SVGTextElement;
-          const dataForAttr = text.attributes.getNamedItem('data-for');
-          if (dataForAttr) {
-            var rect = document.getElementById(dataForAttr.value) as unknown as SVGRectElement | null;
-            if (rect) {
-              const rectX = parseFloat(rect.getAttribute('x') ?? '0');
-              const rectY = parseFloat(rect.getAttribute('y') ?? '0');
-              const rectWidth = parseFloat(rect.getAttribute('width') ?? '0');
-              const rectHeight = parseFloat(rect.getAttribute('height') ?? '0');
-            
-              const bbox = text.getBBox();
-              const textWidth = bbox.width;
-              const textHeight = bbox.height;
-            
-              const centerX = rectX + (rectWidth - textWidth) / 2;
-              const centerY = rectY + (rectHeight + textHeight) / 2 - 5;
-            
-              text.setAttribute('x', ''+centerX);
-              text.setAttribute('y', ''+centerY);
-            }
-          }
-        });
 
         return () => {
           if (svgRef.current) {
@@ -102,6 +77,36 @@ export default function HalleDeBere() {
       }
     });
   }, []);
+
+  
+  useEffect(() => {
+    if (svgRef.current) {
+      Array.from(document.querySelectorAll('#seats text')).forEach(t => {
+        console.log('center texts in rect')
+        var text = t as SVGTextElement;
+        const dataForAttr = text.attributes.getNamedItem('data-for');
+        if (dataForAttr) {
+          var rect = document.getElementById(dataForAttr.value) as unknown as SVGRectElement | null;
+          if (rect) {
+            const rectX = parseFloat(rect.getAttribute('x') ?? '0');
+            const rectY = parseFloat(rect.getAttribute('y') ?? '0');
+            const rectWidth = parseFloat(rect.getAttribute('width') ?? '0');
+            const rectHeight = parseFloat(rect.getAttribute('height') ?? '0');
+          
+            const bbox = text.getBBox();
+            const textWidth = bbox.width;
+            const textHeight = bbox.height;
+          
+            const centerX = rectX + (rectWidth - textWidth) / 2;
+            const centerY = rectY + (rectHeight + textHeight) / 2 - 5;
+          
+            text.setAttribute('x', ''+centerX);
+            text.setAttribute('y', ''+centerY);
+          }
+        }
+      });
+    }
+  }, [seats]);
 
   return (
     <svg ref={svgRef} id="halledebere" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" width="100%" height="500px" viewBox="920 300 3300 1768" preserveAspectRatio="xMidYMid meet" className="cursor-grab border-2" style={{ touchAction: 'manipulation' }}>
