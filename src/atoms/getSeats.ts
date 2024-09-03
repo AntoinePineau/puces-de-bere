@@ -17,7 +17,7 @@ function addSeat(seats:Seat[], seatId:string, seatWidth:number, seatHeight:numbe
 }
 
 function addColumn(seats:any[], seatWidth:number, seatHeight:number, xCol:number, letter:String, startIndex:number, existingSeatIds:any) {
-  var xy = addSeat(seats, `${letter}${startIndex}`, seatWidth, seatHeight*2, xCol, 1250, descAvecInterieur, prixAvecInterieur, existingSeatIds); // A11
+  var xy = addSeat(seats, `${letter}${startIndex}`, seatWidth, seatHeight*2, xCol, 1256, descAvecInterieur, prixAvecInterieur, existingSeatIds); // A11
   for(var i=1;i<=6;i++) { // A12 ... A17
     xy = addSeat(seats, `${letter}${startIndex+i}`, seatWidth, seatHeight, xCol, xy.y, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
@@ -39,11 +39,11 @@ export async function getSeats():Promise<Seat[]> {
   // Column A1 ... A10
   var col = 1308;
   
-  var xy = addSeat(seats, `A0`, seatWidth, seatHeight*2, col, 1190, descAvecInterieur, prixAvecInterieur, existingSeatIds);
-  for(var i=2;i<=8;i++) { // A2 ... A8
+  var xy = addSeat(seats, `A0`, seatWidth, seatHeight*2, col, 1150, descAvecInterieur, prixAvecInterieur, existingSeatIds);
+  for(var i=2;i<=8;i++) { // A2 ... A9
     xy = addSeat(seats, `A${i}`, seatWidth, seatHeight, col, xy.y,  descSansInterieur, prixSansInterieur, existingSeatIds);
   }
-  xy = addSeat(seats, `A9`, seatWidth, seatHeight*2, col, xy.y,  descAvecInterieur, prixAvecInterieur, existingSeatIds);
+  addSeat(seats, `A10`, seatWidth, seatHeight*2, col, xy.y,  descAvecInterieur, prixAvecInterieur, existingSeatIds);
   
   // Column A9 ... A15
   col = col + space;
@@ -72,13 +72,13 @@ export async function getSeats():Promise<Seat[]> {
   }
 
   // Line N
-  for(var i=1;i<=50;i++) { 
-    addSeat(seats, `N${i}`, seatHeight, seatWidth, 1315+(seatHeight+1)*i, 1083, descSansInterieur, prixSansInterieur, existingSeatIds);
+  for(var i=1;i<=40;i++) { 
+    addSeat(seats, `N${i}`, seatHeight, seatWidth, 1410+(seatHeight+1)*i, 1083, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
 
   // Line S
   for(var i=1;i<=43;i++) { 
-    addSeat(seats, `S${i}`, seatHeight, seatWidth, 1310+(seatHeight+1)*i, 1815, descSansInterieur, prixSansInterieur, existingSeatIds);
+    addSeat(seats, `S${i}`, seatHeight, seatWidth, 1263+(seatHeight+1)*i, 1815, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
 
   // Line R
