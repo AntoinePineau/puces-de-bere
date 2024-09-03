@@ -67,6 +67,31 @@ export default function HalleDeBere() {
           e.preventDefault();
         }, { passive: false });
         
+        Array.from(document.querySelectorAll('#seats text')).forEach(t => {
+          console.log('center texts in rect')
+          var text = t as SVGTextElement;
+          const dataForAttr = text.attributes.getNamedItem('data-for');
+          if (dataForAttr) {
+            var rect = document.getElementById(dataForAttr.value) as unknown as SVGRectElement | null;
+            if (rect) {
+              const rectX = parseFloat(rect.getAttribute('x') ?? '0');
+              const rectY = parseFloat(rect.getAttribute('y') ?? '0');
+              const rectWidth = parseFloat(rect.getAttribute('width') ?? '0');
+              const rectHeight = parseFloat(rect.getAttribute('height') ?? '0');
+            
+              const bbox = text.getBBox();
+              const textWidth = bbox.width;
+              const textHeight = bbox.height;
+            
+              const centerX = rectX + (rectWidth - textWidth) / 2;
+              const centerY = rectY + (rectHeight + textHeight) / 2 - 5;
+            
+              text.setAttribute('x', ''+centerX);
+              text.setAttribute('y', ''+centerY);
+            }
+          }
+        });
+
         return () => {
           if (svgRef.current) {
             svgRef.current.removeEventListener('touchstart', handleTouchStart);
@@ -74,31 +99,6 @@ export default function HalleDeBere() {
           }
           panZoomInstance.destroy(); // Clean up the pan-zoom instance
         };
-      }
-    });
-
-    Array.from(document.querySelectorAll('#seats text')).forEach(t => {
-      console.log('center texts in rect')
-      var text = t as SVGTextElement;
-      const dataForAttr = text.attributes.getNamedItem('data-for');
-      if (dataForAttr) {
-        var rect = document.getElementById(dataForAttr.value) as unknown as SVGRectElement | null;
-        if (rect) {
-          const rectX = parseFloat(rect.getAttribute('x') ?? '0');
-          const rectY = parseFloat(rect.getAttribute('y') ?? '0');
-          const rectWidth = parseFloat(rect.getAttribute('width') ?? '0');
-          const rectHeight = parseFloat(rect.getAttribute('height') ?? '0');
-        
-          const bbox = text.getBBox();
-          const textWidth = bbox.width;
-          const textHeight = bbox.height;
-        
-          const centerX = rectX + (rectWidth - textWidth) / 2;
-          const centerY = rectY + (rectHeight + textHeight) / 2 - 5;
-        
-          text.setAttribute('x', ''+centerX);
-          text.setAttribute('y', ''+centerY);
-        }
       }
     });
   }, []);
