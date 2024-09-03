@@ -5,8 +5,13 @@ const descSansExterieur = "1m20 linéaire sans angle sans table à l'extérieur"
 
 function addSeat(seats:Seat[], seatId:string, seatWidth:number, seatHeight:number, xCol:number, yLine:number, defaultDescription:String, defaultPrice:number, existingSeatIds:any) {
   var existingSeat = existingSeatIds ? existingSeatIds.get(seatId) : undefined;
-  const seat:Seat = { id: seatId, description: existingSeat?existingSeat.description:defaultDescription, available: existingSeat?existingSeat.available:true, 
-    price:existingSeat?existingSeat.price:defaultPrice, x: xCol, y: yLine, w: seatWidth, h: seatHeight, inHelloAsso: existingSeat!==undefined };
+  var description = existingSeat?existingSeat.description:defaultDescription;
+  var price = existingSeat?existingSeat.price:defaultPrice;
+  var available = existingSeat?existingSeat.available:true;
+  var tip = `${seatId}: `;
+  tip += available ? `Disponible pour ${price/100}€ (${description})` : `Déjà réservé à ${existingSeat.paymentDetails.user.firstName} ${existingSeat.paymentDetails.user.lastName}`;
+  const seat:Seat = { id: seatId, description: description, available: available, 
+    price: price, x: xCol, y: yLine, w: seatWidth, h: seatHeight, inHelloAsso: existingSeat!==undefined, tip: tip };
   seats.push(seat);
 }
 
@@ -103,7 +108,8 @@ export type Seat = {
   id: string;  // The ID of the seat, e.g., 'A1'
   description: string;  // The description of the seat
   available: boolean;  // The availability of the seat
-  inHelloAsso: boolean;
+  inHelloAsso: boolean; // If the Seats exists in HelloAsso
+  tip: string; // Title to display on hover
   price: number;   // The price of the seat
   x: number;   // The x-coordinate of the seat
   y: number;   // The y-coordinate of the seat

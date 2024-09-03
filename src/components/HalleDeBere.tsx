@@ -5,7 +5,7 @@ import { Seat, getSeats } from '@/atoms/getSeats';
 import { useCart } from '../context/CartContext';
 import 'svg-pan-zoom';
 
-export default async function HalleDeBere() {
+export default function HalleDeBere() {
   const [seats, setSeats] = useState<Seat[]>([]);
   const { state, dispatch } = useCart();
   const svgRef = useRef<SVGSVGElement | null>(null);
@@ -41,7 +41,7 @@ export default async function HalleDeBere() {
     import('svg-pan-zoom').then(module => {
       const svgPanZoom = module.default;
       if (svgRef.current) {
-        svgPanZoom(svgRef.current, {
+        const panZoomInstance = svgPanZoom(svgRef.current, {
           zoomEnabled: true,
           controlIconsEnabled: true,
           fit: true,
@@ -72,6 +72,7 @@ export default async function HalleDeBere() {
             svgRef.current.removeEventListener('touchstart', handleTouchStart);
             svgRef.current.removeEventListener('touchmove', handleTouchMove);
           }
+          panZoomInstance.destroy(); // Clean up the pan-zoom instance
         };
       }
     });
@@ -118,7 +119,9 @@ export default async function HalleDeBere() {
               onClick={seat.available ? () => toggleSeat(seat.id) : undefined}
               onTouchStart={seat.available ? () => toggleSeat(seat.id) : undefined}
               style={{ cursor: seat.available ? "pointer" : "not-allowed" }}
-            />
+            >
+              <title></title>
+            </rect>
           ))}
           {seats.map(seat => (
             <text 
