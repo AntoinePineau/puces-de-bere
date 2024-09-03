@@ -136,9 +136,9 @@ export async function getSeats():Promise<Seat[]> {
   for(var i=1;i<=20;i++) { 
     addSeat(seats, `Y${i}`, seatHeight, seatWidth, 3640+(seatHeight+1)*i, 1133, descSansExterieur, prixSansExterieur, existingSeatIds);
   }
-  xy = addSeat(seats, `Y21`, seatWidth, seatHeight, 3640, 1413, descSansExterieur, prixSansExterieur, existingSeatIds);
+  xy = addSeat(seats, `Y21`, seatWidth, seatHeight, 3800, 1413, descSansExterieur, prixSansExterieur, existingSeatIds);
   for(var i=1;i<=5;i++) { 
-    xy = addSeat(seats, `Y${21+i}`, seatWidth, seatHeight, xy.x-seatWidth, xy.y, descSansExterieur, prixSansExterieur, existingSeatIds);
+    xy = addSeat(seats, `Y${21+i}`, seatWidth, seatHeight, xy.x-seatWidth-1, xy.y, descSansExterieur, prixSansExterieur, existingSeatIds);
   }
 
   // Line Z
