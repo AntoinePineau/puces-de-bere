@@ -18,7 +18,7 @@ const Panier = () => {
     })
     .then(response => {
       console.log(response)
-      eval('reponse.cookies.split(",").forEach(c=>document.cookie=c)');
+      eval('response.cookies.split(",").forEach(c=>document.cookie=c)');
       router.push('https://www.helloasso.com/associations/rotary-club-chateaubriant/evenements/puces-de-bere/2');
      }) 
     .catch(error => console.error('Error:', error)); // Handle errors
