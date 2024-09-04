@@ -3,7 +3,7 @@
  *
  */
 
-export async function getAccessTokenByAPI() {
+export async function getAccessToken() {
   const response = await fetch('https://api.helloasso.com/oauth2/token', {
       method: 'POST',
       headers: {
@@ -21,7 +21,7 @@ export async function getAccessTokenByAPI() {
   return data.access_token;
 };
 
-export async function getAccessToken() {
+export async function getAccessTokenWithoutAPI() {
   const response = await fetch('https://www.helloasso.com/forms/auth/token', {
       method: 'POST',
       headers: {
