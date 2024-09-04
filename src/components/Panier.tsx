@@ -14,7 +14,7 @@ const Panier = () => {
       headers: {
           'Content-Type': 'application/json'
       },
-      body: JSON.stringify(localStorage.getItem('cart'))
+      body: localStorage.getItem('cart')
     })
     .then(response => response.json()) // Parse the JSON response
     .catch(error => console.error('Error:', error)); // Handle errors

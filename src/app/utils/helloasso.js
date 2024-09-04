@@ -44,7 +44,7 @@ export async function getAllTickets(accessToken) {
 };
 
 export async function addToCart(accessToken, cartDetails) {
-  const body = transformCartItems(cartDetails);
+  const body = transformCartItems(JSON.parse(cartDetails));
   const response = await fetch(`https://www.helloasso.com/ha-api/carts`, {
       headers: {
           Authorization: `Bearer ${accessToken}`,
