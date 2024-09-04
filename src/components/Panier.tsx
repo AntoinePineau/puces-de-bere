@@ -9,31 +9,17 @@ const Panier = () => {
 
   const router = useRouter();
   const cartAction = async () => {
-    fetch('/api/order', {
+    fetch('/api/add-to-cart', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-          "containsDonation": false,
-          "payer": {
-            "firstName": "Antoine",
-            "lastName": "PINEAU",
-            "email": "antoine@pineau.pm"
-          },
-          "totalAmount": 2400,
-          "initialAmount": 2400,
-          "itemName": "Inscription en tant qu'exposant aux Puces de Béré 2025",
-          "backUrl": "https://puces-de-bere.vercel.app/",
-          "errorUrl": "https://puces-de-bere.vercel.app/erreur/",
-          "returnUrl": "https://puces-de-bere.vercel.app/confirmation/"
-        })
+      body: JSON.stringify(localStorage.getItem('cart'))
     })
     .then(response => response.json()) // Parse the JSON response
-    .then(data => localStorage.setItem('checkoutUrl', data.redirectUrl)) // Handle the response data
     .catch(error => console.error('Error:', error)); // Handle errors
 
-    router.push('/panier');
+    router.push('https://www.helloasso.com/associations/rotary-club-chateaubriant/evenements/puces-de-bere/2');
   }
 
   const handleQuantityChange = (id: string, quantity: number) => {

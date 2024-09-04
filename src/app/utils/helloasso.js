@@ -43,6 +43,38 @@ export async function getAllTickets(accessToken) {
   return data.tiers; 
 };
 
+export async function addToCart(accessToken, cartDetails) {
+  const body = transformCartItems(cartDetails);
+  const response = await fetch(`https://www.helloasso.com/ha-api/carts`, {
+      headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'application/json',
+      },
+      body: body
+  });
+
+  const data = await response.json();
+  return data.tiers; 
+};
+
+function transformCartItems(cart) {
+  return {
+      "items": cart.map(item => ({
+          "tierId": item.tierId, 
+          "tierType": "Registration", // Static value
+          "paymentFrequency": "Single", // Static value
+          "price": item.price,
+          "isEligibleTaxReceipt": false, // Static value
+          "vatRate": 0, // Static value
+          "customFields": [], // Static value
+          "extraOptions": [] // Static value
+      })),
+      "organizationSlug": "rotary-club-chateaubriant", // Static value
+      "formSlug": "puces-de-bere", // Static value
+      "formType": "EVENT" // Static value
+  };
+}
+
 export async function initCheckout(token, orderDetails) {
   const response = await fetch(`https://api.helloasso.com/v5/organizations/${process.env.HELLOASSO_ORGANIZATION_ID}/checkout-intents`, {
     method: 'POST',

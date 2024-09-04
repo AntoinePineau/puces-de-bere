@@ -5,12 +5,13 @@ const descExterieur = "1m20 linéaire sans angle sans table à l'extérieur"; co
 
 function addSeat(seats:Seat[], seatId:string, seatWidth:number, seatHeight:number, xCol:number, yLine:number, defaultDescription:String, defaultPrice:number, existingSeatIds:any) {
   var existingSeat = existingSeatIds ? existingSeatIds.get(seatId) : undefined;
+  var tierId = existingSeat?existingSeat.id:0;
   var description = existingSeat?existingSeat.description:defaultDescription;
   var price = existingSeat?existingSeat.price:defaultPrice;
   var available = existingSeat?existingSeat.available:true;
   var tip = `${seatId}: `;
   tip += available ? `Disponible pour ${price/100}€ (${description})` : `Déjà réservé à ${existingSeat.paymentDetails.user.firstName} ${existingSeat.paymentDetails.user.lastName}`;
-  const seat:Seat = { id: seatId, description: description, available: available, 
+  const seat:Seat = { tierId:tierId, id: seatId, description: description, available: available, 
     price: price, x: xCol, y: yLine, w: seatWidth, h: seatHeight, inHelloAsso: existingSeat!==undefined, tip: tip };
   seats.push(seat);
   return {x: xCol + seatWidth + 1, y: yLine + seatHeight + 1};
@@ -197,7 +198,8 @@ export async function getSeats():Promise<Seat[]> {
 }
 
 export type Seat = {
-  id: string;  // The ID of the seat, e.g., 'A1'
+  tierId: number; // ID in helloasso
+  id: string;  // The name of the seat, e.g., 'A1'
   description: string;  // The description of the seat
   available: boolean;  // The availability of the seat
   inHelloAsso: boolean; // If the Seats exists in HelloAsso
