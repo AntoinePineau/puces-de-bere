@@ -19,7 +19,7 @@ const Panier = () => {
     .then(response => console.log(response)) // Parse the JSON response
     .catch(error => console.error('Error:', error)); // Handle errors
 
-    router.push(`https://www.helloasso.com/associations/${process.env.HELLOASSO_ORGANIZATION_ID}/evenements/${process.env.HELLOASSO_FORM_ID}/2`);
+    router.push('https://www.helloasso.com/associations/rotary-club-chateaubriant/evenements/puces-de-bere/2');
   }
 
   const handleQuantityChange = (id: string, quantity: number) => {
