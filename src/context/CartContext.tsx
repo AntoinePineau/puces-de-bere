@@ -3,6 +3,7 @@ import React, { createContext, useContext, useReducer, useEffect, ReactNode } fr
 
 type CartItem = {
   id: string;
+  tierId: number;
   description: string;
   price: number;
   quantity: number;
@@ -16,7 +17,6 @@ interface CartAction {
   type: string;
   item?: CartItem;
   id?: string;
-  tierId?: number;
   quantity?: number;
   items?: CartItem[];
 }
@@ -65,7 +65,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
       if (storedCart) {
         var cart = JSON.parse(storedCart);
         if(cart.filter((i:CartItem)=>i.id==='Table').length===0) {
-          cart.push({id:'Table',description:'1m20 x 60cm', price:100, quantity:0});
+          cart.push({id:'Table',tierId:12703282,description:'1m20 x 60cm', price:100, quantity:0});
         }
         dispatch({ type: 'INIT_CART', items: cart });
       }
