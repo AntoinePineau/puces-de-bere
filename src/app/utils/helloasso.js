@@ -27,10 +27,10 @@ export async function getAccessTokenWithoutAPI() {
       headers: {
           'Content-Type': 'application/json',
       },
-      body: {
+      body: JSON.stringify({
         username: process.env.HELLOASSO_USERNAME,
         password: process.env.HELLOASSO_PASSWORD,
-      }
+      })
   });
 
   const data = await response.json();
