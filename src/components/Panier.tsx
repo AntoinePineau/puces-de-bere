@@ -21,7 +21,7 @@ const Panier = () => {
 
       // Log the cookies from the response
       const cookies = response.headers.get('set-cookie');
-      console.log('Cookies received from API:', cookies);
+      console.log('Cookies received from HelloAsso API:', cookies);
   
       // If you need to set these cookies manually in the document
       if (cookies) {
