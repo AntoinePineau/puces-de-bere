@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from '@/context/CartContext';
+import { CookiesProvider } from 'next-client-cookies/server';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,8 +20,7 @@ export default function RootLayout({
     <html lang="fr">
       <body className={inter.className}>
         <CartProvider>
-          <section id="cart"></section>
-          <section>{children}</section>
+          <CookiesProvider>{children}</CookiesProvider>
         </CartProvider>
       </body>
     </html>
