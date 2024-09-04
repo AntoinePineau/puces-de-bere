@@ -60,7 +60,9 @@ export async function getAllTickets(accessToken) {
 };
 
 export async function addToCart(accessToken, cartDetails) {
+  console.log(`cartDetails : ${cartDetails}`);
   const body = transformCartItems(JSON.parse(cartDetails));
+  console.log(`body : ${JSON.stringify(body)}`);
   const response = await fetch(`https://www.helloasso.com/ha-api/carts`, {
       method: 'POST',
       headers: {
@@ -70,7 +72,7 @@ export async function addToCart(accessToken, cartDetails) {
       body: body
   });
   const data = await response.json();
-  console.log(data);
+  console.log(`response: ${data}`);
   return data; 
 };
 
