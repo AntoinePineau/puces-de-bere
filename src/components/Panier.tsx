@@ -16,7 +16,7 @@ const Panier = () => {
       },
       body: localStorage.getItem('cart')
     })
-    .then(response => response.json()) // Parse the JSON response
+    .then(response => console.log(response)) // Parse the JSON response
     .catch(error => console.error('Error:', error)); // Handle errors
 
     router.push('https://www.helloasso.com/associations/rotary-club-chateaubriant/evenements/puces-de-bere/2');

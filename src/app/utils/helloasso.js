@@ -52,9 +52,9 @@ export async function addToCart(accessToken, cartDetails) {
       },
       body: body
   });
-
   const data = await response.json();
-  return data.tiers; 
+  console.log(data);
+  return data; 
 };
 
 function transformCartItems(cart) {

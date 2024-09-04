@@ -3,7 +3,7 @@ import { getAccessToken, addToCart } from '@/app/utils/helloasso';
 
 export async function POST(req, res) {
   const token = await getAccessToken();
-  const tickets = await addToCart(token, req.body);
-  return NextResponse.json(tickets);
+  const response = await addToCart(token, req.body);
+  return NextResponse.json(response);
 }
 
