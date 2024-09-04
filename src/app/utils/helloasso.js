@@ -61,6 +61,7 @@ export async function getAllTickets(accessToken) {
 
 export async function addToCart(accessToken, cartDetails) {
   const parsedCartDetails = typeof cartDetails === 'string' ? JSON.parse(cartDetails) : cartDetails;
+  console.log("accessToken:", accessToken);
   console.log("Parsed Cart Details:", parsedCartDetails);
 
   const body = transformCartItems(parsedCartDetails);
