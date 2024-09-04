@@ -1,4 +1,3 @@
-'use client'
 import React from 'react';
 import { useCart } from '../context/CartContext';
 import { Trash2, Plus, Minus, ShoppingCart } from 'lucide-react';
