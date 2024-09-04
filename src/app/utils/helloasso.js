@@ -77,7 +77,7 @@ export async function addToCart(accessToken, cartDetails) {
   console.log("response:", data);
   const cookies = response.headers.get('set-cookie');
   console.log('Cookies received from API:', cookies);
-  return data; 
+  return {data:data, cookies:cookies}; 
 };
 
 function transformCartItems(cart) {
