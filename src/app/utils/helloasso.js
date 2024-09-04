@@ -74,7 +74,7 @@ export async function addToCart(accessToken, cartDetails) {
       body: JSON.stringify(body)
   });
   const data = await response.json();
-  console.log("response:", data);
+  console.log("response from https://www.helloasso.com/ha-api/carts:", data);
   const cookies = response.headers.get('set-cookie');
   console.log('Cookies received from API:', cookies);
   return {data:data, cookies:cookies}; 
