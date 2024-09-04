@@ -61,6 +61,8 @@ export async function getAllTickets(accessToken) {
 
 export async function addToCart(accessToken, cartDetails) {
   const parsedCartDetails = typeof cartDetails === 'string' ? JSON.parse(cartDetails) : cartDetails;
+  console.log("Parsed Cart Details:", parsedCartDetails);
+
   const body = transformCartItems(parsedCartDetails);
   const response = await fetch(`https://www.helloasso.com/ha-api/carts`, {
       method: 'POST',
@@ -75,6 +77,9 @@ export async function addToCart(accessToken, cartDetails) {
 };
 
 function transformCartItems(cart) {
+  if (!Array.isArray(cart)) {
+      throw new Error("Expected cart to be an array");
+  }
   return {
       "items": cart.map(item => ({
           "tierId": item.tierId, 
