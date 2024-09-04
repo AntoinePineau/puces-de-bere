@@ -93,8 +93,8 @@ function transformCartItems(cart) {
           "customFields": [], // Static value
           "extraOptions": [] // Static value
       })),
-      "organizationSlug": "${process.env.HELLOASSO_ORGANIZATION_ID}", // Static value
-      "formSlug": "${process.env.HELLOASSO_FORM_ID}", // Static value
+      "organizationSlug": `${process.env.HELLOASSO_ORGANIZATION_ID}`, // Static value
+      "formSlug": `${process.env.HELLOASSO_FORM_ID}`, // Static value
       "formType": "EVENT" // Static value
   };
 }
