@@ -16,6 +16,7 @@ interface CartAction {
   type: string;
   item?: CartItem;
   id?: string;
+  tierId?: number;
   quantity?: number;
   items?: CartItem[];
 }
