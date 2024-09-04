@@ -18,12 +18,12 @@ const Panier = () => {
     })
     .then(response => response.json())
     .then(response => {
-      console.log("response from https://www.helloasso.com/ha-api/carts:", response);
-      if(response.cookies) {
-        response.cookies.split(",").forEach((c: string)=>document.cookie=c);
+      console.log("response from /api/add-to-cart:", response);
+      if(response.token) {
+        document.cookie = `tm5-HelloAsso=${response.token}; path=/; domain=.helloasso.com; secure; SameSite=None;`;
       }
       else {
-        console.log('no cookies are given');
+        console.log('no token is given');
       }
       router.push('https://www.helloasso.com/associations/rotary-club-chateaubriant/evenements/puces-de-bere/2');
      }) 
