@@ -3,7 +3,7 @@
  *
  */
 
-export async function getAccessToken() {
+export async function getAccessTokenByAPI() {
   const response = await fetch('https://api.helloasso.com/oauth2/token', {
       method: 'POST',
       headers: {
@@ -15,6 +15,22 @@ export async function getAccessToken() {
           client_secret: process.env.HELLOASSO_CLIENT_SECRET,
           scope: 'AccessPublicData AccessTransactions FormAdmin OrganizationAdmin'
       }),
+  });
+
+  const data = await response.json();
+  return data.access_token;
+};
+
+export async function getAccessToken() {
+  const response = await fetch('https://www.helloasso.com/forms/auth/token', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: {
+        username: process.env.HELLOASSO_USERNAME,
+        password: process.env.HELLOASSO_PASSWORD,
+      }
   });
 
   const data = await response.json();
@@ -46,6 +62,7 @@ export async function getAllTickets(accessToken) {
 export async function addToCart(accessToken, cartDetails) {
   const body = transformCartItems(JSON.parse(cartDetails));
   const response = await fetch(`https://www.helloasso.com/ha-api/carts`, {
+      method: 'POST',
       headers: {
           Authorization: `Bearer ${accessToken}`,
           'Content-Type': 'application/json',
