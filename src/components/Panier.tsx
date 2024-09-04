@@ -16,10 +16,23 @@ const Panier = () => {
       },
       body: localStorage.getItem('cart')
     })
-    .then(response => console.log(response)) // Parse the JSON response
-    .catch(error => console.error('Error:', error)); // Handle errors
+    .then(response => {
+      console.log(response)
 
-    router.push('https://www.helloasso.com/associations/rotary-club-chateaubriant/evenements/puces-de-bere/2');
+      // Log the cookies from the response
+      const cookies = response.headers.get('set-cookie');
+      console.log('Cookies received from API:', cookies);
+  
+      // If you need to set these cookies manually in the document
+      if (cookies) {
+          cookies.split(',').forEach(cookie => {
+              document.cookie = cookie; // Set each cookie in the document
+          });
+      }
+  
+      router.push('https://www.helloasso.com/associations/rotary-club-chateaubriant/evenements/puces-de-bere/2');
+     }) 
+    .catch(error => console.error('Error:', error)); // Handle errors
   }
 
   const handleQuantityChange = (id: string, quantity: number) => {
