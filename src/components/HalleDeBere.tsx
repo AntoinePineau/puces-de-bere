@@ -32,7 +32,7 @@ export default function HalleDeBere() {
     } else {
       dispatch({
         type: 'ADD_ITEM',
-        item: { id: id, description: seatToggled.description, price: seatToggled.price, quantity: 1 },
+        item: { id: id, tierId: seatToggled.tierId, description: seatToggled.description, price: seatToggled.price, quantity: 1 },
       });
     }
   };
