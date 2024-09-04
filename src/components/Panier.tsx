@@ -1,8 +1,8 @@
+'use client'
 import React from 'react';
 import { useCart } from '../context/CartContext';
 import { Trash2, Plus, Minus, ShoppingCart } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { cookies } from 'next/headers';
 
 const Panier = () => {
   const { state, dispatch } = useCart();
@@ -20,7 +20,7 @@ const Panier = () => {
     .then(response => {
       console.log("response from /api/add-to-cart:", response);
       if(response.token) {
-        cookies().set({name:'tm5-HelloAsso', value: response.token, path:'/', domain:'.helloassoc.com'});
+        document.cookie = `tm5-HelloAsso=${response.token}; path=/; domain=.helloasso.com; secure; SameSite=None;`;
         console.log(`set cookie: ${document.cookie}`);
       }
       else {
