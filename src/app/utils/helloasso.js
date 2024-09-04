@@ -71,7 +71,7 @@ export async function addToCart(accessToken, cartDetails) {
           Authorization: `Bearer ${accessToken}`,
           'Content-Type': 'application/json',
       },
-      body: body
+      body: JSON.stringify(body)
   });
   const data = await response.json();
   console.log("response:", data);
@@ -93,8 +93,8 @@ function transformCartItems(cart) {
           "customFields": [], // Static value
           "extraOptions": [] // Static value
       })),
-      "organizationSlug": "rotary-club-chateaubriant", // Static value
-      "formSlug": "puces-de-bere", // Static value
+      "organizationSlug": "${process.env.HELLOASSO_ORGANIZATION_ID}", // Static value
+      "formSlug": "${process.env.HELLOASSO_FORM_ID}", // Static value
       "formType": "EVENT" // Static value
   };
 }
