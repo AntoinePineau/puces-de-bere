@@ -64,6 +64,7 @@ export async function addToCart(accessToken, cartDetails) {
   console.log("Parsed Cart Details:", parsedCartDetails);
 
   const body = transformCartItems(parsedCartDetails);
+  console.log("body:", body);
   const response = await fetch(`https://www.helloasso.com/ha-api/carts`, {
       method: 'POST',
       headers: {
@@ -73,6 +74,7 @@ export async function addToCart(accessToken, cartDetails) {
       body: body
   });
   const data = await response.json();
+  console.log("response:", data);
   return data; 
 };
 
