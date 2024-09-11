@@ -14,7 +14,7 @@ export default function Home() {
         <Panier />
       </aside>
       <section>
-      <iframe id="haWidget" allowtransparency="true" src="https://www.helloasso.com/associations/rotary-club-chateaubriant/evenements/puces-de-bere/widget-bouton" style="width: 100%; height: 70px; border: none;"></iframe>
+      <iframe id="haWidget" allowtransparency="true" src="https://www.helloasso.com/associations/rotary-club-chateaubriant/evenements/puces-de-bere/widget-bouton" height={"70px"} width={"100%"} style={{border:"none"}}></iframe>
       </section>
     </main>
   );
