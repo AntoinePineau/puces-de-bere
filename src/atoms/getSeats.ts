@@ -6,7 +6,7 @@ const seatWidth = 140; //1m80 (table 60cm + 1m20 d'espace derrière)
 const seatHeight = 90; // 1m20
 const space = 190; //2m40
 const angleL = 140; //1m80 (table 60cm + 1m20 d'espace derrière)
-const anglel = 90; //1m20
+const anglel = 180; //1m20
 const topLeftX=915,topLeftY=2493,bottomRightX=5630,bottomRightY=4270;
 
 
@@ -43,6 +43,10 @@ export async function getSeats():Promise<Seat[]> {
   const existingSeatIds = new Map();
   existingSeats.forEach(seat => existingSeatIds.set(seat.label, seat));
 
+  for(var i=1;i<20;i++) {
+    
+  }
+
   // Column A1 ... A10
   var col = topLeftX;
   
@@ -55,29 +59,29 @@ export async function getSeats():Promise<Seat[]> {
   col = col + seatWidth + space;
   addColumn(seats, col, 'A', 11, existingSeatIds);
   
-  for (let charCode = 'B'.charCodeAt(0); charCode <= 'H'.charCodeAt(0); charCode++) {
+  for (let charCode = 'B'.charCodeAt(0); charCode <= 'I'.charCodeAt(0); charCode++) {
     var letter = String.fromCharCode(charCode);
-    // Column B1 ... B7 to H1 ... H7
+    // Column B1 ... B7 to I1 ... I7
     col = col + seatWidth+1;
     addColumn(seats, col, letter, 1, existingSeatIds);
 
-    // Column B8 ... B14 to H8 ... H14
+    // Column B8 ... B14 to I8 ... I14
     col = col + seatWidth + space;
     addColumn(seats, col, letter, 9, existingSeatIds);
   }
 
-  // Column I1 ... I8
+  // Column J1 ... J8
   col = col + seatWidth+1;
-  addColumn(seats, col, 'I', 1, existingSeatIds);
+  addColumn(seats, col, 'J', 1, existingSeatIds);
 
   col = col + seatWidth + space;
 
-  xy = addSeat(seats, `I9`, false, false, col+5, topLeftY+seatWidth+space,  descSansInterieur, prixSansInterieur, existingSeatIds);
-  xy = addSeat(seats, `I10`, false, false, col+5, xy.y,  descSansInterieur, prixSansInterieur, existingSeatIds);
-  xy = addSeat(seats, `I11`, false, false, col+5, xy.y+seatHeight*2-5,  descSansInterieur, prixSansInterieur, existingSeatIds);
-  // Column I12 ... I18
+  xy = addSeat(seats, `J9`, false, false, col+5, topLeftY+seatWidth+space,  descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `J10`, false, false, col+5, xy.y,  descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `J11`, false, false, col+5, xy.y+seatHeight*2-5,  descSansInterieur, prixSansInterieur, existingSeatIds);
+  // Column J12 ... J18
   for(var i=1;i<=7;i++) { 
-    xy = addSeat(seats, `I${11+i}`, false, false, col+5, xy.y,  descSansInterieur, prixSansInterieur, existingSeatIds);
+    xy = addSeat(seats, `J${11+i}`, false, false, col+5, xy.y,  descSansInterieur, prixSansInterieur, existingSeatIds);
   }
   xy = addSeat(seats, `I19`, false, false, col-5, xy.y+seatHeight*2.5,  descSansInterieur, prixSansInterieur, existingSeatIds);
   xy = addSeat(seats, `I20`, false, false, col-5, xy.y,  descSansInterieur, prixSansInterieur, existingSeatIds);
