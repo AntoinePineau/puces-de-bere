@@ -109,7 +109,9 @@ export default function HalleDeBere() {
 
   return (
     <svg ref={svgRef} id="halledebere" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" width="100%" height="500px" viewBox="0 0 9361.11 6622.222" preserveAspectRatio="xMidYMid meet" className="cursor-grab border-2" style={{ touchAction: 'manipulation' }}>
-        <HalleDeBereVide/>
+        <g style={{transform: 'translate(-660pt, -370pt)'}}>
+          <HalleDeBereVide/>
+        </g>
         <g id="seats">
           {seats.map(seat => (
             <rect
