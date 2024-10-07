@@ -2,12 +2,12 @@
 const descAvecInterieur = "1m20 linéaire avec angle sans table à l'intérieur"; const prixAvecInterieur = 1800;
 const descSansInterieur = "1m20 linéaire sans angle sans table à l'intérieur"; const prixSansInterieur = 600;
 const descExterieur = "1m20 linéaire sans angle sans table à l'extérieur"; const prixExterieur = 400;
-const seatWidth = 140; //1m80 (table 60cm + 1m20 d'espace derrière)
-const seatHeight = 90; // 1m20
-const space = 190; //2m40
-const angleL = 140; //1m80 (table 60cm + 1m20 d'espace derrière)
-const anglel = 180; //1m20
-const topLeftX=915,topLeftY=2493,bottomRightX=5630,bottomRightY=4270;
+const seatWidth = 141.6; //1m80 (table 60cm + 1m20 d'espace derrière)
+const seatHeight = 94.4; // 1m20
+const space = 188.8; //2m40
+const angleL = 141.6; //1m80 (table 60cm + 1m20 d'espace derrière)
+const anglel = 188.8; //1m20
+const topLeftX=915,topLeftY=2493,bottomRightX=5630,bottomRightY=4147;
 
 
 
@@ -44,7 +44,7 @@ export async function getSeats():Promise<Seat[]> {
   existingSeats.forEach(seat => existingSeatIds.set(seat.label, seat));
 
   var xy = {x:topLeftX, y:topLeftY};
-  for(var i=1;i<20;i++) {
+  for(var i=1;i<18;i++) {
     xy = addSeat(seats, `A${i}`, false, false, topLeftX-seatWidth-5, xy.y, descAvecInterieur, prixAvecInterieur, existingSeatIds);
   }
 
