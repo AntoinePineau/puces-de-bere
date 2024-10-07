@@ -43,18 +43,23 @@ export async function getSeats():Promise<Seat[]> {
   const existingSeatIds = new Map();
   existingSeats.forEach(seat => existingSeatIds.set(seat.label, seat));
 
+  var xy = {x:topLeftX, y:topLeftY};
   for(var i=1;i<20;i++) {
-    
+    xy = addSeat(seats, `A${i}`, false, true, topLeftX, xy.y, descAvecInterieur, prixAvecInterieur, existingSeatIds);
   }
 
   // Column A1 ... A10
   var col = topLeftX;
   
-  var xy = addSeat(seats, `A0`, false, true, col, topLeftY+seatWidth+space, descAvecInterieur, prixAvecInterieur, existingSeatIds);
+  xy = addSeat(seats, `A0`, false, true, col, topLeftY+seatWidth+space, descAvecInterieur, prixAvecInterieur, existingSeatIds);
   for(var i=2;i<=9;i++) { 
     xy = addSeat(seats, `A${i}`, false, false, col, xy.y,  descSansInterieur, prixSansInterieur, existingSeatIds);
   }
   addSeat(seats, `A10`, false, true, col, xy.y,  descAvecInterieur, prixAvecInterieur, existingSeatIds);
+
+  
+  addSeat(seats, `S1 bis`, false, false, col, xy.y +space,  descAvecInterieur, prixAvecInterieur, existingSeatIds);
+
   
   col = col + seatWidth + space;
   addColumn(seats, col, 'A', 11, existingSeatIds);
@@ -109,8 +114,9 @@ export async function getSeats():Promise<Seat[]> {
   }
 
   // Line S
+  xy.x = topLeftX;
   for(var i=1;i<=5;i++) { 
-    xy = addSeat(seats, `S${i}`, true, false, topLeftX, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
+    xy = addSeat(seats, `S${i}`, true, false, xy.x, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
   xy = addSeat(seats, `S6`, true, false, xy.x+seatHeight, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
   xy = addSeat(seats, `S7`, true, false, xy.x, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
@@ -204,6 +210,7 @@ export async function getSeats():Promise<Seat[]> {
     xy = addSeat(seats, `Z${26+i}`, false, true, xy.x-seatWidth*2-1, xy.y, descExterieur, prixExterieur, existingSeatIds);
   }
   
+
   return seats;
 }
 
