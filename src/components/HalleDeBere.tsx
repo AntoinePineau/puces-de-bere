@@ -134,11 +134,11 @@ export default function HalleDeBere() {
               key={'seat-'+seat.id}
               id={'seat-'+seat.id}
               data-for={seat.id}
-              x={seat.x+seat.w/4} 
-              y={seat.y+seat.h/40+10+seat.h/5} 
+              x={seat.x} 
+              y={seat.y} 
               fill="white" 
               stroke="white"
-              fontSize="20"
+              fontSize="60"
               onClick={seat.available ? () => toggleSeat(seat.id) : undefined}
               onTouchStart={seat.available ? () => toggleSeat(seat.id) : undefined}
               style={{ cursor: seat.available ? "pointer" : "not-allowed" }}
