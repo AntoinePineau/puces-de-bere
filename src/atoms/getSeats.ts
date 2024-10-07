@@ -52,7 +52,7 @@ export async function getSeats():Promise<Seat[]> {
   }
   addSeat(seats, `A10`, false, true, col, xy.y,  descAvecInterieur, prixAvecInterieur, existingSeatIds);
   
-  col = col + space;
+  col = col + seatWidth + space;
   addColumn(seats, col, 'A', 11, existingSeatIds);
   
   for (let charCode = 'B'.charCodeAt(0); charCode <= 'H'.charCodeAt(0); charCode++) {
@@ -62,7 +62,7 @@ export async function getSeats():Promise<Seat[]> {
     addColumn(seats, col, letter, 1, existingSeatIds);
 
     // Column B8 ... B14 to H8 ... H14
-    col = col + space;
+    col = col + seatWidth + space;
     addColumn(seats, col, letter, 9, existingSeatIds);
   }
 
@@ -70,7 +70,7 @@ export async function getSeats():Promise<Seat[]> {
   col = col + seatWidth+1;
   addColumn(seats, col, 'I', 1, existingSeatIds);
 
-  col = col + space;
+  col = col + seatWidth + space;
 
   xy = addSeat(seats, `I9`, false, false, col+5, topLeftY+seatWidth+space,  descSansInterieur, prixSansInterieur, existingSeatIds);
   xy = addSeat(seats, `I10`, false, false, col+5, xy.y,  descSansInterieur, prixSansInterieur, existingSeatIds);
