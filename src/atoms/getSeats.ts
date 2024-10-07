@@ -29,18 +29,20 @@ export async function getSeats():Promise<Seat[]> {
   var existingSeats:any[] = [];
   await fetch('/api/tickets').then(response => response.json()).then(data => existingSeats = data);
   
-  const seatWidth = 94; //2m40 (table 60cm + 1m80 d'espace derrière)
-  const seatHeight = 47; // 1m20
-  const space = seatWidth*2 + 12;
+  const seatWidth = 140; //1m80 (table 60cm + 1m20 d'espace derrière)
+  const seatHeight = 90; // 1m20
+  const space = 190; //2m40
+  const angleL = 140; //1m80 (table 60cm + 1m20 d'espace derrière)
+  const anglel = 90; //1m20
 
   const seats:Seat[] = [];
   const existingSeatIds = new Map();
   existingSeats.forEach(seat => existingSeatIds.set(seat.label, seat));
 
   // Column A1 ... A10
-  var col = 1308;
+  var col = 915;
   
-  var xy = addSeat(seats, `A0`, seatWidth, seatHeight, col, 1207, descAvecInterieur, prixAvecInterieur, existingSeatIds);
+  var xy = addSeat(seats, `A0`, seatWidth, seatHeight, col, 2600, descAvecInterieur, prixAvecInterieur, existingSeatIds);
   for(var i=2;i<=9;i++) { 
     xy = addSeat(seats, `A${i}`, seatWidth, seatHeight, col, xy.y,  descSansInterieur, prixSansInterieur, existingSeatIds);
   }
