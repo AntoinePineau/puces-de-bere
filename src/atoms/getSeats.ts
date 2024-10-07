@@ -45,7 +45,7 @@ export async function getSeats():Promise<Seat[]> {
 
   var xy = {x:topLeftX, y:topLeftY};
   for(var i=1;i<20;i++) {
-    xy = addSeat(seats, `A${i}`, false, true, topLeftX-seatWidth-5, xy.y, descAvecInterieur, prixAvecInterieur, existingSeatIds);
+    xy = addSeat(seats, `A${i}`, false, false, topLeftX-seatWidth-5, xy.y, descAvecInterieur, prixAvecInterieur, existingSeatIds);
   }
 
   // Column A1 ... A10
@@ -55,7 +55,7 @@ export async function getSeats():Promise<Seat[]> {
   for(var i=2;i<=9;i++) { 
     xy = addSeat(seats, `A${i}`, false, false, col, xy.y,  descSansInterieur, prixSansInterieur, existingSeatIds);
   }
-  addSeat(seats, `A10`, false, true, col, xy.y,  descAvecInterieur, prixAvecInterieur, existingSeatIds);
+  xy = addSeat(seats, `A10`, false, true, col, xy.y,  descAvecInterieur, prixAvecInterieur, existingSeatIds);
 
   
   addSeat(seats, `S1 bis`, false, false, col, xy.y +space,  descAvecInterieur, prixAvecInterieur, existingSeatIds);
