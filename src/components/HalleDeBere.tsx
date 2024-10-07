@@ -138,7 +138,7 @@ export default function HalleDeBere() {
               y={seat.y} 
               fill="white" 
               stroke="white"
-              fontSize="60"
+              fontSize="50"
               onClick={seat.available ? () => toggleSeat(seat.id) : undefined}
               onTouchStart={seat.available ? () => toggleSeat(seat.id) : undefined}
               style={{ cursor: seat.available ? "pointer" : "not-allowed" }}
