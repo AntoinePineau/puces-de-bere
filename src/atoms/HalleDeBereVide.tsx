@@ -14602,8 +14602,6 @@ export default function HalleDeBereVide() {
 <path transform="matrix(0,-.3333333,-.3333333,-0,9227.777,6583.333)" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" fill="none" stroke="#000000" d="M 8210 25251 L 8195 25255 "/>
 </g>
 <g id="Layer-1" data-name="HALLE_LOTS">
-<path transform="matrix(0,-.3333333,-.3333333,-0,9227.777,6583.333)" d="M 11850 17073 L 11856 17096 L 11167 17263 Z M 11856 17096 L 11167 17263 L 11173 17286 Z "/>
-<path transform="matrix(0,-.3333333,-.3333333,-0,9227.777,6583.333)" strokeWidth="0" strokeLinecap="round" strokeMiterlimit="10" strokeLinejoin="miter" fill="none" stroke="#000000" d="M 11850 17073 L 11856 17096 L 11167 17263 Z M 11856 17096 L 11167 17263 L 11173 17286 Z "/>
 <path transform="matrix(0,-.3333333,-.3333333,-0,9227.777,6583.333)" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" fill="none" stroke="#000000" d="M 11944 9996 L 10768 10174 "/>
 </g>
 <g id="Layer-1" data-name="HALLE_BATI">
@@ -14693,8 +14691,6 @@ export default function HalleDeBereVide() {
 <path transform="matrix(0,-.3333333,-.3333333,-0,9227.777,6583.333)" strokeWidth="0" strokeLinecap="round" strokeMiterlimit="10" strokeLinejoin="miter" fill="none" stroke="#000000" d="M 8450 22934 L 8474 22931 L 8451 22938 Z M 8474 22931 L 8451 22938 L 8474 22933 Z M 8451 22938 L 8474 22933 L 8835 24319 Z M 8474 22933 L 8835 24319 L 8858 24313 Z "/>
 <path transform="matrix(0,-.3333333,-.3333333,-0,9227.777,6583.333)" d="M 10202 23870 L 10179 23876 L 9851 22595 Z M 10179 23876 L 9851 22595 L 9828 22601 Z "/>
 <path transform="matrix(0,-.3333333,-.3333333,-0,9227.777,6583.333)" strokeWidth="0" strokeLinecap="round" strokeMiterlimit="10" strokeLinejoin="miter" fill="none" stroke="#000000" d="M 10202 23870 L 10179 23876 L 9851 22595 Z M 10179 23876 L 9851 22595 L 9828 22601 Z "/>
-<path transform="matrix(0,-.3333333,-.3333333,-0,9227.777,6583.333)" d="M 12031 17765 L 12053 17759 L 12474 19360 Z M 12053 17759 L 12474 19360 L 12497 19354 Z "/>
-<path transform="matrix(0,-.3333333,-.3333333,-0,9227.777,6583.333)" strokeWidth="0" strokeLinecap="round" strokeMiterlimit="10" strokeLinejoin="miter" fill="none" stroke="#000000" d="M 12031 17765 L 12053 17759 L 12474 19360 Z M 12053 17759 L 12474 19360 L 12497 19354 Z "/>
 <path transform="matrix(0,-.3333333,-.3333333,-0,9227.777,6583.333)" strokeWidth="0" strokeLinecap="round" strokeMiterlimit="10" strokeLinejoin="miter" fill="none" stroke="#000000" d="M 10968 25177 L 10945 25184 L 10780 24494 Z M 10945 25184 L 10780 24494 L 10757 24500 Z "/>
 </g>
 <g id="Layer-1" data-name="HALLE_BATI">
