@@ -193,18 +193,18 @@ export async function getSeats():Promise<Seat[]> {
   }
 
   // Line Z
-  const zX=8447,zY=2100;
+  const zX=8520,zY=2100;
   xy = addSeat(seats, `Z1`, true, false, zX, zY, descExterieur, prixExterieur, existingSeatIds);
   for(var i=1;i<=12;i++) { 
     xy = addSeat(seats, `Z${1+i}`, true, false, xy.x, zY, descExterieur, prixExterieur, existingSeatIds);
   }
-  xy = addSeat(seats, `Z14`, false, false, 5083, 920, descExterieur, prixExterieur, existingSeatIds);
+  xy = addSeat(seats, `Z14`, false, false, xy.x-anglel, xy.y+space*2, descExterieur, prixExterieur, existingSeatIds);
   for(var i=1;i<=10;i++) { 
-    xy = addSeat(seats, `Z${15+i}`, false, false, 5083, xy.y, descExterieur, prixExterieur, existingSeatIds);
+    xy = addSeat(seats, `Z${15+i}`, false, false, xy.x-seatWidth, xy.y, descExterieur, prixExterieur, existingSeatIds);
   }
-  xy = addSeat(seats, `Z26`, false, false, 5083, xy.y+seatHeight*4, descExterieur, prixExterieur, existingSeatIds);
+  xy = addSeat(seats, `Z26`, false, false, xy.x-seatWidth, xy.y+space*2, descExterieur, prixExterieur, existingSeatIds);
   for(var i=1;i<=2;i++) { 
-    xy = addSeat(seats, `Z${26+i}`, false, false, 5083, xy.y, descExterieur, prixExterieur, existingSeatIds);
+    xy = addSeat(seats, `Z${26+i}`, false, false, xy.x-seatWidth, xy.y, descExterieur, prixExterieur, existingSeatIds);
   }
   
 
