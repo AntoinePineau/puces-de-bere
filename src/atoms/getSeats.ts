@@ -7,7 +7,8 @@ const seatHeight = 94.4; // 1m20
 const space = 188.8; //2m40
 const angleL = 141.6; //1m80 (table 60cm + 1m20 d'espace derrière)
 const anglel = 188.8; //1m20
-const topLeftX=915,topLeftY=2493,bottomRightX=5630,bottomRightY=4147;
+//const topLeftX=915,topLeftY=2493,bottomRightX=5630,bottomRightY=4147;
+const topLeftX=1795,topLeftY=2989,bottomRightX=6510,bottomRightY=4643;
 
 
 
