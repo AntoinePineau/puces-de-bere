@@ -115,7 +115,7 @@ export async function getSeats():Promise<Seat[]> {
   }
   xy = addSeat(seats, `S6`, true, false, xy.x+seatHeight/2, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
   xy = addSeat(seats, `S7`, true, false, xy.x, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
-  xy = addSeat(seats, `S8`, true, false, xy.x+seatHeight*3/2, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `S8`, true, false, xy.x+seatHeight*5/4, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
   for(var i=1;i<=7;i++) { 
     xy = addSeat(seats, `S${8+i}`, true, false, xy.x, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
@@ -133,6 +133,7 @@ export async function getSeats():Promise<Seat[]> {
   }
   xy = addSeat(seats, `S36`, true, false, xy.x+seatHeight/2, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
   xy = addSeat(seats, `S37`, true, false, xy.x, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `S38`, true, false, xy.x, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
 
   // Line R
   for(var i=1;i<=5;i++) { 
@@ -188,11 +189,11 @@ export async function getSeats():Promise<Seat[]> {
   }
   xy = addSeat(seats, `Y21`, false, false, bottomRightX+seatHeight*2, topLeftY+seatWidth+2*seatHeight+space, descExterieur, prixExterieur, existingSeatIds);
   for(var i=1;i<=7;i++) { 
-    xy = addSeat(seats, `Y${21+i}`, false, false, bottomRightX+30, xy.y, descExterieur, prixExterieur, existingSeatIds);
+    xy = addSeat(seats, `Y${21+i}`, false, false, bottomRightX+seatHeight*2, xy.y, descExterieur, prixExterieur, existingSeatIds);
   }
 
   // Line Z
-  const zX=7700,zY=1650;
+  const zX=85800,zY=2100;
   xy = addSeat(seats, `Z1`, true, false, zX, zY, descExterieur, prixExterieur, existingSeatIds);
   for(var i=1;i<=12;i++) { 
     xy = addSeat(seats, `Z${1+i}`, true, false, xy.x, zY, descExterieur, prixExterieur, existingSeatIds);

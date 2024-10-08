@@ -179,14 +179,6 @@ export default function HalleDeBereVide() {
 </clipPath>
 <g clipPath="url(#cp5)">
 </g>
-<g id="Layer-1" data-name="HALLE_TBL_20_STD">
-<path transform="matrix(0,-.3333333,-.3333333,-0,9227.777,6583.333)" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" fill="none" stroke="#000000" d="M 8112 2282 L 2270 3909 "/>
-<path transform="matrix(0,-.3333333,-.3333333,-0,9227.777,6583.333)" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" fill="none" stroke="#000000" d="M 8108 2268 L 2251 3899 "/>
-</g>
-<g id="Layer-1" data-name="HALLE_BATI">
-<path transform="matrix(0,-.3333333,-.3333333,-0,9227.777,6583.333)" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" fill="none" stroke="#000000" d="M 2238 3906 L 2245 3904 L 2262 3967 L 2255 3969 L 2237 3907 L 2239 3907 L 2238 3906 "/>
-<path transform="matrix(0,-.3333333,-.3333333,-0,9227.777,6583.333)" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" fill="none" stroke="#000000" d="M 2238 3906 L 2245 3904 L 2940 6402 L 2933 6403 L 2238 3906 "/>
-</g>
 <g id="Layer-1" data-name="HALLE_CLOISON">
 <path transform="matrix(0,-.3333333,-.3333333,-0,9227.777,6583.333)" d="M 3621 8847 L 3614 8823 L 3614 8849 Z "/>
 <path transform="matrix(0,-.3333333,-.3333333,-0,9227.777,6583.333)" strokeWidth="0" strokeLinecap="round" strokeMiterlimit="10" strokeLinejoin="miter" fill="none" stroke="#000000" d="M 3621 8847 L 3614 8823 L 3614 8849 Z "/>
@@ -680,7 +672,6 @@ export default function HalleDeBereVide() {
 <path transform="matrix(0,-.3333333,-.3333333,-0,9227.777,6583.333)" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" fill="none" stroke="#000000" d="M 4332 11227 L 4560 11163 "/>
 <path transform="matrix(0,-.3333333,-.3333333,-0,9227.777,6583.333)" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" fill="none" stroke="#000000" d="M 3860 9533 L 4134 9457 "/>
 <path transform="matrix(0,-.3333333,-.3333333,-0,9227.777,6583.333)" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" fill="none" stroke="#000000" d="M 3857 9520 L 4131 9444 "/>
-<path transform="matrix(0,-.3333333,-.3333333,-0,9227.777,6583.333)" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" fill="none" stroke="#000000" d="M 3816 9520 L 2251 3899 "/>
 <path transform="matrix(0,-.3333333,-.3333333,-0,9227.777,6583.333)" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" fill="none" stroke="#000000" d="M 2270 3909 L 3829 9510 "/>
 <path transform="matrix(0,-.3333333,-.3333333,-0,9227.777,6583.333)" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" fill="none" stroke="#000000" d="M 8010 24590 L 8195 25255 "/>
 <path transform="matrix(0,-.3333333,-.3333333,-0,9227.777,6583.333)" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" fill="none" stroke="#000000" d="M 8027 24594 L 8210 25251 "/>
