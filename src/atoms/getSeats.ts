@@ -115,7 +115,7 @@ export async function getSeats():Promise<Seat[]> {
   }
   xy = addSeat(seats, `S6`, true, false, xy.x+seatHeight/2, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
   xy = addSeat(seats, `S7`, true, false, xy.x, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
-  xy = addSeat(seats, `S8`, true, false, xy.x+seatWidth, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `S8`, true, false, xy.x+seatWidth+seatHeight/3, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
   for(var i=1;i<=7;i++) { 
     xy = addSeat(seats, `S${8+i}`, true, false, xy.x, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
@@ -193,7 +193,7 @@ export async function getSeats():Promise<Seat[]> {
   }
 
   // Line Z
-  const zX=85800,zY=2100;
+  const zX=8580,zY=2100;
   xy = addSeat(seats, `Z1`, true, false, zX, zY, descExterieur, prixExterieur, existingSeatIds);
   for(var i=1;i<=12;i++) { 
     xy = addSeat(seats, `Z${1+i}`, true, false, xy.x, zY, descExterieur, prixExterieur, existingSeatIds);
