@@ -193,7 +193,7 @@ export async function getSeats():Promise<Seat[]> {
   }
 
   // Line Z
-  const zX=8580,zY=2100;
+  const zX=8447,zY=2100;
   xy = addSeat(seats, `Z1`, true, false, zX, zY, descExterieur, prixExterieur, existingSeatIds);
   for(var i=1;i<=12;i++) { 
     xy = addSeat(seats, `Z${1+i}`, true, false, xy.x, zY, descExterieur, prixExterieur, existingSeatIds);
