@@ -86,15 +86,15 @@ export async function getSeats():Promise<Seat[]> {
   xy = addSeat(seats, `I20`, false, false, col-5, xy.y,  descSansInterieur, prixSansInterieur, existingSeatIds);
 
   // Line N
-  xy = addSeat(seats, `N1`, true, false, topLeftX+seatWidth+space, topLeftY, descAvecInterieur, prixAvecInterieur, existingSeatIds);
+  xy = addSeat(seats, `N1`, true, false, topLeftX+seatWidth+space-15, topLeftY, descAvecInterieur, prixAvecInterieur, existingSeatIds);
   xy = addSeat(seats, `N2`, true, false, xy.x, topLeftY, descAvecInterieur, prixAvecInterieur, existingSeatIds);
   xy = addSeat(seats, `N3`, true, false, xy.x, topLeftY, descSansInterieur, prixSansInterieur, existingSeatIds);
   xy = addSeat(seats, `N4`, true, true, xy.x, topLeftY, descAvecInterieur, prixAvecInterieur, existingSeatIds);
-  addSeat(seats, `N5`, false, false, xy.x+seatWidth+5, topLeftY-seatHeight-1, descSansInterieur, prixSansInterieur, existingSeatIds);
-  xy = addSeat(seats, `N6`, true, true, xy.x+seatWidth+5, topLeftY, descAvecInterieur, prixAvecInterieur, existingSeatIds);
+  addSeat(seats, `N5`, false, false, xy.x+seatWidth+10, topLeftY-seatHeight-1, descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `N6`, true, true, xy.x+seatWidth+10, topLeftY, descAvecInterieur, prixAvecInterieur, existingSeatIds);
   xy = addSeat(seats, `N7`, true, true, xy.x, topLeftY, descAvecInterieur, prixAvecInterieur, existingSeatIds);
-  addSeat(seats, `N8`, false, false, xy.x-seatWidth+5, topLeftY-seatHeight-1, descSansInterieur, prixSansInterieur, existingSeatIds);
-  xy = addSeat(seats, `N9`, true, true, xy.x+seatWidth-12, topLeftY, descAvecInterieur, prixAvecInterieur, existingSeatIds);
+  addSeat(seats, `N8`, false, false, xy.x-seatWidth+10, topLeftY-seatHeight-1, descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `N9`, true, true, xy.x+seatWidth, topLeftY, descAvecInterieur, prixAvecInterieur, existingSeatIds);
   for(var i=10;i<=24;i++) { 
     xy = addSeat(seats, `N${i}`, true, false, xy.x, topLeftY, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
