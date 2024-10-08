@@ -108,8 +108,8 @@ export default function HalleDeBere() {
   }, [seats]);
 
   return (
-    <svg ref={svgRef} id="halledebere" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" width="100%" height="350px" viewBox="0 0 9361.11 6622.222" preserveAspectRatio="xMidYMid meet" className="cursor-grab border-2" style={{ touchAction: 'manipulation' }}>
-        <g style={{transform: 'translate(-660pt, -370pt)'}}>
+    <svg ref={svgRef} id="halledebere" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" width="100%" height="350px" viewBox="0 1370 9361.11 3800" preserveAspectRatio="xMidYMid meet" className="cursor-grab border-2" style={{ touchAction: 'manipulation' }}>
+        <g style={{/*transform: 'translate(-660pt, -370pt)'*/}}>
           <HalleDeBereVide/>
         </g>
         <g id="seats">
