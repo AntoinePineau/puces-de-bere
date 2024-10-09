@@ -93,6 +93,7 @@ export async function getSeats():Promise<Seat[]> {
   xy = addSeat(seats, `N4`, true, true, xy.x, topLeftY, descAvecInterieur, prixAvecInterieur, existingSeatIds);
   addSeat(seats, `N5`, false, false, xy.x+seatWidth+seatHeight/2, topLeftY-seatHeight-1, descSansInterieur, prixSansInterieur, existingSeatIds);
   xy = addSeat(seats, `N6`, true, true, xy.x+seatWidth+seatHeight/2, topLeftY, descAvecInterieur, prixAvecInterieur, existingSeatIds);
+  var xyN6 = xy;
   xy = addSeat(seats, `N7`, true, true, xy.x, topLeftY, descAvecInterieur, prixAvecInterieur, existingSeatIds);
   addSeat(seats, `N8`, false, false, xy.x-seatWidth, topLeftY-seatHeight-1, descSansInterieur, prixSansInterieur, existingSeatIds);
   xy = addSeat(seats, `N9`, true, true, xy.x+seatWidth+39, topLeftY, descAvecInterieur, prixAvecInterieur, existingSeatIds);
@@ -165,20 +166,20 @@ export async function getSeats():Promise<Seat[]> {
   }
   xy = addSeat(seats, `R39`, false, false, xyR37.x-seatHeight*4/3-seatWidth*2-3, xyR37.y-seatHeight/2-seatWidth-2, descSansInterieur, prixSansInterieur, existingSeatIds);
   xy = addSeat(seats, `R38`, false, false, xy.x, xy.y-seatHeight-1, descSansInterieur, prixSansInterieur, existingSeatIds);
-  xy = addSeat(seats, `R46`, true, false, xyR37.x-space*9-seatHeight, xyR37.y-seatWidth-1, descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `R46`, true, false, xyR37.x-space*9-seatHeight+seatHeight/3, xyR37.y-seatWidth-1, descSansInterieur, prixSansInterieur, existingSeatIds);
   var xyR46 = xy;
   for(var i=45;i>=40;i--) { 
     xy = addSeat(seats, `R${i}`, true, false, xy.x, xy.y-seatWidth-1, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
-  xy.x = xyR46.x-seatHeight-seatWidth*4-4;
+  xy.x = xyR46.x-seatHeight-seatWidth*4-seatWidth/2-4;
   for(var i=50;i>=47;i--) { 
-    xy = addSeat(seats, `R${i}`, false, false, xy.x-seatWidth/2, xyR46.y-seatWidth-seatHeight+10, descSansInterieur, prixSansInterieur, existingSeatIds);
+    xy = addSeat(seats, `R${i}`, false, false, xy.x, xyR46.y-seatWidth-seatHeight+10, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
   xy.x = xy.x-4*seatWidth-seatWidth/2-3-space*5;
   for(var i=54;i>=51;i--) { 
     xy = addSeat(seats, `R${i}`, false, false, xy.x, xy.y-seatHeight-1, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
-  xy.x = topLeftX+seatHeight*3/2+space*2+3*seatHeight+anglel;
+  xy.x = xyN6.x;
   for(var i=56;i>=55;i--) { 
     xy = addSeat(seats, `R${i}`, true, true, xy.x, xyR46.y-seatWidth-1, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
