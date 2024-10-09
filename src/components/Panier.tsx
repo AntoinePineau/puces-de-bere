@@ -9,15 +9,6 @@ const Panier = () => {
   const { state, dispatch } = useCart();
   const router = useRouter();
   const cartAction = async () => {
-    const firstName = (document.getElementById('firstName') as HTMLInputElement).value;
-    const lastName = (document.getElementById('lastName') as HTMLInputElement).value;
-    const email = (document.getElementById('email') as HTMLInputElement).value;
-
-    // Check if any of the fields are empty
-    if (!firstName || !lastName || !email) {
-        alert("Tous les champs sont obligatoires."); // Alert if any field is empty
-        return; // Stop further execution
-    }
     var cart = JSON.parse(localStorage.getItem('cart') ?? '[]') as CartItem[];
     var itemName = "Inscription en tant qu'exposant aux Puces de Béré 2025 - ";
     var tableCount = 0;
@@ -44,11 +35,6 @@ const Panier = () => {
 
     const checkoutBody = {
       "ContainsDonation": false,
-      "payer": {
-        "firstName": firstName,
-        "lastName": lastName,
-        "email": email
-      },
       "items": cart.map(item => ({
         tiersId: item.tierId, // Use tierId from the new cart structure
         quantity: item.quantity
@@ -57,7 +43,7 @@ const Panier = () => {
       "InitialAmount": price,
       "ItemName": itemName,
       "BackUrl": "https://puces-de-bere.vercel.app/",
-      "ErrorUrl": "https://puces-de-bere.vercel.app/error/",
+      "ErrorUrl": "https://puces-de-bere.vercel.app/erreur/",
       "ReturnUrl": "https://puces-de-bere.vercel.app/confirmation/"
     };
     fetch('/api/order', {
@@ -151,20 +137,6 @@ const Panier = () => {
             </button>
             <div className="text-xl font-bold">
               TOTAL: {formatPrice(state.items.reduce((total, item) => total + (item.price * item.quantity / 100), 0))}€
-            </div>
-          </div>
-          <div>
-            <div className="mt-4">
-              <label htmlFor="firstName" className="block">Prénom <span className="text-red-500">*</span></label>
-              <input type="text"  id="firstName" className="border rounded p-2 w-full" placeholder="Entrez votre prénom"/>
-            </div>
-            <div className="mt-4">
-              <label htmlFor="lastName" className="block">NOM <span className="text-red-500">*</span></label>
-              <input type="text" id="lastName" className="border rounded p-2 w-full" placeholder="Entrez votre nom de famille"/>
-            </div>
-            <div className="mt-4">
-              <label htmlFor="email" className="block">E-mail <span className="text-red-500">*</span></label>
-              <input type="email" id="email" className="border rounded p-2 w-full" placeholder="Entrez votre adresse e-mail"/>
             </div>
           </div>
           <button
