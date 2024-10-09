@@ -43,7 +43,7 @@ const Panier = () => {
       "initialAmount": price,
       "itemName": itemName,
       "backUrl": "https://puces-de-bere.vercel.app/",
-      "rrrorUrl": "https://puces-de-bere.vercel.app/erreur/",
+      "errorUrl": "https://puces-de-bere.vercel.app/erreur/",
       "returnUrl": "https://puces-de-bere.vercel.app/confirmation/"
     };
     fetch('/api/order', {
