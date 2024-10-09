@@ -107,7 +107,7 @@ export async function initCheckout(token, orderDetails) {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json',
     },
-    body: orderDetails
+    body: JSON.stringify(orderDetails)
   });
 
   const data = await response.json();
