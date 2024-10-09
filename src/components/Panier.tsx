@@ -1,31 +1,74 @@
 'use client'
-import React from 'react';
+import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
 import { Trash2, Plus, Minus, ShoppingCart } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { CartItem } from '../context/CartContext';
 
 const Panier = () => {
   const { state, dispatch } = useCart();
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
   const router = useRouter();
   const cartAction = async () => {
-    fetch('/api/add-to-cart', {
+  var cart = JSON.parse(localStorage.getItem('cart') ?? '[]') as CartItem[];
+  var itemName = "Inscription en tant qu'exposant aux Puces de Béré 2025 - ";
+  var tableCount = 0;
+  var otherItems: string[] = [];
+  var price = 0;
+
+  // Use forEach to iterate through the cart
+  cart.forEach(function(item) {
+    price += item.price*item.quantity;
+    if (item.id === "Table") {
+      tableCount += item.quantity; // Count the quantity of tables
+    } else {
+      otherItems.push(item.id); // Collect other item IDs
+    }
+  });
+
+  // Concatenate the results
+  if (tableCount > 0) {
+    itemName += `${tableCount} Table`+(tableCount>1?'s':''); // Add table count
+  }
+  if (otherItems.length > 0) {
+    itemName += " | Emplacements: " + otherItems.join(", "); // Add other item IDs
+  }
+    const checkoutBody = {
+      "containsDonation": false,
+      "payer": {
+        "firstName": firstName,
+        "lastName": lastName,
+        "email": email
+      },
+      "items": cart.map(item => ({
+        tiersId: item.tierId, // Use tierId from the new cart structure
+        quantity: item.quantity
+      })),
+      "totalAmount": price,
+      "initialAmount": price,
+      "itemName": itemName,
+      "backUrl": "https://puces-de-bere.vercel.app/",
+      "errorUrl": "https://puces-de-bere.vercel.app/error/",
+      "returnUrl": "https://puces-de-bere.vercel.app/confirmation/"
+    };
+    fetch('/api/order', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json'
       },
-      body: localStorage.getItem('cart')
+      body: JSON.stringify(checkoutBody)
     })
     .then(response => response.json())
     .then(response => {
-      console.log("response from /api/add-to-cart:", response);
-      if(response.token) {
-        document.cookie = `tm5-HelloAsso=${response.token}; path=/; domain=.helloasso.com; secure; SameSite=None;`;
-        //console.log(`set cookie: ${document.cookie}`);
+      console.log("response from /api/order:", response);
+      if(response.redirectUrl) {
+        router.push(response.redirectUrl);
       }
       else {
-        console.log('no token is given');
+        console.log('no redirectUrl is given');
       }
-      router.push('https://www.helloasso.com/associations/rotary-club-chateaubriant/evenements/puces-de-bere/2');
      }) 
     .catch(error => console.error('Error:', error)); // Handle errors
   }
@@ -101,6 +144,20 @@ const Panier = () => {
             </button>
             <div className="text-xl font-bold">
               TOTAL: {formatPrice(state.items.reduce((total, item) => total + (item.price * item.quantity / 100), 0))}€
+            </div>
+          </div>
+          <div>
+            <div className="mt-4">
+              <label htmlFor="firstName" className="block">Prénom</label>
+              <input type="text"  id="firstName" className="border rounded p-2 w-full" placeholder="Entrez votre prénom"/>
+            </div>
+            <div className="mt-4">
+              <label htmlFor="lastName" className="block">NOM</label>
+              <input type="text" id="lastName" className="border rounded p-2 w-full" placeholder="Entrez votre nom de famille"/>
+            </div>
+            <div className="mt-4">
+              <label htmlFor="email" className="block">E-mail</label>
+              <input type="email" id="email" className="border rounded p-2 w-full" placeholder="Entrez votre adresse e-mail"/>
             </div>
           </div>
           <button

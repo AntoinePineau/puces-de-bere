@@ -1,7 +1,7 @@
 'use client' 
 import React, { createContext, useContext, useReducer, useEffect, ReactNode } from 'react';
 
-type CartItem = {
+export type CartItem = {
   id: string;
   tierId: number;
   description: string;
