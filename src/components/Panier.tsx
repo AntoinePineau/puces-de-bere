@@ -43,7 +43,7 @@ const Panier = () => {
     }
 
     const checkoutBody = {
-      "containsDonation": false,
+      "ContainsDonation": false,
       "payer": {
         "firstName": firstName,
         "lastName": lastName,
@@ -53,12 +53,12 @@ const Panier = () => {
         tiersId: item.tierId, // Use tierId from the new cart structure
         quantity: item.quantity
       })),
-      "totalAmount": price,
-      "initialAmount": price,
-      "itemName": itemName,
-      "backUrl": "https://puces-de-bere.vercel.app/",
-      "errorUrl": "https://puces-de-bere.vercel.app/error/",
-      "returnUrl": "https://puces-de-bere.vercel.app/confirmation/"
+      "TotalAmount": price,
+      "InitialAmount": price,
+      "ItemName": itemName,
+      "BackUrl": "https://puces-de-bere.vercel.app/",
+      "ErrorUrl": "https://puces-de-bere.vercel.app/error/",
+      "ReturnUrl": "https://puces-de-bere.vercel.app/confirmation/"
     };
     fetch('/api/order', {
       method: 'POST',
