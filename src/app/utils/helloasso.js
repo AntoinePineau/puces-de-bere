@@ -3,7 +3,7 @@
  *
  */
 
-const baseURL = "https://api.helloasso-sandbox.com";//https://api.helloasso.com
+const baseURL = `${process.env.HELLOASSO_BASE_URL}`;
 
 export async function getAccessToken() {
   const response = await fetch(`${baseURL}/oauth2/token`, {
