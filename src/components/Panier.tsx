@@ -34,17 +34,17 @@ const Panier = () => {
     }
 
     const checkoutBody = {
-      "ContainsDonation": false,
+      "containsDonation": false,
       "items": cart.map(item => ({
         tiersId: item.tierId, // Use tierId from the new cart structure
         quantity: item.quantity
       })),
-      "TotalAmount": price,
-      "InitialAmount": price,
-      "ItemName": itemName,
-      "BackUrl": "https://puces-de-bere.vercel.app/",
-      "ErrorUrl": "https://puces-de-bere.vercel.app/erreur/",
-      "ReturnUrl": "https://puces-de-bere.vercel.app/confirmation/"
+      "totalAmount": price,
+      "initialAmount": price,
+      "itemName": itemName,
+      "backUrl": "https://puces-de-bere.vercel.app/",
+      "rrrorUrl": "https://puces-de-bere.vercel.app/erreur/",
+      "returnUrl": "https://puces-de-bere.vercel.app/confirmation/"
     };
     fetch('/api/order', {
       method: 'POST',
@@ -112,7 +112,7 @@ const Panier = () => {
                     <span className="mx-2">{item.quantity}</span>
                     <button
                       className="text-gray-500 hover:text-gray-700"
-                      onClick={() => handleQuantityChange(item.id, Math.min(1, item.quantity + 1))}
+                      onClick={() => handleQuantityChange(item.id, item.id==='Table' ? item.quantity + 1 : Math.min(1, item.quantity + 1))}
                     >
                       <Plus size={16} />
                     </button>                    
@@ -123,7 +123,7 @@ const Panier = () => {
                       >                    
                         <Trash2 size={18} />
                       </button>
-                    ):(<></>)}
+                    ):(<Trash2 size={18} color='white'/>)}
                   </div>
               </div>
             </div>
