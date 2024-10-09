@@ -3,6 +3,6 @@ import { getAccessToken, initCheckout } from '../../utils/helloasso';
 
 export async function POST(req, res) {
   const token = await getAccessToken();
-  const checkout = await initCheckout(token, JSON.parse(req.body));
+  const checkout = await initCheckout(token, req.body);
   return NextResponse.json(checkout);
 }

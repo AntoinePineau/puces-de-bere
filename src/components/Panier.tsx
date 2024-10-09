@@ -121,7 +121,7 @@ const Panier = () => {
                         onClick={() => handleRemove(item.id)}
                         className="ml-4 text-red-500 hover:text-red-700"
                       >                    
-                        <Trash2 size={18} />
+                        <Trash2 size={18} className="ml-4"/>
                       </button>
                     ):(<Trash2 size={18} color='white'/>)}
                   </div>
