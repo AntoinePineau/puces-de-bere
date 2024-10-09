@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React from 'react';
 import { useCart } from '../context/CartContext';
 import { Trash2, Plus, Minus, ShoppingCart } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -7,34 +7,41 @@ import { CartItem } from '../context/CartContext';
 
 const Panier = () => {
   const { state, dispatch } = useCart();
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
   const router = useRouter();
   const cartAction = async () => {
-  var cart = JSON.parse(localStorage.getItem('cart') ?? '[]') as CartItem[];
-  var itemName = "Inscription en tant qu'exposant aux Puces de Béré 2025 - ";
-  var tableCount = 0;
-  var otherItems: string[] = [];
-  var price = 0;
+    const firstName = (document.getElementById('firstName') as HTMLInputElement).value;
+    const lastName = (document.getElementById('lastName') as HTMLInputElement).value;
+    const email = (document.getElementById('email') as HTMLInputElement).value;
 
-  // Use forEach to iterate through the cart
-  cart.forEach(function(item) {
-    price += item.price*item.quantity;
-    if (item.id === "Table") {
-      tableCount += item.quantity; // Count the quantity of tables
-    } else {
-      otherItems.push(item.id); // Collect other item IDs
+    // Check if any of the fields are empty
+    if (!firstName || !lastName || !email) {
+        alert("Tous les champs sont obligatoires."); // Alert if any field is empty
+        return; // Stop further execution
     }
-  });
+    var cart = JSON.parse(localStorage.getItem('cart') ?? '[]') as CartItem[];
+    var itemName = "Inscription en tant qu'exposant aux Puces de Béré 2025 - ";
+    var tableCount = 0;
+    var otherItems: string[] = [];
+    var price = 0;
 
-  // Concatenate the results
-  if (tableCount > 0) {
-    itemName += `${tableCount} Table`+(tableCount>1?'s':''); // Add table count
-  }
-  if (otherItems.length > 0) {
-    itemName += " | Emplacements: " + otherItems.join(", "); // Add other item IDs
-  }
+    // Use forEach to iterate through the cart
+    cart.forEach(function(item) {
+      price += item.price*item.quantity;
+      if (item.id === "Table") {
+        tableCount += item.quantity; // Count the quantity of tables
+      } else {
+        otherItems.push(item.id); // Collect other item IDs
+      }
+    });
+
+    // Concatenate the results
+    if (tableCount > 0) {
+      itemName += `${tableCount} Table`+(tableCount>1?'s':''); // Add table count
+    }
+    if (otherItems.length > 0) {
+      itemName += " | Emplacements: " + otherItems.join(", "); // Add other item IDs
+    }
+
     const checkoutBody = {
       "containsDonation": false,
       "payer": {
@@ -102,7 +109,7 @@ const Panier = () => {
       ) : (
         <>
           {state.items.map((item) => (
-            <div key={item.id} className="flex items-center justify-between border-b py-4">
+            <div id={""+item.tierId} key={item.id} className="flex items-center justify-between border-b py-4">
               <div className="flex-grow">
                 <h3 className="font-semibold">{item.id === 'Table' ? 'Table' : `Emplacement ${item.id}`}</h3>
                 <p className="text-sm text-gray-600">{item.description}</p>
@@ -148,15 +155,15 @@ const Panier = () => {
           </div>
           <div>
             <div className="mt-4">
-              <label htmlFor="firstName" className="block">Prénom</label>
+              <label htmlFor="firstName" className="block">Prénom <span className="text-red-500">*</span></label>
               <input type="text"  id="firstName" className="border rounded p-2 w-full" placeholder="Entrez votre prénom"/>
             </div>
             <div className="mt-4">
-              <label htmlFor="lastName" className="block">NOM</label>
+              <label htmlFor="lastName" className="block">NOM <span className="text-red-500">*</span></label>
               <input type="text" id="lastName" className="border rounded p-2 w-full" placeholder="Entrez votre nom de famille"/>
             </div>
             <div className="mt-4">
-              <label htmlFor="email" className="block">E-mail</label>
+              <label htmlFor="email" className="block">E-mail <span className="text-red-500">*</span></label>
               <input type="email" id="email" className="border rounded p-2 w-full" placeholder="Entrez votre adresse e-mail"/>
             </div>
           </div>
