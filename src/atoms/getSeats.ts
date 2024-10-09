@@ -148,16 +148,17 @@ export async function getSeats():Promise<Seat[]> {
   for(var i=11;i<=17;i++) { 
     xy = addSeat(seats, `R${i}`, true, false, xy.x, xy.y-seatWidth-1, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
-  xy = addSeat(seats, `R18`, true, false, xy.x+space*2, xy.y-seatWidth, descAvecInterieur, prixAvecInterieur, existingSeatIds);  
-  for(var i=19;i<=23;i++) { 
+  var xyX18 = xy.x+space*2-seatHeight;
+  xy = addSeat(seats, `R18`, true, false, xyX18, xy.y-seatWidth, descAvecInterieur, prixAvecInterieur, existingSeatIds);  
+  for(var i=19;i<=22;i++) { 
     xy = addSeat(seats, `R${i}`, true, false, xy.x, xy.y-seatWidth-1, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
-  xy = addSeat(seats, `R24`, false, false, xy.x+seatHeight*3, xy.y-seatWidth*2-2, descAvecInterieur, prixAvecInterieur, existingSeatIds);
-  xy = addSeat(seats, `R25`, false, false, xy.x, xy.y-seatHeight-1, descAvecInterieur, prixAvecInterieur, existingSeatIds);
-  xy = addSeat(seats, `R26`, true, false, xy.x, xy.y-seatHeight*3/2, descAvecInterieur, prixAvecInterieur, existingSeatIds); 
-  xy = addSeat(seats, `R27`, true, false, xy.x, xy.y-seatWidth-1, descSansInterieur, prixSansInterieur, existingSeatIds);  
-  xy = addSeat(seats, `R36`, true, false, 3820, 920, descSansInterieur, prixSansInterieur, existingSeatIds);
-  for(var i=35;i>=28;i--) { 
+  xy = addSeat(seats, `R23`, false, false, xy.x+seatHeight*2, xy.y-seatWidth-seatHeight-2, descAvecInterieur, prixAvecInterieur, existingSeatIds);
+  xy = addSeat(seats, `R24`, false, false, xy.x, xy.y-seatHeight-1, descAvecInterieur, prixAvecInterieur, existingSeatIds);
+  xy = addSeat(seats, `R25`, true, false, xy.x, xy.y-seatHeight*3/2, descAvecInterieur, prixAvecInterieur, existingSeatIds); 
+  xy = addSeat(seats, `R26`, true, false, xy.x, xy.y-seatWidth-1, descSansInterieur, prixSansInterieur, existingSeatIds);  
+  xy = addSeat(seats, `R35`, true, false, xyX18, xy.y+space+seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
+  for(var i=35;i>=27;i--) { 
     xy = addSeat(seats, `R${i}`, true, false, xy.x, xy.y-seatWidth-1, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
   xy = addSeat(seats, `R38`, false, false, 3592, 925-seatHeight/2, descSansInterieur, prixSansInterieur, existingSeatIds);
