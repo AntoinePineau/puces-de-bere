@@ -42,9 +42,9 @@ const Panier = () => {
       "totalAmount": price,
       "initialAmount": price,
       "itemName": itemName,
-      "backUrl": `${process.env.BASE_URL}/`,
-      "errorUrl": `${process.env.BASE_URL}/erreur/`,
-      "returnUrl": `${process.env.BASE_URL}/confirmation/`
+      "backUrl": `${process.env.NEXT_PUBLIC_BASE_URL}/`,
+      "errorUrl": `${process.env.NEXT_PUBLIC_BASE_URL}/erreur/`,
+      "returnUrl": `${process.env.NEXT_PUBLIC_BASE_URL}/confirmation/`
     };
     fetch('/api/order', {
       method: 'POST',
