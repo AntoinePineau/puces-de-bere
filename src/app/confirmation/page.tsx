@@ -30,8 +30,12 @@ export default function Confirmation() {
     <Suspense fallback={<p>Loading...</p>}>
       <div>
         <h2>Confirmation de commande</h2>
-        {data ? (
+        {data ? data['order'] ? data['order']['id'] == orderId ? (
           <pre>{JSON.stringify(data, null, 2)}</pre>
+        ) :(
+          <span>Paiement échoué: recommencer ici {data['redirectURL']}</span>
+        ) : (
+          <span>Pas le bon ID de commande {data['order']['id']}</span>
         ) : (
           <p>Chargement des données...</p>
         )}
