@@ -3,7 +3,7 @@
  *
  */
 
-var BASE_URL = `${process.env.HELLOASSO_BASE_URL}`; BASE_URL = 'https://api.helloasso-sandbox.com';
+var BASE_URL = ``; BASE_URL = 'https://api.helloasso-sandbox.com';
 var ORGANIZATION_ID = `process.env.HELLOASSO_ORGANIZATION_ID`; ORGANIZATION_ID = 'rotary-club-de-chateaubriant'
 
 export async function getAccessToken() {
@@ -41,7 +41,7 @@ export async function getAccessTokenWithoutAPI() {
 };
 
 export async function getSoldTickets(accessToken) {
-  const response = await fetch(`${BASE_URL}/v5/organizations/${ORGANIZATION_ID}/forms/event/${process.env.HELLOASSO_FORM_ID}/items`, {
+  const response = await fetch(`${process.env.BASE_URL}/v5/organizations/${process.env.ORGANIZATION_ID}/forms/event/${process.env.HELLOASSO_FORM_ID}/items`, {
       headers: {
           Authorization: `Bearer ${accessToken}`,
       },
@@ -52,7 +52,7 @@ export async function getSoldTickets(accessToken) {
 };
 
 export async function getAllTickets(accessToken) {
-  const response = await fetch(`${BASE_URL}/v5/organizations/${ORGANIZATION_ID}/forms/event/${process.env.HELLOASSO_FORM_ID}/public`, {
+  const response = await fetch(`${process.env.BASE_URL}/v5/organizations/${process.env.ORGANIZATION_ID}/forms/event/${process.env.HELLOASSO_FORM_ID}/public`, {
       headers: {
           Authorization: `Bearer ${accessToken}`,
       },
@@ -69,7 +69,7 @@ export async function addToCart(accessToken, cartDetails) {
 
   const body = transformCartItems(parsedCartDetails);
   console.log("body:", body);
-  const response = await fetch(`https://www.helloasso.com/ha-api/carts`, {
+  const response = await fetch(`${process.env.BASE_URL}/ha-api/carts`, {
       method: 'POST',
       headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -78,7 +78,7 @@ export async function addToCart(accessToken, cartDetails) {
       body: JSON.stringify(body)
   });
   const data = await response.json();
-  console.log("response from https://www.helloasso.com/ha-api/carts:", data);
+  console.log(`response from ${process.env.BASE_URL}/ha-api/carts:`, data);
   return data; 
 };
 
@@ -97,14 +97,14 @@ function transformCartItems(cart) {
           "customFields": [], // Static value
           "extraOptions": [] // Static value
       })),
-      "organizationSlug": `${ORGANIZATION_ID}`, // Static value
+      "organizationSlug": `${process.env.ORGANIZATION_ID}`, // Static value
       "formSlug": `${process.env.HELLOASSO_FORM_ID}`, // Static value
       "formType": "EVENT" // Static value
   };
 }
 
 export async function initCheckout(token, orderDetails) {
-  const response = await fetch(`${BASE_URL}/v5/organizations/${ORGANIZATION_ID}/checkout-intents`, {
+  const response = await fetch(`${process.env.BASE_URL}/v5/organizations/${process.env.ORGANIZATION_ID}/checkout-intents`, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -118,7 +118,7 @@ export async function initCheckout(token, orderDetails) {
 };
 
 export async function createOrder(token, orderDetails) {
-  const response = await fetch(`${BASE_URL}/v5/organizations/${ORGANIZATION_ID}/forms/event/${process.env.HELLOASSO_FORM_ID}/orders`, {
+  const response = await fetch(`${process.env.BASE_URL}/v5/organizations/${process.env.ORGANIZATION_ID}/forms/event/${process.env.HELLOASSO_FORM_ID}/orders`, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -133,7 +133,7 @@ export async function createOrder(token, orderDetails) {
 
 
 export async function createReservation(accessToken, itemId, buyerInfo) {
-  const response = await fetch(`${BASE_URL}/v5/organizations/${ORGANIZATION_ID}/forms/${process.env.HELLOASSO_FORM_ID}/transactions`, {
+  const response = await fetch(`${process.env.BASE_URL}/v5/organizations/${process.env.ORGANIZATION_ID}/forms/${process.env.HELLOASSO_FORM_ID}/transactions`, {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
