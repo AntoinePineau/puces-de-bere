@@ -6,15 +6,22 @@ export default function Confirmation() {
   const router = useRouter();
   const { type, checkoutIntentId, code } = router.query;
   const [existingSeats, setExistingSeats] = useState(null);
+  const [isRouterReady, setIsRouterReady] = useState(false);
 
   useEffect(() => {
-    if (checkoutIntentId) {
+    if (router.isReady) {
+      setIsRouterReady(true);
+    }
+  }, [router.isReady]);
+
+  useEffect(() => {
+    if (isRouterReady && checkoutIntentId) {
       fetch(`/api/verify-checkout/?checkoutIntentId=${checkoutIntentId}`)
         .then(response => response.json())
         .then(data => setExistingSeats(data))
         .catch(error => console.error('Error fetching data:', error));
     }
-  }, [checkoutIntentId]);
+  }, [isRouterReady, checkoutIntentId]);
 
   return (
     <div>
