@@ -15,7 +15,10 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
     <html lang="fr">
       <body className={inter.className}>
         <CartProvider>
-          {children}
+          <main className="flex min-h-screen flex-col items-center justify-between p-4">
+            <h1>Les Puces de Béré</h1>
+            {children}
+          </main>
         </CartProvider>
       </body>
     </html>

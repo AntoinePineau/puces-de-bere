@@ -1,13 +1,5 @@
-/** 
- * curl -X POST https://api.helloasso.com/oauth2/token -H 'content-type: application/x-www-form-urlencoded' -d 'grant_type=client_credentials&client_id=b7c71585559547c99f2bbd7a4b1155cd&client_secret=z8rI5UVEZcxzRBIbZ83yPN82x5AKxnu4'
- *
- */
-
-var BASE_URL = ``; BASE_URL = 'https://api.helloasso-sandbox.com';
-var ORGANIZATION_ID = `process.env.HELLOASSO_ORGANIZATION_ID`; ORGANIZATION_ID = 'rotary-club-de-chateaubriant'
-
 export async function getAccessToken() {
-  const response = await fetch(`${BASE_URL}/oauth2/token`, {
+  const response = await fetch(`${process.env.HELLOASSO_BASE_URL}/oauth2/token`, {
       method: 'POST',
       headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
@@ -25,7 +17,7 @@ export async function getAccessToken() {
 };
 
 export async function getAccessTokenWithoutAPI() {
-  const response = await fetch(`${BASE_URL}/forms/auth/token`, {
+  const response = await fetch(`${process.env.HELLOASSO_BASE_URL}/forms/auth/token`, {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
@@ -116,6 +108,18 @@ export async function initCheckout(token, orderDetails) {
   const data = await response.json();
   return data;
 };
+
+export async function verifyCheckout(token, checkoutIntentId) {
+  const response = await fetch(`${process.env.HELLOASSO_BASE_URL}/v5/organizations/${process.env.HELLOASSO_ORGANIZATION_ID}/checkout-intents/${checkoutIntentId}`, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+  });
+  const data = await response.json();
+  return data;
+}
 
 export async function createOrder(token, orderDetails) {
   const response = await fetch(`${process.env.HELLOASSO_BASE_URL}/v5/organizations/${process.env.HELLOASSO_ORGANIZATION_ID}/forms/event/${process.env.HELLOASSO_FORM_ID}/orders`, {

@@ -42,9 +42,9 @@ const Panier = () => {
       "totalAmount": price,
       "initialAmount": price,
       "itemName": itemName,
-      "backUrl": "https://puces-de-bere.vercel.app/",
-      "errorUrl": "https://puces-de-bere.vercel.app/erreur/",
-      "returnUrl": "https://puces-de-bere.vercel.app/confirmation/"
+      "backUrl": `${process.env.BASE_URL}/`,
+      "errorUrl": `${process.env.BASE_URL}/erreur/`,
+      "returnUrl": `${process.env.BASE_URL}/confirmation/`
     };
     fetch('/api/order', {
       method: 'POST',
@@ -121,7 +121,7 @@ const Panier = () => {
                         onClick={() => handleRemove(item.id)}
                         className="ml-4 text-red-500 hover:text-red-700"
                       >                    
-                        <Trash2 size={18} className="ml-4"/>
+                        <span className="ml-4"><Trash2 size={18} /></span>
                       </button>
                     ):(<Trash2 size={18} color='white'/>)}
                   </div>
