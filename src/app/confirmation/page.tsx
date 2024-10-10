@@ -1,6 +1,6 @@
 'use client'
-import React, { useEffect, useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation'; // Import useSearchParams
+import React, { useEffect, useState, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation'; // Import useSearchParams
 
 export default function Confirmation() {
   const searchParams = useSearchParams(); // Get search parameters
@@ -25,13 +25,15 @@ export default function Confirmation() {
   }
 
   return (
-    <div>
-      <h2>Confirmation de commande</h2>
-      {data ? (
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-      ) : (
-        <p>Chargement des données...</p>
-      )}
-    </div>
+    <Suspense fallback={<p>Loading...</p>}>
+      <div>
+        <h2>Confirmation de commande</h2>
+        {data ? (
+          <pre>{JSON.stringify(data, null, 2)}</pre>
+        ) : (
+          <p>Chargement des données...</p>
+        )}
+      </div>
+    </Suspense>
   );
 }
