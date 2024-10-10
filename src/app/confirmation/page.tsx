@@ -1,33 +1,27 @@
 'use client'
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter, useSearchParams } from 'next/navigation'; // Import useSearchParams
 
 export default function Confirmation() {
-  const router = useRouter();
-  const { type, checkoutIntentId, code } = router.query;
+  const searchParams = useSearchParams(); // Get search parameters
+  const checkoutIntentId = searchParams.get('checkoutIntentId'); // Access checkoutIntentId from search params
   const [data, setData] = useState(null);
   const [isRouterReady, setIsRouterReady] = useState(false);
+  useEffect(() => {
+    setIsRouterReady(true);
+  }, []);
 
   useEffect(() => {
-    if (router.isReady) {
-      setIsRouterReady(true);
+    if (isRouterReady && checkoutIntentId) {
+      fetch(`/api/verify-checkout/?checkoutIntentId=${checkoutIntentId}`)
+        .then(response => response.json())
+        .then(data => setData(data))
+        .catch(error => console.error('Error fetching data:', error));
     }
-  }, [router.isReady]);
-
-  useEffect(() => {
-    if (isRouterReady) {
-      const { checkoutIntentId } = router.query; // Access query only when router is ready
-      if (checkoutIntentId) {
-        fetch(`/api/verify-checkout/?checkoutIntentId=${checkoutIntentId}`)
-          .then(response => response.json())
-          .then(data => setData(data))
-          .catch(error => console.error('Error fetching data:', error));
-      }
-    }
-  }, [isRouterReady, router.query]); // Add router.query to dependencies
+  }, [isRouterReady, checkoutIntentId]);
 
   if (!isRouterReady) {
-    return <p>Chargement...</p>; // Fallback UI while waiting for router
+    return <p>Chargement...</p>;
   }
 
   return (
