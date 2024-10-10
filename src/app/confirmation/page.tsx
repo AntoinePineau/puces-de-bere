@@ -4,7 +4,9 @@ import { useSearchParams } from 'next/navigation'; // Import useSearchParams
 
 export default function Confirmation() {
   const searchParams = useSearchParams(); // Get search parameters
-  const checkoutIntentId = searchParams.get('checkoutIntentId'); // Access checkoutIntentId from search params
+  const checkoutIntentId = searchParams.get('checkoutIntentId');
+  const orderId = searchParams.get('orderId'); 
+  const code = searchParams.get('code'); 
   const [data, setData] = useState(null);
   const [isRouterReady, setIsRouterReady] = useState(false);
   useEffect(() => {

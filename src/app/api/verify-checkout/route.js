@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getAccessToken, initCheckout } from '../../utils/helloasso';
+import { getAccessToken, verifyCheckout } from '../../utils/helloasso';
 
 export async function GET(req, res) {
   const { searchParams } = new URL(req.url);
