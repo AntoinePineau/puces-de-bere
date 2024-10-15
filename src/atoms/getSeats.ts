@@ -1,7 +1,7 @@
 
-const descAvecInterieur = "1m20 linéaire avec angle sans table à l'intérieur"; const prixAvecInterieur = 1800;
-const descSansInterieur = "1m20 linéaire sans angle sans table à l'intérieur"; const prixSansInterieur = 600;
-const descExterieur = "1m20 linéaire sans angle sans table à l'extérieur"; const prixExterieur = 400;
+const descAvecInterieur = "1m20 linéaire avec angle sans table à l'intérieur"; const prixAvecInterieur = 2100;
+const descSansInterieur = "1m20 linéaire sans angle sans table à l'intérieur"; const prixSansInterieur = 700;
+const descExterieur = "1m20 linéaire sans angle sans table à l'extérieur"; const prixExterieur = 500;
 const seatWidth = 141.6; //1m80 (table 60cm + 1m20 d'espace derrière)
 const seatHeight = 94.4; // 1m20
 const space = 188.8; //2m40
