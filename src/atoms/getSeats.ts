@@ -16,7 +16,7 @@ function addSeat(seats:Seat[], seatId:string, portrait:boolean, angle:boolean, x
   var existingSeat = existingSeatIds ? existingSeatIds.get(seatId) : undefined;
   var tierId = existingSeat?existingSeat.id:0;
   var description = existingSeat?existingSeat.description:defaultDescription;
-  var price = existingSeat?existingSeat.price:defaultPrice;
+  var price = defaultPrice;//existingSeat?existingSeat.price:defaultPrice;
   var available = existingSeat?existingSeat.available:true;
   var tip = `${seatId}: `;
   var width = angle ? portrait ? anglel : angleL : portrait ? seatHeight : seatWidth;
