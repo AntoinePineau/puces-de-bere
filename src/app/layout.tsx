@@ -31,7 +31,7 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
               <div className="border-r border-[rgb(190,196,201)] h-16 mx-2" /> {/* Vertical line */}
               <img src="/la-magie-du-rotary.png" alt="Thème de l'année 2024-2025" title="La Magie du Rotary" className="max-h-16" />
             </div>
-            <div className="mx-auto max-w-[1024px] pb-4">
+            <div className="mx-2 max-w-[1024px] pb-4">
                 <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
             </div>
             {children}

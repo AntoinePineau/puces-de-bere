@@ -8,11 +8,11 @@ export default function Home() {
   });
 
   return (
-    <>
+    <div className="mx-2">
       <HalleDeBere/>
       <aside>
         <Panier />
       </aside>
-    </>
+    </div>
   );
 }
