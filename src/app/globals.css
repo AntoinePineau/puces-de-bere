@@ -11,7 +11,7 @@
 
 body {
   color: var(--rotary-main-font);
-  background-image: url('texture_bg.png');
+  /*background-image: url('texture_bg.png');*/
 }
 
 @layer utilities {
