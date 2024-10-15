@@ -13,11 +13,10 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: Readonly<{children: React.ReactNode}>) {
   const htmlContent = `
   <p>
+      Bienvenue sur le site de réservation des emplacements des Puces de Béré du 19 janvier 2025. Cet événement est réalisé pour le Rotary Club de Châteaubriant et ce site est réservé aux exposants des Puces de Béré.
+      <br/>
       Veuillez sélectionner vos places souhaitées parmi celles disponibles en cliquant dessus, 
       elles changeront de couleur et s'ajouteront dans votre panier tout en bas de la page. 
-      <br/>
-      Une fois que votre choix est fait vous pouvez valider votre panier et régler par Carte Bancaire en ligne de manière totalement sécurisée: nous n'enregistrons pas vos coordonnées bancaires, ni la plateforme HelloAsso par laquelle nous passons pour le paiement. <br/>
-      HelloAsso vous proposera par défaut une contribution pour eux mais que vous pouvez modifier et même passer à 0. En effet, HelloAsso ne prend pas de frais de transaction et se rémunère uniquement par une contribution volontaire.
   </p>
 `;
   return (
