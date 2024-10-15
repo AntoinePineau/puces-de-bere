@@ -108,7 +108,8 @@ export default function HalleDeBere() {
   }, [seats]);
 
   return (
-    <svg ref={svgRef} id="halledebere" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" width="100%" height="500px" viewBox="0 1370 9361.11 3800" preserveAspectRatio="xMidYMid meet" className="cursor-grab border-2" style={{ touchAction: 'manipulation', background:'#fff', border:'dashed 2px #f7a81b' }}>
+    <div style={{ background:'#fff', border:'dashed 4px #f7a81b', margin: '1em' }}>
+    <svg ref={svgRef} id="halledebere" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" width="100%" height="500px" viewBox="0 1370 9361.11 3800" preserveAspectRatio="xMidYMid meet" className="cursor-grab border-2" style={{ touchAction: 'manipulation', backgroundImage: `url(${new URL('/texture_bg.png', window.location.origin)})` }}>
         <g style={{/*transform: 'translate(-660pt, -370pt)'*/}}>
           <HalleDeBereVide/>
         </g>
@@ -149,5 +150,6 @@ export default function HalleDeBere() {
           ))}
       </g>
     </svg>
+    </div>
   );
 }

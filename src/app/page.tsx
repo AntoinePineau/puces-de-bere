@@ -14,14 +14,12 @@ export default function Home() {
   </p>
 `;
   return (
-    <div className="mx-2">
+    <>
       <HalleDeBere/>
-      <aside style={{ margin: '0 1em 1em 1em' }}>
-        <div className="mx-2 max-w-[1024px] pb-4">
-            <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
-        </div>
+      <aside className="mx-2" style={{ margin: '1em' }}>
+        <div className="mx-2 max-w-[1024px] pb-4" dangerouslySetInnerHTML={{ __html: htmlContent }} />
         <Panier />
       </aside>
-    </div>
+    </>
   );
 }

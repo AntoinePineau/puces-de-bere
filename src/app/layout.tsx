@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: Readonly<{children: React.ReactNode}>) {
   const htmlContent = `
   <p>
-      Bienvenue sur le site de réservation des emplacements des Puces de Béré du 19 janvier 2025. Cet événement est réalisé pour le Rotary Club de Châteaubriant et ce site est réservé aux exposants des Puces de Béré.
+      Bienvenue sur le site de réservation des emplacements des Puces de Béré du 19 janvier 2025. Cet événement est réalisé par le Rotary Club de Châteaubriant et ce site est réservé aux exposants des Puces de Béré.
       <br/>
       Veuillez sélectionner vos places souhaitées parmi celles disponibles en cliquant dessus, 
       elles changeront de couleur et s'ajouteront dans votre panier tout en bas de la page. 
