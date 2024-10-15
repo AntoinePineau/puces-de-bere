@@ -26,8 +26,11 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
         <CartProvider>
           <main className="flex flex-col items-center justify-between">
             <h1>Les Puces de Béré 2025</h1>
-            <img src="/logo-rotary-chateaubriant.png" alt="Logo du Rotary Club de Châteaubriant" title="Rotary Club de Châteaubriant" />
-            <img src="/la-magie-du-rotary.png" alt="Thème de l'année 2024-2025" title="La Magie du Rotary" />
+            <div className="inline-flex">
+              <img src="/logo-rotary-chateaubriant.png" alt="Logo du Rotary Club de Châteaubriant" title="Rotary Club de Châteaubriant" className="max-h-16" />
+              <div className="border-r border-[rgb(190,196,201)] h-16 mx-2" /> {/* Vertical line */}
+              <img src="/la-magie-du-rotary.png" alt="Thème de l'année 2024-2025" title="La Magie du Rotary" className="max-h-16" />
+            </div>
             <div className="mx-auto max-w-[1024px] pb-4">
                 <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
             </div>
