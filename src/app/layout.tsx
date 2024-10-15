@@ -15,8 +15,11 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
     <html lang="fr">
       <body className={inter.className}>
         <CartProvider>
-          <main className="flex flex-col items-center justify-between p-4">
-            <h1>Les Puces de Béré</h1>
+          <main className="flex flex-col items-center justify-between">
+            <h1>Les Puces de Béré 2025</h1>
+            <img src="logo-rotary-chateaubriant.png" alt="Logo du Rotary Club de Châteaubriant" title="Rotary Club de Châteaubriant" />
+            <img src="la-magie-du-rotary.png" alt="Thème de l'année 2024-2025" title="La Magie du Rotary" />
+            <p>Veuillez sélectionner vos places souhaitées parmi celles disponibles en cliquant dessus, elle changeront de couleur et s'ajouteront dans votre panier tout en bas de la page. <br/>Une fois que votre choix est fait vous pouvez valider votre panier et régler par Carte Bancaire. Nous n'enregistrons pas vos coordonnées bancaires, ni la plateforme HelloAsso par laquelle nous passons pour le paiement. HelloAsso vous proposera par défaut une contribution pour eux mais que vous pouvez modifier et même passer à 0. En effet, HelloAsso ne prend pas de frais de transaction et se rémunère uniquement par une contribution volontaire.</p>
             {children}
           </main>
         </CartProvider>
