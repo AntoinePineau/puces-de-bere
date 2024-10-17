@@ -6,7 +6,7 @@ const seatWidth = 141.6; //1m80 (table 60cm + 1m20 d'espace derrière)
 const seatHeight = 94.4; // 1m20
 const space = 188.8; //2m40
 const angleL = 141.6; //1m80 (table 60cm + 1m20 d'espace derrière)
-const anglel = 188.8; //1m20
+const anglel = 94.4; //1m20
 //const topLeftX=915,topLeftY=2493,bottomRightX=5630,bottomRightY=4147;
 const topLeftX=1795,topLeftY=2989,bottomRightX=6510,bottomRightY=4643;
 
@@ -30,10 +30,10 @@ function addSeat(seats:Seat[], seatId:string, portrait:boolean, angle:boolean, x
 
 function addColumn(seats:any[], xCol:number, letter:String, startIndex:number, existingSeatIds:any) {
   var xy = addSeat(seats, `${letter}${startIndex}`, false, true, xCol, topLeftY+seatWidth+space, descAvecInterieur, prixAvecInterieur, existingSeatIds); // A11
-  for(var i=1;i<=6;i++) { // A12 ... A17
+  for(var i=1;i<=8;i++) { // A12 ... A17
     xy = addSeat(seats, `${letter}${startIndex+i}`, false, false, xCol, xy.y, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
-  addSeat(seats, `${letter}${startIndex+7}`, false, true, xCol, xy.y, descAvecInterieur, prixAvecInterieur, existingSeatIds); // A18
+  addSeat(seats, `${letter}${startIndex+9}`, false, true, xCol, xy.y, descAvecInterieur, prixAvecInterieur, existingSeatIds); // A18
 }
 
 export async function getSeats():Promise<Seat[]> {
@@ -50,14 +50,14 @@ export async function getSeats():Promise<Seat[]> {
   var col = topLeftX;
   
   xy = addSeat(seats, `A1`, false, true, col, topLeftY+seatWidth+15, descAvecInterieur, prixAvecInterieur, existingSeatIds);
-  for(var i=2;i<=9;i++) { 
+  for(var i=2;i<=11;i++) { 
     xy = addSeat(seats, `A${i}`, false, false, col, xy.y,  descSansInterieur, prixSansInterieur, existingSeatIds);
   }
-  xy = addSeat(seats, `A10`, false, true, col, xy.y,  descAvecInterieur, prixAvecInterieur, existingSeatIds);
+  xy = addSeat(seats, `A12`, false, true, col, xy.y,  descAvecInterieur, prixAvecInterieur, existingSeatIds);
 
   
   col = col + seatWidth + space;
-  addColumn(seats, col, 'A', 11, existingSeatIds);
+  addColumn(seats, col, 'A', 13, existingSeatIds);
   
   for (let charCode = 'B'.charCodeAt(0); charCode <= 'I'.charCodeAt(0); charCode++) {
     var letter = String.fromCharCode(charCode);
@@ -76,65 +76,69 @@ export async function getSeats():Promise<Seat[]> {
 
   col = col + seatWidth + space;
 
-  xy = addSeat(seats, `J9`, false, false, col+5, topLeftY+seatWidth,  descSansInterieur, prixSansInterieur, existingSeatIds);
-  xy = addSeat(seats, `J10`, false, false, col+5, xy.y,  descSansInterieur, prixSansInterieur, existingSeatIds);
-  xy = addSeat(seats, `J11`, false, false, col+5, xy.y+anglel+seatHeight/2,  descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `J11`, false, false, col+5, topLeftY+seatWidth,  descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `J12`, false, false, col+5, xy.y,  descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `J13`, false, false, col+5, xy.y+anglel+seatHeight/2,  descSansInterieur, prixSansInterieur, existingSeatIds);
   // Column J12 ... J18
   for(var i=1;i<=7;i++) { 
-    xy = addSeat(seats, `J${11+i}`, false, false, col+5, xy.y,  descSansInterieur, prixSansInterieur, existingSeatIds);
+    xy = addSeat(seats, `J${13+i}`, false, false, col+5, xy.y,  descSansInterieur, prixSansInterieur, existingSeatIds);
   }
-  xy = addSeat(seats, `J19`, false, false, col-10, xy.y+seatHeight*2.5,  descSansInterieur, prixSansInterieur, existingSeatIds);
-  xy = addSeat(seats, `J20`, false, false, col-10, xy.y,  descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `J21`, false, false, col-10, xy.y+seatHeight*2.5,  descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `J22`, false, false, col-10, xy.y,  descSansInterieur, prixSansInterieur, existingSeatIds);
 
   // Line N
-  xy = addSeat(seats, `N1`, true, false, topLeftX+seatWidth+space-15, topLeftY, descAvecInterieur, prixAvecInterieur, existingSeatIds);
-  xy = addSeat(seats, `N2`, true, false, xy.x, topLeftY, descAvecInterieur, prixAvecInterieur, existingSeatIds);
+  xy = addSeat(seats, `N1`, true, true, topLeftX+seatWidth+space-15, topLeftY, descAvecInterieur, prixAvecInterieur, existingSeatIds);
+  xy = addSeat(seats, `N2`, true, false, xy.x, topLeftY, descSansInterieur, prixSansInterieur, existingSeatIds);
   xy = addSeat(seats, `N3`, true, false, xy.x, topLeftY, descSansInterieur, prixSansInterieur, existingSeatIds);
-  xy = addSeat(seats, `N4`, true, true, xy.x, topLeftY, descAvecInterieur, prixAvecInterieur, existingSeatIds);
-  addSeat(seats, `N5`, false, false, xy.x+seatWidth+seatHeight/2, topLeftY-seatHeight-1, descSansInterieur, prixSansInterieur, existingSeatIds);
-  xy = addSeat(seats, `N6`, true, true, xy.x+seatWidth+seatHeight/2, topLeftY, descAvecInterieur, prixAvecInterieur, existingSeatIds);
+  xy = addSeat(seats, `N4`, true, false, xy.x, topLeftY, descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `N5`, true, true, xy.x, topLeftY, descAvecInterieur, prixAvecInterieur, existingSeatIds);
+  addSeat(seats, `N6`, false, false, xy.x+seatWidth+seatHeight/2, topLeftY-seatHeight-1, descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `N7`, true, true, xy.x+seatWidth+seatHeight/2, topLeftY, descAvecInterieur, prixAvecInterieur, existingSeatIds);
+  xy = addSeat(seats, `N8`, true, false, xy.x, topLeftY, descSansInterieur, prixSansInterieur, existingSeatIds);
   var xyN6 = xy;
-  xy = addSeat(seats, `N7`, true, true, xy.x, topLeftY, descAvecInterieur, prixAvecInterieur, existingSeatIds);
-  addSeat(seats, `N8`, false, false, xy.x-seatWidth, topLeftY-seatHeight-1, descSansInterieur, prixSansInterieur, existingSeatIds);
-  xy = addSeat(seats, `N9`, true, true, xy.x+seatWidth+39, topLeftY, descAvecInterieur, prixAvecInterieur, existingSeatIds);
-  for(var i=10;i<=24;i++) { 
+  xy = addSeat(seats, `N9`, true, false, xy.x, topLeftY, descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `N10`, true, true, xy.x, topLeftY, descAvecInterieur, prixAvecInterieur, existingSeatIds);
+  addSeat(seats, `N11`, false, false, xy.x-seatWidth, topLeftY-seatHeight-1, descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `N12`, true, true, xy.x+seatWidth+39, topLeftY, descAvecInterieur, prixAvecInterieur, existingSeatIds);
+  xy = addSeat(seats, `N13`, true, false, xy.x, topLeftY, descSansInterieur, prixSansInterieur, existingSeatIds);
+  for(var i=14;i<=28;i++) { 
     xy = addSeat(seats, `N${i}`, true, false, xy.x, topLeftY, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
-  xy = addSeat(seats, `N25`, true, false, xy.x+seatWidth/4, topLeftY, descAvecInterieur, prixAvecInterieur, existingSeatIds);
-  for(var i=26;i<=31;i++) { 
+  xy = addSeat(seats, `N29`, true, false, xy.x+seatWidth/4, topLeftY, descAvecInterieur, prixAvecInterieur, existingSeatIds);
+  for(var i=30;i<=35;i++) { 
     xy = addSeat(seats, `N${i}`, true, false, xy.x, topLeftY, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
-  xy = addSeat(seats, `N32`, true, false, xy.x+seatWidth/4, topLeftY, descAvecInterieur, prixAvecInterieur, existingSeatIds);
-  for(var i=33;i<=38;i++) { 
+  xy = addSeat(seats, `N36`, true, false, xy.x+seatWidth/4, topLeftY, descAvecInterieur, prixAvecInterieur, existingSeatIds);
+  for(var i=37;i<=42;i++) { 
     xy = addSeat(seats, `N${i}`, true, false, xy.x, topLeftY, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
 
   // Line S
   xy.x = topLeftX;
-  for(var i=1;i<=5;i++) { 
+  for(var i=1;i<=6;i++) { 
     xy = addSeat(seats, `S${i}`, true, i==1, xy.x, bottomRightY-seatWidth, i==1 ? descAvecInterieur : descSansInterieur, i==1 ? prixAvecInterieur : prixSansInterieur, existingSeatIds);
   }
-  xy = addSeat(seats, `S6`, true, false, xy.x+seatHeight/2, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
-  xy = addSeat(seats, `S7`, true, false, xy.x, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
-  xy = addSeat(seats, `S8`, true, false, xy.x+seatWidth+seatHeight/3, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `S7`, true, false, xy.x+seatHeight/2, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `S8`, true, false, xy.x, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `S9`, true, false, xy.x+seatWidth+seatHeight/3, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
   for(var i=1;i<=7;i++) { 
-    xy = addSeat(seats, `S${8+i}`, true, false, xy.x, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
+    xy = addSeat(seats, `S${9+i}`, true, false, xy.x, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
-  xy = addSeat(seats, `S16`, true, false, xy.x+seatHeight/2, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
-  xy = addSeat(seats, `S17`, true, false, xy.x, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
-  xy = addSeat(seats, `S18`, true, false, xy.x+seatHeight*2, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `S17`, true, false, xy.x+seatHeight/2, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `S18`, true, false, xy.x, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `S19`, true, false, xy.x+seatHeight*2, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
   for(var i=1;i<=7;i++) { 
-    xy = addSeat(seats, `S${18+i}`, true, false, xy.x, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
+    xy = addSeat(seats, `S${19+i}`, true, false, xy.x, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
-  xy = addSeat(seats, `S26`, true, false, xy.x+seatHeight/2, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
-  xy = addSeat(seats, `S27`, true, false, xy.x, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
-  xy = addSeat(seats, `S28`, true, false, xy.x+seatHeight*7/4, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `S27`, true, false, xy.x+seatHeight/2, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `S28`, true, false, xy.x, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `S29`, true, false, xy.x+seatHeight*7/4, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
   for(var i=1;i<=7;i++) { 
-    xy = addSeat(seats, `S${28+i}`, true, false, xy.x, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
+    xy = addSeat(seats, `S${29+i}`, true, false, xy.x, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
   }
-  xy = addSeat(seats, `S36`, true, false, xy.x+seatHeight/2, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
-  xy = addSeat(seats, `S37`, true, false, xy.x, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `S37`, true, false, xy.x+seatHeight/2, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
   xy = addSeat(seats, `S38`, true, false, xy.x, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
+  xy = addSeat(seats, `S39`, true, false, xy.x, bottomRightY-seatWidth, descSansInterieur, prixSansInterieur, existingSeatIds);
 
 
   // Line R
