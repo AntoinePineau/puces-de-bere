@@ -22,7 +22,7 @@ function addSeat(seats:Seat[], seatId:string, portrait:boolean, angle:boolean, x
   var width = angle ? portrait ? anglel : angleL : portrait ? seatHeight : seatWidth;
   var height = angle ? !portrait ? anglel : angleL : !portrait ? seatHeight : seatWidth;
   tip += available ? `Disponible pour ${price/100}€ (${description})` : `Déjà réservé à ${existingSeat.paymentDetails.user.firstName} ${existingSeat.paymentDetails.user.lastName}`;
-  const seat:Seat = { tierId:tierId, id: seatId, description: description, available: available, 
+  const seat:Seat = { tierId:tierId, id: seatId, isAngle: angle, description: description, available: available, 
     price: price, x: xCol, y: yLine, w: width, h: height, inHelloAsso: existingSeat!==undefined, tip: tip };
   seats.push(seat);
   return {x: xCol + width + 1, y: yLine + height + 1};
@@ -67,7 +67,7 @@ export async function getSeats():Promise<Seat[]> {
 
     // Column B8 ... B14 to I8 ... I14
     col = col + seatWidth + space;
-    addColumn(seats, col, letter, 9, existingSeatIds);
+    addColumn(seats, col, letter, 11, existingSeatIds);
   }
 
   // Column J1 ... J8
@@ -228,6 +228,7 @@ export type Seat = {
   description: string;  // The description of the seat
   available: boolean;  // The availability of the seat
   inHelloAsso: boolean; // If the Seats exists in HelloAsso
+  isAngle: boolean;
   tip: string; // Title to display on hover
   price: number;   // The price of the seat
   x: number;   // The x-coordinate of the seat
