@@ -78,13 +78,13 @@ export async function getSeats():Promise<Seat[]> {
   col = col + seatWidth + space;
 
   xy = addSeat(seats, `J11`, false, false, col+5, topLeftY+seatWidth,  true, existingSeatIds);
-  xy = addSeat(seats, `J12`, false, false, col+5, xy.y,  true, existingSeatIds);
-  xy = addSeat(seats, `J13`, false, false, col+5, xy.y+anglel+seatHeight/2,  true, existingSeatIds);
+  xy = addSeat(seats, `J12`, false, true, col+5, xy.y,  true, existingSeatIds);
+  xy = addSeat(seats, `J13`, false, true, col+5, xy.y+seatHeight*2,  true, existingSeatIds);
   // Column J12 ... J18
   for(var i=1;i<=7;i++) { 
-    xy = addSeat(seats, `J${13+i}`, false, false, col+5, xy.y,  true, existingSeatIds);
+    xy = addSeat(seats, `J${13+i}`, false, i==7, col+5, xy.y,  true, existingSeatIds);
   }
-  xy = addSeat(seats, `J21`, false, false, col-10, xy.y+seatHeight*2.5,  true, existingSeatIds);
+  xy = addSeat(seats, `J21`, false, true, col-10, xy.y+seatHeight*2,  true, existingSeatIds);
   xy = addSeat(seats, `J22`, false, false, col-10, xy.y,  true, existingSeatIds);
 
   // Line N
@@ -120,26 +120,26 @@ export async function getSeats():Promise<Seat[]> {
     xy = addSeat(seats, `S${i}`, true, i==1, xy.x, bottomRightY-seatWidth, true, existingSeatIds);
   }
   xy = addSeat(seats, `S7`, true, false, xy.x+seatHeight/2, bottomRightY-seatWidth, true, existingSeatIds);
-  xy = addSeat(seats, `S8`, true, false, xy.x, bottomRightY-seatWidth, true, existingSeatIds);
-  xy = addSeat(seats, `S9`, true, false, xy.x+seatWidth+seatHeight/3, bottomRightY-seatWidth, true, existingSeatIds);
+  xy = addSeat(seats, `S8`, true, true, xy.x, bottomRightY-seatWidth, true, existingSeatIds);
+  xy = addSeat(seats, `S9`, true, true, xy.x+seatWidth+seatHeight/3, bottomRightY-seatWidth, true, existingSeatIds);
   for(var i=1;i<=7;i++) { 
     xy = addSeat(seats, `S${9+i}`, true, false, xy.x, bottomRightY-seatWidth, true, existingSeatIds);
   }
   xy = addSeat(seats, `S17`, true, false, xy.x+seatHeight/2, bottomRightY-seatWidth, true, existingSeatIds);
-  xy = addSeat(seats, `S18`, true, false, xy.x, bottomRightY-seatWidth, true, existingSeatIds);
-  xy = addSeat(seats, `S19`, true, false, xy.x+seatHeight*2, bottomRightY-seatWidth, true, existingSeatIds);
+  xy = addSeat(seats, `S18`, true, true, xy.x, bottomRightY-seatWidth, true, existingSeatIds);
+  xy = addSeat(seats, `S19`, true, true, xy.x+seatHeight*2, bottomRightY-seatWidth, true, existingSeatIds);
   for(var i=1;i<=7;i++) { 
     xy = addSeat(seats, `S${19+i}`, true, false, xy.x, bottomRightY-seatWidth, true, existingSeatIds);
   }
   xy = addSeat(seats, `S27`, true, false, xy.x+seatHeight/2, bottomRightY-seatWidth, true, existingSeatIds);
-  xy = addSeat(seats, `S28`, true, false, xy.x, bottomRightY-seatWidth, true, existingSeatIds);
-  xy = addSeat(seats, `S29`, true, false, xy.x+seatHeight*7/4, bottomRightY-seatWidth, true, existingSeatIds);
+  xy = addSeat(seats, `S28`, true, true, xy.x, bottomRightY-seatWidth, true, existingSeatIds);
+  xy = addSeat(seats, `S29`, true, true, xy.x+seatHeight*7/4, bottomRightY-seatWidth, true, existingSeatIds);
   for(var i=1;i<=7;i++) { 
     xy = addSeat(seats, `S${29+i}`, true, false, xy.x, bottomRightY-seatWidth, true, existingSeatIds);
   }
   xy = addSeat(seats, `S37`, true, false, xy.x+seatHeight/2, bottomRightY-seatWidth, true, existingSeatIds);
   xy = addSeat(seats, `S38`, true, false, xy.x, bottomRightY-seatWidth, true, existingSeatIds);
-  xy = addSeat(seats, `S39`, true, false, xy.x, bottomRightY-seatWidth, true, existingSeatIds);
+  xy = addSeat(seats, `S39`, true, true, xy.x, bottomRightY-seatWidth, true, existingSeatIds);
 
 
   // Line R
@@ -178,8 +178,8 @@ export async function getSeats():Promise<Seat[]> {
     xy = addSeat(seats, `R${i}`, true, false, xy.x, xy.y-seatWidth-1, true, existingSeatIds);
   }
   xy.x = xyN6.x-anglel-1-seatHeight-1;
-  for(var i=50;i>=47;i--) { 
-    xy = addSeat(seats, `R${i}`, true, i==50||i==47, xy.x, xyR46.y-seatWidth-1, true, existingSeatIds);
+  for(var i=51;i>=48;i--) { 
+    xy = addSeat(seats, `R${i}`, true, i==51||i==48, xy.x, xyR46.y-seatWidth-1, true, existingSeatIds);
   }
 
 
