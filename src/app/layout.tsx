@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Puces de Béré 2025",
-  description: "Réservez vos places en ligne pour la journée du 19 janvier 2025",
+  description: "Réservez vos places en ligne pour la journée du 19 janvier 2025"
 };
 
 export default function RootLayout({children}: Readonly<{children: React.ReactNode}>) {
@@ -21,6 +21,14 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
 `;
   return (
     <html lang="fr">
+      <head>
+        <link rel="icon" type="image/png" href="/favicon-48x48.png" sizes="48x48" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="Puces de Béré" />
+        <link rel="manifest" href="/site.webmanifest" />
+      </head>
       <body className={inter.className}>
         <CartProvider>
           <main className="flex flex-col items-center justify-between">
