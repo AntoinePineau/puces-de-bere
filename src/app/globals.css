@@ -20,6 +20,13 @@ body {
   }
 }
 
+a {
+  color: #f7a81b;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
 h1 {
   width: 100%;
   text-align: center;

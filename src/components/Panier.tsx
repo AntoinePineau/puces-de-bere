@@ -49,7 +49,7 @@ const Panier = () => {
           return false;
       }
       if (!ri) {
-          alert("Veuillez téléverser la photocopie de votre carte d'identité au format PDF, JPG, JPEG ou PNG");
+          alert("Veuillez valider le règlement intérieur");
           return false;
       }
       if (isPro) {

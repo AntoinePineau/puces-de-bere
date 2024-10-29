@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function ReglementInterieur() {
   return (
-    <div>
+    <div className="mx-2 max-w-[1024px] pb-4">
       <h2>Règlement intérieur des Puces de Béré</h2>
       <h3>EXPOSANTS</h3>
       <p>La manifestation LES PUCES DE BERE est ouverte aux particuliers et aux brocanteurs professionnels.</p>
@@ -38,7 +38,7 @@ export default function ReglementInterieur() {
         Les organisateurs disposeront des emplacements non occupés à 8 h 00, aucun remboursement ne sera possible.<br/><br/>
         Aucune réservation ne sera prise par téléphone.
       </i></b></p>
-      <Link href="javascript:window.close()">J&apos;ai bien lu et accepte le règlement intérieur</Link>
+      <Link href="javascript:window.close()" className="mt-4 w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors flex items-center justify-center">J&apos;ai bien lu et accepte le règlement intérieur</Link>
     </div>
   );
 }
