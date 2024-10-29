@@ -23,7 +23,7 @@ export async function POST(req, res) {
 
   try {
     // Send the email
-    console.log(`Send mail to ${to} from ${process.env.GMAIL_USER} with pass ${process.env.GMAIL_PASS}`);
+    console.log(`Send mail (subject: ${subject} / text: ${text}) to ${to} from ${process.env.GMAIL_USER} with pass ${process.env.GMAIL_PASS}`);
     await transporter.sendMail(mailOptions);
     res.status(200).json({ message: 'Email sent successfully' });
   } catch (error) {

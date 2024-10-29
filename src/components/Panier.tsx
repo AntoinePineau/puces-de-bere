@@ -19,7 +19,7 @@ const Panier = () => {
       cp: null as File | null,
       rule: false,
   });
-  const sendEmail = async (formData: any) => {
+  const sendEmail = async (formData: any, emplacements:string) => {
     const formDataToSend = new FormData();
     for (const key in formData) {
         formDataToSend.append(key, formData[key]);
@@ -32,7 +32,7 @@ const Panier = () => {
     const emailData = {
       to: formData.email, // Utilisez l'email du formulaire
       subject: 'Confirmation de votre inscription',
-      text: `Bonjour ${formData.firstName},\n\nMerci pour votre inscription. Voici les détails :\n\nNom: ${formData.lastName}\nEmail: ${formData.email}\nTéléphone: ${formData.tel}\n\nCordialement,\nL'équipe des Puces de Béré`
+      text: `Bonjour ${formData.firstName},\n\nMerci pour votre inscription. Voici les détails :\n\nNom: ${formData.lastName}\nEmail: ${formData.email}\nTéléphone: ${formData.tel}\nRéservation de: ${emplacements}\n\nCordialement,\nL'équipe des Puces de Béré`
     };
 
     await fetch('/api/send-email', {
@@ -60,8 +60,18 @@ const Panier = () => {
           alert("Veuillez remplir votre prénom");
           return false;
       }
+      const firstNameInput = document.getElementById('firstName') as HTMLInputElement;
+      if (!firstNameInput.checkValidity()) {
+          alert("Veuillez ne pas insérer de caractères spéciaux dans votre prénom");
+          return false;
+      }
       if (!lastName) {
           alert("Veuillez remplir votre nom de famille");
+          return false;
+      }
+      const lastNameInput = document.getElementById('lastName') as HTMLInputElement;
+      if (!lastNameInput.checkValidity()) {
+          alert("Veuillez ne pas insérer de caractères spéciaux dans votre nom de famille");
           return false;
       }
       if (!email) {
@@ -161,7 +171,7 @@ const Panier = () => {
     .then(response => {
       console.log("response from /api/order:", response);
       if(response.redirectUrl) {
-        sendEmail(formData);
+        sendEmail(formData, itemName);
         router.push(response.redirectUrl);
       }
       else {
@@ -247,11 +257,11 @@ const Panier = () => {
           <form onSubmit={validateCart}>
             <div className="mt-4">
               <label htmlFor="firstName" className="block">Prénom</label>
-              <input type="text" name="firstName" id="firstName" className="border rounded p-2 w-full" placeholder="Entrez votre prénom" onChange={handleChange} required />
+              <input type="text" name="firstName" id="firstName" className="border rounded p-2 w-full" placeholder="Entrez votre prénom" onChange={handleChange} required pattern="^[A-Za-zÀ-ÿ]+$" />
             </div>
             <div className="mt-4">
               <label htmlFor="lastName" className="block">NOM</label>
-              <input type="text" name="lastName" id="lastName" className="border rounded p-2 w-full" placeholder="Entrez votre nom de famille" onChange={handleChange} required />
+              <input type="text" name="lastName" id="lastName" className="border rounded p-2 w-full" placeholder="Entrez votre nom de famille" onChange={handleChange} required pattern="^[A-Za-zÀ-ÿ]+$" />
             </div>
             <div className="mt-4">
               <label htmlFor="email" className="block">E-mail</label>
@@ -259,7 +269,7 @@ const Panier = () => {
             </div>
             <div className="mt-4">
               <label htmlFor="tel" className="block">Téléphone</label>
-              <input type="tel" name="tel" id="tel" className="border rounded p-2 w-full" placeholder="Entrez votre numero de téléphone" onChange={handleChange} pattern="^(0[1-9]([-. ]?[0-9]{2}){4}|(\+33|0)[1-9]([-. ]?[0-9]{2}){4})$"/>
+              <input type="tel" name="tel" id="tel" className="border rounded p-2 w-full" placeholder="Entrez votre numero de téléphone" onChange={handleChange} required pattern="^(0[1-9]([-. ]?[0-9]{2}){4}|(\+33|0)[1-9]([-. ]?[0-9]{2}){4})$"/>
             </div>
             <div className="mt-4">
               <input type="checkbox" name="ri" id="ri" className="border rounded p-2" onChange={handleChange} required />&nbsp;
