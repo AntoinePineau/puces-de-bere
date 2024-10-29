@@ -212,8 +212,8 @@ const Panier = () => {
             </div>
             <div className="mt-4">
               <div>Êtes-vous un professionnel ?</div>
-              <input type="radio" name="pro" id="prooui" className="border rounded p-2 w-full" value="oui" onChange={handleRadioChange}>Oui</input>
-              <input type="radio" name="pro" id="pronon" className="border rounded p-2 w-full" value="non" onChange={handleRadioChange}>Non</input>
+              <input type="radio" name="pro" id="prooui" className="border rounded p-2 w-full" value="oui" onChange={handleRadioChange}/><label htmlFor="prooui">Oui</label>
+              <input type="radio" name="pro" id="pronon" className="border rounded p-2 w-full" value="non" onChange={handleRadioChange}/><label htmlFor="pronon">Non</label>
             </div>
             <div className={`particulier ${isPro === false ? '' : 'hidden'}`}>
               <div className="mt-4">
