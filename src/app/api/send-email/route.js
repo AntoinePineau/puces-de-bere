@@ -8,7 +8,10 @@ export async function POST(req, res) {
 
   // Create transporter using Gmail SMTP
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    //service: 'gmail',
+    host: 'smtp.gmail.com', // Spécifiez l'hôte SMTP
+    port: 587, // Utilisez 587 pour TLS ou 465 pour SSL
+    secure: false, // true pour le port 465,
     auth: {
       user: process.env.GMAIL_USER, // Your Gmail address
       pass: process.env.GMAIL_PASS, // Your Gmail password or App Password if 2FA is enabled

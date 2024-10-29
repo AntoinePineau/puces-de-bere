@@ -32,7 +32,7 @@ const Panier = () => {
     const emailData = {
       to: formData.email, // Utilisez l'email du formulaire
       subject: 'Confirmation de votre inscription',
-      text: `Bonjour ${formData.firstName},\n\nMerci pour votre inscription. Voici les détails :\n\nNom: ${formData.lastName}\nEmail: ${formData.email}\nTéléphone: ${formData.tel}\nRéservation de: ${emplacements}\n\nCordialement,\nL'équipe des Puces de Béré`
+      text: `Bonjour ${formData.firstName},\n\nMerci pour votre inscription. Voici les détails :\n\nNom: ${formData.lastName}\nEmail: ${formData.email}\nTéléphone: ${formData.tel}\n${emplacements}\n\nCordialement,\nL'équipe des Puces de Béré`
     };
 
     await fetch('/api/send-email', {
@@ -96,7 +96,7 @@ const Panier = () => {
           alert("Veuillez valider le règlement intérieur");
           return false;
       }
-      if (!isPro==null) {
+      if (isPro==null) {
           alert("Veuillez indiquer si vous êtes un particulier ou un professionnel");
           return false;
       }
@@ -143,7 +143,8 @@ const Panier = () => {
       itemName += `${tableCount} Table`+(tableCount>1?'s':''); // Add table count
     }
     if (otherItems.length > 0) {
-      itemName += " | Emplacements: " + otherItems.join(", "); // Add other item IDs
+      if(tableCount>0) itemName += " | ";
+      itemName += "Emplacements: " + otherItems.join(", "); // Add other item IDs
     }
 
     const checkoutBody = {
