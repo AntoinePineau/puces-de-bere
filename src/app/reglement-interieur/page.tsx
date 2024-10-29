@@ -8,16 +8,16 @@ export default function ReglementInterieur() {
       <h3>EXPOSANTS</h3>
       <p>La manifestation LES PUCES DE BERE est ouverte aux particuliers et aux brocanteurs professionnels.</p>
       <p>Chaque exposant définira librement les prix de vente des objets présentés à la vente. Il fera son affaire de la surveillance de ceux–ci et de leur assurance. Les organisateurs ne seront en aucun cas tenus responsables en cas de vol ou de détérioration.</p>
-      <p>Les exposants devront prévoir le matériel d'exposition (tables, chaises, etc...). Les tables devront êtres nues, sans tapis ni protection. Néanmoins les organisateurs pourront éventuellement fournir des tables, dans la mesure des stocks disponibles, à des conditions qui seront précisées dans les bulletins de réservation.</p>
-      <p>Les emplacements ne comportent pas d'installation électrique.</p>
-      <p>Les exposants devront se conformer, immédiatement, aux injonctions du responsable de sécurité, en particulier lors de sa visite du service de sécurité, avant l'ouverture au public.</p>
-      <p>Le badge fourni lors de la confirmation d'inscription, doit être collé sur le pare brise du véhicule pour avoir accès au parking exposants.</p>
+      <p>Les exposants devront prévoir le matériel d&apos;exposition (tables, chaises, etc...). Les tables devront êtres nues, sans tapis ni protection. Néanmoins les organisateurs pourront éventuellement fournir des tables, dans la mesure des stocks disponibles, à des conditions qui seront précisées dans les bulletins de réservation.</p>
+      <p>Les emplacements ne comportent pas d&apos;installation électrique.</p>
+      <p>Les exposants devront se conformer, immédiatement, aux injonctions du responsable de sécurité, en particulier lors de sa visite du service de sécurité, avant l&apos;ouverture au public.</p>
+      <p>Le badge fourni lors de la confirmation d&apos;inscription, doit être collé sur le pare brise du véhicule pour avoir accès au parking exposants.</p>
       <p>Les exposants sont tenus de nettoyer leurs emplacements avant de les quitter.</p>
       <p>Les exposants non inscrits au registre du commerce ou des métiers, attestent sur l’honneur, sur le bulletin de réservation, qu’ils respectent la législation en vigueur, qui stipule qu’ils n’ont pas participé à 2 autres ventes ou brocantes ou vides-greniers depuis moins d’un an.</p>
       <h3>MARCHANDISES</h3>
-      <p>Les objets vendus doivent être anciens ou d'occasion, en bon état, sans vice caché.</p>
-      <p>La garantie éventuelle accordée par l'exposant, le sera sous la responsabilité exclusive de ce dernier.</p>
-      <p>Aucun essai de moteurs à explosion n'est autorisé à l'intérieur de la Halle de Béré. Les réservoirs devront impérativement être vidés.</p>
+      <p>Les objets vendus doivent être anciens ou d&apos;occasion, en bon état, sans vice caché.</p>
+      <p>La garantie éventuelle accordée par l&apos;exposant, le sera sous la responsabilité exclusive de ce dernier.</p>
+      <p>Aucun essai de moteurs à explosion n&apos;est autorisé à l&apos;intérieur de la Halle de Béré. Les réservoirs devront impérativement être vidés.</p>
       <h3>CONDITIONS SANITAIRES</h3>
       <p>Les règles sanitaires, seront celles décidées par le gouvernement et valables le jour de la manifestation.</p>
       <p>Le Rotary de Châteaubriant se réserve la possibilité d’adapter l’organisation des Puces de Béré, en respect de ces règles ; dans ce cas nous vous informerons par email ou SMS exclusivement.</p>
@@ -31,14 +31,14 @@ export default function ReglementInterieur() {
       <p><b>Fermeture de la salle à 20 h 00</b></p>
       <hr/>
       <p><b><i>
-        L'accès autour des bâtiments est strictement limité au temps de déchargement (badge véhicule obligatoire).<br/>
-        Pour des raisons de sécurité, aucun véhicule ne peut rester autour du bâtiment aux heures d'ouverture au public. <br/>
+        L&apos;accès autour des bâtiments est strictement limité au temps de déchargement (badge véhicule obligatoire).<br/>
+        Pour des raisons de sécurité, aucun véhicule ne peut rester autour du bâtiment aux heures d&apos;ouverture au public. <br/>
         Merci de rejoindre le parking exposants dès que votre véhicule est déchargé. <br/>
         Les exposants devront prendre leurs dispositions pour ne pas gêner les autres participants.<br/><br/>
         Les organisateurs disposeront des emplacements non occupés à 8 h 00, aucun remboursement ne sera possible.<br/><br/>
         Aucune réservation ne sera prise par téléphone.
       </i></b></p>
-      <Link href="javascript:window.close()">J'ai bien lu et accepte le règlement intérieur</Link>
+      <Link href="javascript:window.close()">J&apos;ai bien lu et accepte le règlement intérieur</Link>
     </div>
   );
 }
