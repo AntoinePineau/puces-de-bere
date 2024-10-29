@@ -32,8 +32,24 @@ const Panier = () => {
   const validateForm = (event: React.FormEvent) => {
       const { firstName, lastName, email, tel, ri, ci, cp, rule } = formData;
       // Vérification des champs obligatoires
-      if (!firstName || !lastName || !email || !tel || !ri) {
-          alert("Veuillez remplir tous les champs obligatoires.");
+      if (!firstName) {
+          alert("Veuillez remplir votre prénom");
+          return false;
+      }
+      if (!lastName) {
+          alert("Veuillez remplir votre nom de famille");
+          return false;
+      }
+      if (!email) {
+          alert("Veuillez remplir votre adresse e-mail");
+          return false;
+      }
+      if (!tel) {
+          alert("Veuillez remplir votre numéro de téléphone");
+          return false;
+      }
+      if (!ri) {
+          alert("Veuillez téléverser la photocopie de votre carte d'identité au format PDF, JPG, JPEG ou PNG");
           return false;
       }
       if (isPro) {
@@ -42,10 +58,14 @@ const Panier = () => {
               return false;
           }
       } else {
-          if (!ci || !rule) {
-              alert("Veuillez fournir la copie de votre carte d'identité et certifier sur l'honneur.");
-              return false;
-          }
+        if (!ci) {
+            alert("Veuillez fournir la copie de votre carte d'identité");
+            return false;
+        }
+        if (!rule) {
+            alert("Veuillez certifier sur l'honneur.");
+            return false;
+        }
       }
       return true;
   };
