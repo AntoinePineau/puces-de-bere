@@ -1,7 +1,7 @@
 // pages/api/sendEmail.js
 import nodemailer from 'nodemailer';
 
-export default async function POST(req, res) {
+export async function POST(req, res) {
   const { to, subject, text } = req.body;
 
   // Create transporter using Gmail SMTP
