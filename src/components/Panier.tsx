@@ -217,12 +217,12 @@ const Panier = () => {
             </div>
             <div className={`particulier ${isPro === false ? '' : 'hidden'}`}>
               <div className="mt-4">
-                <label htmlFor="ci" className="block">Veuillez fournir la copie de votre carte d'identité (formats: .pdf, .jpg, .jpeg, .png)</label>
+                <label htmlFor="ci" className="block">Veuillez fournir la copie de votre carte d&apos;identité (formats: .pdf, .jpg, .jpeg, .png)</label>
                 <input type="file" name="ci" id="ci" className="border rounded p-2 w-full" accept=".pdf,.jpg,.jpeg,.png" required
                 onChange={(e) => setFormData({ ...formData, ci: e.target.files ? e.target.files[0] : null })}/>
               </div>
               <div className="mt-4">
-                <label htmlFor="rule" className="block">Je certifie sur l'honneur, en tant que particulier, non inscrit à aucun registre du commerce ou des métiers, avoir pris connaissance de la réglementation me permettant de participer aux ventes au déballage, pour vendre uniquement des objets personnels et usagés, deux fois par an au plus (art. L310 alinéa 2 du code du commerce). Je connais les risques encourus en cas de fausse déclaration (art. R321 du code pénal)</label>
+                <label htmlFor="rule" className="block">Je certifie sur l&apos;honneur, en tant que particulier, non inscrit à aucun registre du commerce ou des métiers, avoir pris connaissance de la réglementation me permettant de participer aux ventes au déballage, pour vendre uniquement des objets personnels et usagés, deux fois par an au plus (art. L310 alinéa 2 du code du commerce). Je connais les risques encourus en cas de fausse déclaration (art. R321 du code pénal)</label>
                 <input type="checkbox" name="rule" id="rule" className="border rounded p-2 w-full" onChange={handleChange} required />
               </div>
             </div>
