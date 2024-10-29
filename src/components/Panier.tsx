@@ -1,14 +1,59 @@
 'use client'
-import React from 'react';
+import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
 import { Trash2, Plus, Minus, ShoppingCart } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { CartItem } from '../context/CartContext';
 
 const Panier = () => {
-  const { state, dispatch } = useCart();
   const router = useRouter();
-  const cartAction = async () => {
+  const { state, dispatch } = useCart();  
+  const [isPro, setIsPro] = useState<boolean | null>(null);
+  const [formData, setFormData] = useState({
+      firstName: '',
+      lastName: '',
+      email: '',
+      tel: '',
+      ri: '',
+      ci: null as File | null,
+      cp: null as File | null,
+      rule: false,
+  });
+  const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setIsPro(event.target.value === 'oui' ? true : event.target.value === 'non' ? false : null);
+  };
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value, type, checked } = event.target;
+      setFormData((prevData) => ({
+          ...prevData,
+          [name]: type === 'checkbox' ? checked : value,
+      }));
+  };
+  const validateForm = (event: React.FormEvent) => {
+      const { firstName, lastName, email, tel, ri, ci, cp, rule } = formData;
+      // Vérification des champs obligatoires
+      if (!firstName || !lastName || !email || !tel || !ri) {
+          alert("Veuillez remplir tous les champs obligatoires.");
+          return false;
+      }
+      if (isPro) {
+          if (!cp) {
+              alert("Veuillez fournir la copie de votre carte professionnelle.");
+              return false;
+          }
+      } else {
+          if (!ci || !rule) {
+              alert("Veuillez fournir la copie de votre carte d'identité et certifier sur l'honneur.");
+              return false;
+          }
+      }
+      return true;
+  };
+  const cartAction = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!validateForm(event)) return;
+    const { firstName, lastName, email, tel, ri, ci, cp, rule } = formData;
+
     var cart = JSON.parse(localStorage.getItem('cart') ?? '[]') as CartItem[];
     var itemName = "Inscription en tant qu'exposant aux Puces de Béré 2025 - ";
     var tableCount = 0;
@@ -35,6 +80,11 @@ const Panier = () => {
 
     const checkoutBody = {
       "containsDonation": false,
+      "payer": {
+        "firstName": firstName,
+        "lastName": lastName,
+        "email": email
+      },
       "items": cart.map(item => ({
         tiersId: item.tierId, // Use tierId from the new cart structure
         quantity: item.quantity
@@ -78,8 +128,8 @@ const Panier = () => {
     dispatch({ type: 'CLEAR_CART' });
   };
 
-  const validateCart = async () => {
-    await cartAction();
+  const validateCart = async (event: React.FormEvent) => {
+    await cartAction(event);
     console.log('Cart validated');
   };
 
@@ -139,6 +189,51 @@ const Panier = () => {
               TOTAL: {formatPrice(state.items.reduce((total, item) => total + (item.price * item.quantity / 100), 0))}€
             </div>
           </div>
+          <form onSubmit={validateCart}>
+            <div className="mt-4">
+              <label htmlFor="firstName" className="block">Prénom</label>
+              <input type="text" name="firstName" id="firstName" className="border rounded p-2 w-full" placeholder="Entrez votre prénom" onChange={handleChange} required />
+            </div>
+            <div className="mt-4">
+              <label htmlFor="lastName" className="block">NOM</label>
+              <input type="text" name="lastName" id="lastName" className="border rounded p-2 w-full" placeholder="Entrez votre nom de famille" onChange={handleChange} required />
+            </div>
+            <div className="mt-4">
+              <label htmlFor="email" className="block">E-mail</label>
+              <input type="email" name="email" id="email" className="border rounded p-2 w-full" placeholder="Entrez votre adresse e-mail" onChange={handleChange} required />
+            </div>
+            <div className="mt-4">
+              <label htmlFor="tel" className="block">Téléphone</label>
+              <input type="tel" name="tel" id="tel" className="border rounded p-2 w-full" placeholder="Entrez votre numero de téléphone" onChange={handleChange} pattern="^(0[1-9]([-. ]?[0-9]{2}){4}|(\+33|0)[1-9]([-. ]?[0-9]{2}){4})$"/>
+            </div>
+            <div className="mt-4">
+              <label htmlFor="ri" className="block">Je valide le <a href="/reglement-interieur/" target="_blank">règlement intérieur</a></label>
+              <input type="checkbox" name="ri" id="ri" className="border rounded p-2 w-full" onChange={handleChange} required />
+            </div>
+            <div className="mt-4">
+              <div>Êtes-vous un professionnel ?</div>
+              <input type="radio" name="pro" id="prooui" className="border rounded p-2 w-full" value="oui" onChange={handleRadioChange}>Oui</input>
+              <input type="radio" name="pro" id="pronon" className="border rounded p-2 w-full" value="non" onChange={handleRadioChange}>Non</input>
+            </div>
+            <div className={`particulier ${isPro === false ? '' : 'hidden'}`}>
+              <div className="mt-4">
+                <label htmlFor="ci" className="block">Veuillez fournir la copie de votre carte d'identité (formats: .pdf, .jpg, .jpeg, .png)</label>
+                <input type="file" name="ci" id="ci" className="border rounded p-2 w-full" accept=".pdf,.jpg,.jpeg,.png" required
+                onChange={(e) => setFormData({ ...formData, ci: e.target.files ? e.target.files[0] : null })}/>
+              </div>
+              <div className="mt-4">
+                <label htmlFor="rule" className="block">Je certifie sur l'honneur, en tant que particulier, non inscrit à aucun registre du commerce ou des métiers, avoir pris connaissance de la réglementation me permettant de participer aux ventes au déballage, pour vendre uniquement des objets personnels et usagés, deux fois par an au plus (art. L310 alinéa 2 du code du commerce). Je connais les risques encourus en cas de fausse déclaration (art. R321 du code pénal)</label>
+                <input type="checkbox" name="rule" id="rule" className="border rounded p-2 w-full" onChange={handleChange} required />
+              </div>
+            </div>
+            <div className={`professionnel ${isPro === true ? '' : 'hidden'}`}>
+              <div className="mt-4">
+                <label htmlFor="cp" className="block">Veuillez fournir la copie de votre carte professionnelle (formats: .pdf, .jpg, .jpeg, .png)</label>
+                <input type="file" name="cp" id="cp" className="border rounded p-2 w-full" accept=".pdf,.jpg,.jpeg,.png" required
+                onChange={(e) => setFormData({ ...formData, cp: e.target.files ? e.target.files[0] : null })}/>
+              </div>
+            </div>
+          </form>
           <button
             onClick={validateCart}
             className="mt-4 w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors flex items-center justify-center"

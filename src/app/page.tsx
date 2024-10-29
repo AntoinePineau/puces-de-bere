@@ -1,25 +1,20 @@
+import Link from 'next/link';
 import React from 'react';
-import dynamic from 'next/dynamic';
-import Panier from '@/components/Panier';
 
 export default function Home() {
-  const HalleDeBere = dynamic(() => import('@/components/HalleDeBere'), { 
-    ssr: false 
-  });
-
-  const htmlContent = `
-  <p>
-      Une fois que votre choix est fait vous pouvez valider votre panier et régler par Carte Bancaire en ligne de manière totalement sécurisée: nous n'enregistrons pas vos coordonnées bancaires, ni la plateforme HelloAsso par laquelle nous passons pour le paiement. <br/>
-      HelloAsso vous proposera par défaut une contribution pour eux mais que vous pouvez modifier et même passer à 0. En effet, HelloAsso ne prend pas de frais de transaction et se rémunère uniquement par une contribution volontaire.
-  </p>
-`;
   return (
-    <>
-      <HalleDeBere/>
-      <aside className="mx-2" style={{ margin: '1em' }}>
-        <div className="mx-2 max-w-[1024px] pb-4" dangerouslySetInnerHTML={{ __html: htmlContent }} />
-        <Panier />
-      </aside>
-    </>
+    <div>
+      Bienvenue sur le site de réservation des emplacements des Puces de Béré du 19 janvier 2025 de 9h à 18h à la Halle de Béré à Châteaubriant. 
+      <br/>
+      Cet événement est réalisé par le Rotary Club de Châteaubriant et ce site est réservé aux exposants des Puces de Béré.
+      <br/>
+      Une tombola avec de beaux lots à gagner est organisée via la roue du Rotary.
+      <br/>
+      Par votre participation, vous contribuez au succès de cette journée et vous apportez votre soutien aux actions internationales, nationales et locales menées par le Rotary. La plus emblématique étant l’éradication de la polio dans le monde (<a href="https://www.rotary.org/fr/our-causes/ending-polio" target="_blank">Polio Plus</a>).
+      <br/>
+      Venez nombreux ; l’entrée et le parking sont gratuits. Une restauration rapide et une buvette sont à votre disposition.
+      <br/>
+      <Link href="/reservation/">Je veux réserver mes emplacements</Link>
+    </div>
   );
 }
