@@ -1,7 +1,9 @@
-import Link from 'next/link';
 import React from 'react';
 
 export default function Home() {
+  const book = async (event: React.FormEvent) => {
+    window.location.href="/reservation/";
+  };
   return (
     <div className="mx-2 max-w-[1024px] pb-4">
       <br/>
@@ -15,7 +17,7 @@ export default function Home() {
       <br/><br/>
       Venez nombreux ; l’entrée et le parking sont gratuits. Une restauration rapide et une buvette sont à votre disposition.
       <br/><br/>
-      <Link href="/reservation/">Je veux réserver mes emplacements</Link>
+      <button onClick={book}>Je veux réserver mes emplacements</button>
     </div>
   );
 }

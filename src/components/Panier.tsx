@@ -207,13 +207,15 @@ const Panier = () => {
               <input type="tel" name="tel" id="tel" className="border rounded p-2 w-full" placeholder="Entrez votre numero de téléphone" onChange={handleChange} pattern="^(0[1-9]([-. ]?[0-9]{2}){4}|(\+33|0)[1-9]([-. ]?[0-9]{2}){4})$"/>
             </div>
             <div className="mt-4">
-              <label htmlFor="ri" className="block">Je valide le <a href="/reglement-interieur/" target="_blank">règlement intérieur</a></label>
               <input type="checkbox" name="ri" id="ri" className="border rounded p-2 w-full" onChange={handleChange} required />
+              <label htmlFor="ri">Je valide le <a href="/reglement-interieur/" target="_blank">règlement intérieur</a></label>
             </div>
             <div className="mt-4">
               <div>Êtes-vous un professionnel ?</div>
-              <input type="radio" name="pro" id="prooui" className="border rounded p-2 w-full" value="oui" onChange={handleRadioChange}/><label htmlFor="prooui">Oui</label>
-              <input type="radio" name="pro" id="pronon" className="border rounded p-2 w-full" value="non" onChange={handleRadioChange}/><label htmlFor="pronon">Non</label>
+              <input type="radio" name="pro" id="prooui" className="border rounded p-2" value="oui" onChange={handleRadioChange}/>
+              <label htmlFor="prooui">Oui</label>
+              <input type="radio" name="pro" id="pronon" className="border rounded p-2" value="non" onChange={handleRadioChange}/>
+              <label htmlFor="pronon">Non</label>
             </div>
             <div className={`particulier ${isPro === false ? '' : 'hidden'}`}>
               <div className="mt-4">
@@ -222,8 +224,8 @@ const Panier = () => {
                 onChange={(e) => setFormData({ ...formData, ci: e.target.files ? e.target.files[0] : null })}/>
               </div>
               <div className="mt-4">
-                <label htmlFor="rule" className="block">Je certifie sur l&apos;honneur, en tant que particulier, non inscrit à aucun registre du commerce ou des métiers, avoir pris connaissance de la réglementation me permettant de participer aux ventes au déballage, pour vendre uniquement des objets personnels et usagés, deux fois par an au plus (art. L310 alinéa 2 du code du commerce). Je connais les risques encourus en cas de fausse déclaration (art. R321 du code pénal)</label>
                 <input type="checkbox" name="rule" id="rule" className="border rounded p-2 w-full" onChange={handleChange} required />
+                <label htmlFor="rule">Je certifie sur l&apos;honneur, en tant que particulier, non inscrit à aucun registre du commerce ou des métiers, avoir pris connaissance de la réglementation me permettant de participer aux ventes au déballage, pour vendre uniquement des objets personnels et usagés, deux fois par an au plus (art. L310 alinéa 2 du code du commerce). Je connais les risques encourus en cas de fausse déclaration (art. R321 du code pénal)</label>
               </div>
             </div>
             <div className={`professionnel ${isPro === true ? '' : 'hidden'}`}>
@@ -239,7 +241,7 @@ const Panier = () => {
             className="mt-4 w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors flex items-center justify-center"
           >
             <ShoppingCart size={20} className="mr-2" />
-            Valider le panier
+            Valider et passer au paiement
           </button>
         </>
       )}
