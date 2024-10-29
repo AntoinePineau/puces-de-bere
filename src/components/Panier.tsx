@@ -96,6 +96,10 @@ const Panier = () => {
           alert("Veuillez valider le règlement intérieur");
           return false;
       }
+      if (!isPro==null) {
+          alert("Veuillez indiquer si vous êtes un particulier ou un professionnel");
+          return false;
+      }
       if (isPro) {
           if (!cp) {
               alert("Veuillez fournir la copie de votre carte professionnelle.");

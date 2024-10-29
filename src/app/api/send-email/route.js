@@ -2,7 +2,9 @@
 import nodemailer from 'nodemailer';
 
 export async function POST(req, res) {
-  const { to, subject, text } = req.body;
+  const body = await req.json(); // Assurez-vous de parser le corps de la requête
+  console.log('Received body:', body); // Ajoutez ce log pour voir ce qui est reçu
+  const { to, subject, text } = body;
 
   // Create transporter using Gmail SMTP
   const transporter = nodemailer.createTransport({
