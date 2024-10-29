@@ -19,6 +19,30 @@ const Panier = () => {
       cp: null as File | null,
       rule: false,
   });
+  const sendEmail = async (formData: any) => {
+    const formDataToSend = new FormData();
+    for (const key in formData) {
+        formDataToSend.append(key, formData[key]);
+    }
+    // Ajoutez les fichiers
+    if (formData.ci) formDataToSend.append('ci', formData.ci);
+    if (formData.cp) formDataToSend.append('cp', formData.cp);
+
+    // Ajoutez les informations de l'email
+    const emailData = {
+      to: formData.email, // Utilisez l'email du formulaire
+      subject: 'Confirmation de votre inscription',
+      text: `Bonjour ${formData.firstName},\n\nMerci pour votre inscription. Voici les détails :\n\nNom: ${formData.lastName}\nEmail: ${formData.email}\nTéléphone: ${formData.tel}\n\nCordialement,\nL'équipe des Puces de Béré`
+    };
+
+    await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json' // Changez le type de contenu
+        },
+        body: JSON.stringify(emailData) // Envoyez les données de l'email
+    });
+  };
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setIsPro(event.target.value === 'oui' ? true : event.target.value === 'non' ? false : null);
   };
@@ -44,8 +68,18 @@ const Panier = () => {
           alert("Veuillez remplir votre adresse e-mail");
           return false;
       }
+      const emailInput = document.getElementById('email') as HTMLInputElement;
+      if (!emailInput.checkValidity()) {
+          alert("Veuillez entrer une adresse e-mail valide");
+          return false;
+      }
       if (!tel) {
           alert("Veuillez remplir votre numéro de téléphone");
+          return false;
+      }
+      const telInput = document.getElementById('tel') as HTMLInputElement;
+      if (!telInput.checkValidity()) {
+          alert("Veuillez entrer un numéro de téléphone valide");
           return false;
       }
       if (!ri) {
@@ -127,6 +161,7 @@ const Panier = () => {
     .then(response => {
       console.log("response from /api/order:", response);
       if(response.redirectUrl) {
+        sendEmail(formData);
         router.push(response.redirectUrl);
       }
       else {
