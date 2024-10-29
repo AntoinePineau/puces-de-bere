@@ -18,7 +18,7 @@ export default function Home() {
       <br/><br/>
       Venez nombreux ; l’entrée et le parking sont gratuits. Une restauration rapide et une buvette sont à votre disposition.
       <br/><br/>
-      <button onClick={book}>Je veux réserver mes emplacements</button>
+      <button onClick={book} className="mt-4 w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors flex items-center justify-center">Je veux réserver mes emplacements</button>
     </div>
   );
 }
