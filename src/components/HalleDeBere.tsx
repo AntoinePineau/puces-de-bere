@@ -122,7 +122,7 @@ export default function HalleDeBere() {
               y={seat.y}
               width={seat.w}
               height={seat.h}
-              fill={seat.isAngle ? '#17458f' : !seat.available ? 'gray' : isSeatSelected(seat.id) ? '#f7a81b' : !seat.inHelloAsso ? 'dimgrey' : 'black'}
+              fill={!seat.available ? 'gray' : isSeatSelected(seat.id) ? '#f7a81b' : seat.isAngle ? '#17458f' : !seat.inHelloAsso ? 'dimgrey' : 'black'}
               onClick={seat.available ? () => toggleSeat(seat.id) : undefined}
               onTouchStart={seat.available ? () => toggleSeat(seat.id) : undefined}
               style={{ cursor: seat.available ? "pointer" : "not-allowed" }}
