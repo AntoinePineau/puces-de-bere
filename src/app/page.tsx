@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function Home() {
   return (
-    <div>
+    <div className="mx-2 max-w-[1024px] pb-4">
       Bienvenue sur le site de réservation des emplacements des Puces de Béré du 19 janvier 2025 de 9h à 18h à la Halle de Béré à Châteaubriant. 
       <br/>
       Cet événement est réalisé par le Rotary Club de Châteaubriant et ce site est réservé aux exposants des Puces de Béré.
