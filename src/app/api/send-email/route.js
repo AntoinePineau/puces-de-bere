@@ -4,14 +4,14 @@ import nodemailer from 'nodemailer';
 export async function POST(req, res) {
   const body = await req.json(); // Assurez-vous de parser le corps de la requête
   console.log('Received body:', body); // Ajoutez ce log pour voir ce qui est reçu
-  const { to, subject, text } = body;
+  const { to, subject, text, attachments } = body;
 
   // Create transporter using Gmail SMTP
   const transporter = nodemailer.createTransport({
-    //service: 'gmail',
-    host: 'smtp.gmail.com', // Spécifiez l'hôte SMTP
-    port: 587, // Utilisez 587 pour TLS ou 465 pour SSL
-    secure: false, // true pour le port 465,
+    service: 'gmail',
+    //host: 'smtp.gmail.com', // Spécifiez l'hôte SMTP
+    //port: 465, // Utilisez 587 pour TLS ou 465 pour SSL
+    //secure: true, // true pour le port 465,
     auth: {
       user: process.env.GMAIL_USER, // Your Gmail address
       pass: process.env.GMAIL_PASS, // Your Gmail password or App Password if 2FA is enabled
@@ -24,6 +24,10 @@ export async function POST(req, res) {
     cc: 'rotary.chateaubriant@gmail.com',
     subject,
     text,
+    attachments: attachments.map((file) => ({
+      filename: file.filename,
+      path: file.path,
+    }))
   };
 
   try {

@@ -20,19 +20,12 @@ const Panier = () => {
       rule: false,
   });
   const sendEmail = async (formData: any, emplacements:string) => {
-    const formDataToSend = new FormData();
-    for (const key in formData) {
-        formDataToSend.append(key, formData[key]);
-    }
-    // Ajoutez les fichiers
-    if (formData.ci) formDataToSend.append('ci', formData.ci);
-    if (formData.cp) formDataToSend.append('cp', formData.cp);
-
     // Ajoutez les informations de l'email
     const emailData = {
       to: formData.email, // Utilisez l'email du formulaire
       subject: 'Confirmation de votre inscription',
-      text: `Bonjour ${formData.firstName},\n\nMerci pour votre inscription. Voici les détails :\n\nNom: ${formData.lastName}\nEmail: ${formData.email}\nTéléphone: ${formData.tel}\n${emplacements}\n\nCordialement,\nL'équipe des Puces de Béré`
+      text: `Bonjour ${formData.firstName},\n\nMerci pour votre inscription. Voici les détails :\n\nNom: ${formData.lastName}\nEmail: ${formData.email}\nTéléphone: ${formData.tel}\n${emplacements}\n\nCordialement,\nL'équipe des Puces de Béré`,
+      attachments: [formData.ci, formData.cp]
     };
 
     await fetch('/api/send-email', {
