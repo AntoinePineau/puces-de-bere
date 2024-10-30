@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation'; // Import useSearchParams
+import Link from 'next/link';
 
 export default function Confirmation() {
   const searchParams = useSearchParams(); // Get search parameters
@@ -28,12 +29,12 @@ export default function Confirmation() {
 
   return (
     <Suspense fallback={<p>Loading...</p>}>
-      <div>
+      <div className="mx-2 max-w-[1024px] pb-4">
         <h2>Confirmation de commande</h2>
         {data ? data['order'] ? data['order']['id'] == orderId ? (
-          <pre>{JSON.stringify(data, null, 2)}</pre>
+          <pre>Merci pour votre {data['order']['name']}.<br/>Vous recevrez prochainement votre confirmation par email avec votre QR code, qui vous permettra de bénéficier d&apos;une boisson chaude et d&apos;une viennoiserie.</pre>
         ) :(
-          <span>Paiement échoué: recommencer ici {data['redirectURL']}</span>
+          <span>Paiement échoué: <Link href={data['redirectURL']}>recommencer ici</Link></span>
         ) : (
           <span>Pas le bon ID de commande {data['order']['id']}</span>
         ) : (

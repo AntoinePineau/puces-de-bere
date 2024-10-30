@@ -31,26 +31,9 @@ const Panier = () => {
     // Ajoutez les informations de l'email
     const emailData = {
       to: formData.email, // Utilisez l'email du formulaire
-      subject: 'Confirmation de votre inscription',
-      text: `Bonjour, une nouvelle inscription. Voici les détails :\n\nNom: ${formData.lastName}\nPrénom:  ${formData.firstName}\nEmail: ${formData.email}\nTéléphone: ${formData.tel}\n${emplacements}\n\nCordialement,\nL'équipe des Puces de Béré`,
+      subject: 'Confirmation de l\'inscription d\'un '+isPro ? "professionnel" : "particulier",
+      text: `Bonjour, voici une nouvelle inscription. Voici les détails :\n\nNom: ${formData.lastName}\nPrénom:  ${formData.firstName}\nEmail: ${formData.email}\nTéléphone: ${formData.tel}\n${emplacements}\n\nCordialement,\nL'équipe des Puces de Béré`,
     };
-
-    /*
-    if (formData.ci) {
-      const ciBase64 = await fileToBase64(formData.ci);
-      emailData.attachments.push({
-        filename: formData.ci.name,
-        content: ciBase64.split(',')[1]  // Retire le prefixe data MIME
-      });
-    }
-
-    if (formData.cp) {
-      const cpBase64 = await fileToBase64(formData.cp);
-      emailData.attachments.push({
-        filename: formData.cp.name,
-        content: cpBase64.split(',')[1]
-      });
-    }*/
 
     // Créer un objet FormData
     const formDataToSend = new FormData();
@@ -69,10 +52,6 @@ const Panier = () => {
     try {
       const response = await fetch('/api/send-email', {
         method: 'POST',
-        /*headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(emailData) */
         body: formDataToSend
       });
       if (!response.ok) throw new Error("Email sending failed");
@@ -226,7 +205,7 @@ const Panier = () => {
         if (emailSent) {  // Redirection seulement si l'email est envoyé avec succès
           router.push(response.redirectUrl);
         } else {
-            alert("L'email n'a pas pu être envoyé. Veuillez vérifier vos informations.");
+            alert("L'email n'a pas pu être envoyé. Veuillez vérifier vos informations et que votre fichier n'est pas trop gros.");
         }
       }
       else {
