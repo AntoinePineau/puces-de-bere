@@ -179,10 +179,10 @@ const Panier = () => {
       body: JSON.stringify(checkoutBody)
     })
     .then(response => response.json())
-    .then(response => {
+    .then(async response => {
       console.log("response from /api/order:", response);
       if(response.redirectUrl) {
-        sendEmail(formData, itemName);
+        await sendEmail(formData, itemName);
         router.push(response.redirectUrl);
       }
       else {
