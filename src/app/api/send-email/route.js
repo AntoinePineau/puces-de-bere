@@ -1,23 +1,16 @@
 import nodemailer from 'nodemailer';
 import formidable from 'formidable';
-import fs from 'fs';
-
-// Nouvelle configuration de segment de route
-export const routeSegmentConfig = {
-  api: {
-    bodyParser: false,
-  },
-};
+import { NextResponse } from 'next/server';
 
 export async function POST(req) {
-  const form = new formidable.IncomingForm({
+  const form = formidable({
     maxFileSize: 25 * 1024 * 1024, // Limite de 25 Mo
   });
 
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     form.parse(req, async (err, fields, files) => {
       if (err) {
-        reject({ status: 500, json: { message: 'Error parsing the files', error: err } });
+        resolve(NextResponse.json({ message: 'Error parsing the files', error: err }, { status: 500 }));
         return;
       }
 
@@ -56,10 +49,10 @@ export async function POST(req) {
 
       try {
         await transporter.sendMail(mailOptions);
-        resolve({ status: 200, json: { message: 'Email sent successfully' } });
+        resolve(NextResponse.json({ message: 'Email sent successfully' }, { status: 200 }));
       } catch (error) {
         console.error('Error sending email:', error);
-        reject({ status: 500, json: { message: 'Failed to send email', error } });
+        resolve(NextResponse.json({ message: 'Failed to send email', error }, { status: 500 }));
       }
     });
   });
