@@ -1,4 +1,4 @@
-import mailjet from 'node-mailjet';
+import { mailjet } from 'node-mailjet';
 import { NextResponse } from 'next/server';
 //const mailjet = require('node-mailjet');
 
