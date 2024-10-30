@@ -2,6 +2,9 @@ import mailjet from 'node-mailjet';
 import { NextResponse } from 'next/server';
 //const mailjet = require('node-mailjet');
 
+if (!mailjet.connect) {
+  throw new Error('Mailjet connect method is not available. Please check the Mailjet library installation.');
+}
 if (!process.env.MAILJET_API_KEY || !process.env.MAILJET_SECRET_KEY) {
   console.error('Mailjet API Key and Secret Key must be set in environment variables.');
 }
