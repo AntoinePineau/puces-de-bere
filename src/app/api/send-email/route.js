@@ -18,8 +18,12 @@ export async function POST(req) {
     });
   }
 
+  //service: 'gmail',
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false, // true pour 465
     auth: {
       user: process.env.GMAIL_USER,
       pass: process.env.GMAIL_PASS,
