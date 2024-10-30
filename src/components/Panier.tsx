@@ -24,16 +24,29 @@ const Panier = () => {
     const emailData = {
       to: formData.email, // Utilisez l'email du formulaire
       subject: 'Confirmation de votre inscription',
-      text: `Bonjour ${formData.firstName},\n\nMerci pour votre inscription. Voici les détails :\n\nNom: ${formData.lastName}\nEmail: ${formData.email}\nTéléphone: ${formData.tel}\n${emplacements}\n\nCordialement,\nL'équipe des Puces de Béré`,
-      attachments: [formData.ci, formData.cp]
+      text: `Bonjour ${formData.firstName},\n\nMerci pour votre inscription. Voici les détails :\n\nNom: ${formData.lastName}\nEmail: ${formData.email}\nTéléphone: ${formData.tel}\n${emplacements}\n\nCordialement,\nL'équipe des Puces de Béré`
     };
+
+    // Créer un objet FormData
+    const formDataToSend = new FormData();
+    formDataToSend.append('to', emailData.to);
+    formDataToSend.append('subject', emailData.subject);
+    formDataToSend.append('text', emailData.text);
+
+    // Ajouter les fichiers si disponibles
+    if (formData.ci) {
+        formDataToSend.append('attachments', formData.ci); // Ajoutez la copie de la carte d'identité
+    }
+    if (formData.cp) {
+        formDataToSend.append('attachments', formData.cp); // Ajoutez la copie de la carte professionnelle
+    }
 
     await fetch('/api/send-email', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json' // Changez le type de contenu
         },
-        body: JSON.stringify(emailData) // Envoyez les données de l'email
+        body: formDataToSend // Envoyez les données de l'email
     });
   };
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,42 +1,57 @@
-// pages/api/sendEmail.js
 import nodemailer from 'nodemailer';
+import formidable from 'formidable'; 
 
 export async function POST(req, res) {
-  const body = await req.json(); // Assurez-vous de parser le corps de la requête
-  console.log('Received body:', body); // Ajoutez ce log pour voir ce qui est reçu
-  const { to, subject, text, attachments } = body;
+  const form = new formidable.IncomingForm();
+  
+  form.parse(req, async (err, fields, files) => {
+    if (err) {
+      return res.status(500).json({ message: 'Error parsing the files', error: err });
+    }
 
-  // Create transporter using Gmail SMTP
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    //host: 'smtp.gmail.com', // Spécifiez l'hôte SMTP
-    //port: 465, // Utilisez 587 pour TLS ou 465 pour SSL
-    //secure: true, // true pour le port 465,
-    auth: {
-      user: process.env.GMAIL_USER, // Your Gmail address
-      pass: process.env.GMAIL_PASS, // Your Gmail password or App Password if 2FA is enabled
-    },
+    const { to, subject, text } = fields;
+    const attachments = [];
+
+    // Traiter les fichiers
+    if (files.attachments) {
+      if (Array.isArray(files.attachments)) {
+        files.attachments.forEach(file => {
+          attachments.push({
+            filename: file.originalFilename,
+            path: file.filepath,
+          });
+        });
+      } else {
+        attachments.push({
+          filename: files.attachments.originalFilename,
+          path: files.attachments.filepath,
+        });
+      }
+    }
+
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_PASS,
+      },
+    });
+
+    const mailOptions = {
+      from: process.env.GMAIL_USER,
+      to,
+      cc:'rotary.chateaubriant@gmail.com',
+      subject,
+      text,
+      attachments,
+    };
+
+    try {
+      await transporter.sendMail(mailOptions);
+      res.status(200).json({ message: 'Email sent successfully' });
+    } catch (error) {
+      console.error('Error sending email:', error);
+      res.status(500).json({ message: 'Failed to send email', error });
+    }
   });
-
-  const mailOptions = {
-    from: process.env.GMAIL_USER,
-    to,
-    cc: 'rotary.chateaubriant@gmail.com',
-    subject,
-    text,
-    attachments: attachments.map((file) => ({
-      filename: file.filename,
-      path: file.path,
-    }))
-  };
-
-  try {
-    // Send the email
-    console.log(`Send mail (subject: ${subject} / text: ${text}) to ${to} from ${process.env.GMAIL_USER} with pass ${process.env.GMAIL_PASS}`);
-    await transporter.sendMail(mailOptions);
-    res.status(200).json({ message: 'Email sent successfully' });
-  } catch (error) {
-    console.error('Error sending email:', error);
-    res.status(500).json({ message: 'Failed to send email', error });
-  }
 }
