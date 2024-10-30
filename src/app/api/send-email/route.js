@@ -29,7 +29,7 @@ export async function POST(req) {
       Messages: [
         {
           From: {
-            Email: "lespucesdebere@gmail.com", // Adresse e-mail de l'expéditeur
+            Email: "lespucesdebere@pineau.pm", // Adresse e-mail de l'expéditeur
             Name: "Les Puces de Béré", // Nom de l'expéditeur
           },
           To: [
@@ -37,14 +37,14 @@ export async function POST(req) {
               Email: to,
             },
           ],
-          Cc: [
+          Bcc: [
             {
               Email: 'lespucesdebere@gmail.com', // CC
             },
           ],
           Subject: subject,
           TextPart: text,
-          HTMLPart: `<p>${text}</p>`, // Si vous souhaitez également envoyer en HTML
+          HTMLPart: `<p>${text.replace(/\n/g, '<br/>')}</p>`, // Si vous souhaitez également envoyer en HTML
           Attachments: attachments.length ? attachments : undefined, // Ajoute les pièces jointes si elles existent
         },
       ],

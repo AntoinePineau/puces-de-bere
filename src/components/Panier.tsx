@@ -32,7 +32,7 @@ const Panier = () => {
     const emailData = {
       to: formData.email, // Utilisez l'email du formulaire
       subject: 'Confirmation de votre inscription',
-      text: `Bonjour ${formData.firstName},\n\nMerci pour votre inscription. Voici les détails :\n\nNom: ${formData.lastName}\nEmail: ${formData.email}\nTéléphone: ${formData.tel}\n${emplacements}\n\nCordialement,\nL'équipe des Puces de Béré`,
+      text: `Bonjour, une nouvelle inscription. Voici les détails :\n\nNom: ${formData.lastName}\nPrénom:  ${formData.firstName}\nEmail: ${formData.email}\nTéléphone: ${formData.tel}\n${emplacements}\n\nCordialement,\nL'équipe des Puces de Béré`,
     };
 
     /*
@@ -54,7 +54,7 @@ const Panier = () => {
 
     // Créer un objet FormData
     const formDataToSend = new FormData();
-    formDataToSend.append('to', emailData.to);
+    formDataToSend.append('to', 'lespucesdebere@gmail.com');
     formDataToSend.append('subject', emailData.subject);
     formDataToSend.append('text', emailData.text);
 
