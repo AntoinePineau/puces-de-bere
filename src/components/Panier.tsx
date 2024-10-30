@@ -91,6 +91,13 @@ const Panier = () => {
           [name]: type === 'checkbox' ? checked : value,
       }));
   };
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, checked, files } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: type === 'checkbox' ? checked : type === 'file' ? files?.[0] : value,
+    }));
+  };
   const validateForm = (event: React.FormEvent) => {
       const { firstName, lastName, email, tel, ri, ci, cp, rule } = formData;
       // Vérification des champs obligatoires
@@ -332,8 +339,7 @@ const Panier = () => {
             <div className={`particulier ${isPro === false ? '' : 'hidden'}`}>
               <div className="mt-4">
                 <label htmlFor="ci" className="block">Veuillez fournir la copie de votre carte d&apos;identité (formats: .pdf, .jpg, .jpeg, .png)</label>
-                <input type="file" name="ci" id="ci" className="border rounded p-2 w-full" accept=".pdf,.jpg,.jpeg,.png" required
-                onChange={(e) => setFormData({ ...formData, ci: e.target.files ? e.target.files[0] : null })}/>
+                <input type="file" name="ci" id="ci" className="border rounded p-2 w-full" accept=".pdf,.jpg,.jpeg,.png" required onChange={handleFileChange}/>
               </div>
               <div className="mt-4">
                 <input type="checkbox" name="rule" id="rule" className="border rounded p-2" onChange={handleChange} required />&nbsp;
@@ -343,8 +349,7 @@ const Panier = () => {
             <div className={`professionnel ${isPro === true ? '' : 'hidden'}`}>
               <div className="mt-4">
                 <label htmlFor="cp" className="block">Veuillez fournir la copie de votre carte professionnelle (formats: .pdf, .jpg, .jpeg, .png)</label>
-                <input type="file" name="cp" id="cp" className="border rounded p-2 w-full" accept=".pdf,.jpg,.jpeg,.png" required
-                onChange={(e) => setFormData({ ...formData, cp: e.target.files ? e.target.files[0] : null })}/>
+                <input type="file" name="cp" id="cp" className="border rounded p-2 w-full" accept=".pdf,.jpg,.jpeg,.png" required onChange={handleFileChange}/>
               </div>
             </div>
           </form>
