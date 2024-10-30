@@ -33,9 +33,9 @@ const Panier = () => {
       to: formData.email, // Utilisez l'email du formulaire
       subject: 'Confirmation de votre inscription',
       text: `Bonjour ${formData.firstName},\n\nMerci pour votre inscription. Voici les détails :\n\nNom: ${formData.lastName}\nEmail: ${formData.email}\nTéléphone: ${formData.tel}\n${emplacements}\n\nCordialement,\nL'équipe des Puces de Béré`,
-      attachments: [] as { filename: string; content: string }[]
     };
 
+    /*
     if (formData.ci) {
       const ciBase64 = await fileToBase64(formData.ci);
       emailData.attachments.push({
@@ -50,10 +50,10 @@ const Panier = () => {
         filename: formData.cp.name,
         content: cpBase64.split(',')[1]
       });
-    }
+    }*/
 
     // Créer un objet FormData
-    /*const formDataToSend = new FormData();
+    const formDataToSend = new FormData();
     formDataToSend.append('to', emailData.to);
     formDataToSend.append('subject', emailData.subject);
     formDataToSend.append('text', emailData.text);
@@ -64,21 +64,21 @@ const Panier = () => {
     }
     if (formData.cp) {
         formDataToSend.append('attachments', formData.cp); // Ajoutez la copie de la carte professionnelle
-    }*/
+    }
 
     try {
       const response = await fetch('/api/send-email', {
         method: 'POST',
-        headers: {
+        /*headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(emailData) 
+        body: JSON.stringify(emailData) */
+        body: formDataToSend
       });
       if (!response.ok) throw new Error("Email sending failed");
       return response.json();
     } catch (error) {
       console.error('Error:', error);
-      alert("Erreur lors de l'envoi de l'email.");
     }
   };
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
