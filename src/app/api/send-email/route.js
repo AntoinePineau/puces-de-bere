@@ -2,7 +2,9 @@ import nodemailer from 'nodemailer';
 import formidable from 'formidable'; 
 
 export async function POST(req, res) {
-  const form = new formidable.IncomingForm();
+  const form = new formidable.IncomingForm({
+    maxFileSize: 25 * 1024 * 1024, // Limite de 25 Mo, ajustez selon vos besoins
+  });
   
   form.parse(req, async (err, fields, files) => {
     if (err) {
