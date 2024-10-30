@@ -12,7 +12,7 @@
     "lucide-react": "^0.436.0",
     "next": "14.2.4",
     "next-client-cookies": "^1.1.1",
-    "node-mailjet": "^6.0.6",
+    "node-mailjet": "^5.1.1",
     "react": "^18",
     "react-dom": "^18",
     "svg-pan-zoom": "^3.6.1"
