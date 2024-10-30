@@ -1,6 +1,10 @@
-import mailjet from 'node-mailjet';
+//import mailjet from 'node-mailjet';
 import { NextResponse } from 'next/server';
+const mailjet = require('node-mailjet');
 
+if (!process.env.MAILJET_API_KEY || !process.env.MAILJET_SECRET_KEY) {
+  console.error('Mailjet API Key and Secret Key must be set in environment variables.');
+}
 const mailjetClient = mailjet.connect(process.env.MAILJET_API_KEY, process.env.MAILJET_SECRET_KEY);
 
 export async function POST(req) {
