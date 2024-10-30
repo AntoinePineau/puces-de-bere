@@ -214,9 +214,13 @@ const Panier = () => {
     .then(async response => {
       console.log("response from /api/order:", response);
       if(response.redirectUrl) {
-        await sendEmail(formData, itemName);
-        // TODO: si erreur dans l'envoi du mail message et on ne redirige pas
-        router.push(response.redirectUrl);
+        const emailSent = await sendEmail(formData, itemName);
+
+        if (emailSent) {  // Redirection seulement si l'email est envoyé avec succès
+          router.push(response.redirectUrl);
+        } else {
+            alert("L'email n'a pas pu être envoyé. Veuillez vérifier vos informations.");
+        }
       }
       else {
         console.log('no redirectUrl is given');
