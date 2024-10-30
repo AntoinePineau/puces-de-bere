@@ -8,7 +8,8 @@ if (!mailjet.connect) {
 if (!process.env.MAILJET_API_KEY || !process.env.MAILJET_SECRET_KEY) {
   console.error('Mailjet API Key and Secret Key must be set in environment variables.');
 }
-const mailjetClient = mailjet.connect(process.env.MAILJET_API_KEY, process.env.MAILJET_SECRET_KEY);
+const mailjetClient = mailjet.apiConnect(process.env.MAILJET_API_KEY, process.env.MAILJET_SECRET_KEY);
+
 
 export async function POST(req) {
   const formData = await req.formData();
