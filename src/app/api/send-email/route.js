@@ -1,7 +1,7 @@
 import mailjet from 'node-mailjet';
 import { NextResponse } from 'next/server';
 
-const mailjetClient = mailjet.connect(process.env.MAILJET_API_KEY, process.env.MAILJET_API_SECRET);
+const mailjetClient = mailjet.connect(process.env.MAILJET_API_KEY, process.env.MAILJET_SECRET_KEY);
 
 export async function POST(req) {
   const formData = await req.formData();
