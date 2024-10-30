@@ -1,12 +1,23 @@
 import nodemailer from 'nodemailer';
-import formidable from 'formidable'; 
+import formidable from 'formidable';
+import fs from 'fs';
 
+// Désactiver l'analyseur de corps intégré de Next.js pour pouvoir gérer les fichiers
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
 
-export async function POST(req, res) {
-  const form = new formidable.IncomingForm;/*{
-    maxFileSize: 25 * 1024 * 1024, // Limite de 25 Mo, ajustez selon vos besoins
-  }*/
-  
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ message: 'Only POST requests are allowed' });
+  }
+
+  const form = new formidable.IncomingForm({
+    maxFileSize: 25 * 1024 * 1024, // Limite de 25 Mo
+  });
+
   form.parse(req, async (err, fields, files) => {
     if (err) {
       return res.status(500).json({ message: 'Error parsing the files', error: err });
@@ -17,19 +28,16 @@ export async function POST(req, res) {
 
     // Traiter les fichiers
     if (files.attachments) {
-      if (Array.isArray(files.attachments)) {
-        files.attachments.forEach(file => {
-          attachments.push({
-            filename: file.originalFilename,
-            path: file.filepath,
-          });
-        });
-      } else {
+      const attachmentsArray = Array.isArray(files.attachments)
+        ? files.attachments
+        : [files.attachments];
+      
+      attachmentsArray.forEach(file => {
         attachments.push({
-          filename: files.attachments.originalFilename,
-          path: files.attachments.filepath,
+          filename: file.originalFilename,
+          path: file.filepath, // Utilise le chemin temporaire
         });
-      }
+      });
     }
 
     const transporter = nodemailer.createTransport({
@@ -43,7 +51,7 @@ export async function POST(req, res) {
     const mailOptions = {
       from: process.env.GMAIL_USER,
       to,
-      cc:'rotary.chateaubriant@gmail.com',
+      cc: 'lespucesdebere@gmail.com',
       subject,
       text,
       attachments,

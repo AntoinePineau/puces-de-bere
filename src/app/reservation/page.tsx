@@ -19,7 +19,8 @@ export default function Reservation() {
         <div className="mx-2 max-w-[1024px] pb-4">
           <p>
             Une fois que votre choix est fait vous pouvez valider votre panier et régler par Carte Bancaire en ligne de manière totalement sécurisée: nous n&apos;enregistrons pas vos coordonnées bancaires, ni la plateforme HelloAsso par laquelle nous passons pour le paiement. <br/>
-            HelloAsso vous proposera par défaut une contribution pour eux mais que vous pouvez modifier et même passer à 0. En effet, HelloAsso ne prend pas de frais de transaction et se rémunère uniquement par une contribution volontaire.
+            HelloAsso vous proposera par défaut une contribution pour eux mais que vous pouvez modifier et même passer à 0. En effet, HelloAsso ne prend pas de frais de transaction et se rémunère uniquement par une contribution volontaire.<br/>
+            <b>Votre réservation et vos emplacements seront vraiment validés à la réception d'un QR Code par mail, qui vous permettra de bénéficier d'une boisson chaude et d'une viennoiserie.</b>
           </p>
         </div>
         <Panier />

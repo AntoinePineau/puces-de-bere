@@ -19,16 +19,41 @@ const Panier = () => {
       cp: null as File | null,
       rule: false,
   });
+  const fileToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = (error) => reject(error);
+    });
+  };
   const sendEmail = async (formData: any, emplacements:string) => {
     // Ajoutez les informations de l'email
     const emailData = {
       to: formData.email, // Utilisez l'email du formulaire
       subject: 'Confirmation de votre inscription',
-      text: `Bonjour ${formData.firstName},\n\nMerci pour votre inscription. Voici les détails :\n\nNom: ${formData.lastName}\nEmail: ${formData.email}\nTéléphone: ${formData.tel}\n${emplacements}\n\nCordialement,\nL'équipe des Puces de Béré`
+      text: `Bonjour ${formData.firstName},\n\nMerci pour votre inscription. Voici les détails :\n\nNom: ${formData.lastName}\nEmail: ${formData.email}\nTéléphone: ${formData.tel}\n${emplacements}\n\nCordialement,\nL'équipe des Puces de Béré`,
+      attachments: [] as { filename: string; content: string }[]
     };
 
+    if (formData.ci) {
+      const ciBase64 = await fileToBase64(formData.ci);
+      emailData.attachments.push({
+        filename: formData.ci.name,
+        content: ciBase64.split(',')[1]  // Retire le prefixe data MIME
+      });
+    }
+
+    if (formData.cp) {
+      const cpBase64 = await fileToBase64(formData.cp);
+      emailData.attachments.push({
+        filename: formData.cp.name,
+        content: cpBase64.split(',')[1]
+      });
+    }
+
     // Créer un objet FormData
-    const formDataToSend = new FormData();
+    /*const formDataToSend = new FormData();
     formDataToSend.append('to', emailData.to);
     formDataToSend.append('subject', emailData.subject);
     formDataToSend.append('text', emailData.text);
@@ -39,15 +64,22 @@ const Panier = () => {
     }
     if (formData.cp) {
         formDataToSend.append('attachments', formData.cp); // Ajoutez la copie de la carte professionnelle
-    }
+    }*/
 
-    await fetch('/api/send-email', {
+    try {
+      const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json' // Changez le type de contenu
+          'Content-Type': 'application/json'
         },
-        body: formDataToSend // Envoyez les données de l'email
-    });
+        body: JSON.stringify(emailData) 
+      });
+      if (!response.ok) throw new Error("Email sending failed");
+      return response.json();
+    } catch (error) {
+      console.error('Error:', error);
+      alert("Erreur lors de l'envoi de l'email.");
+    }
   };
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setIsPro(event.target.value === 'oui' ? true : event.target.value === 'non' ? false : null);
@@ -183,6 +215,7 @@ const Panier = () => {
       console.log("response from /api/order:", response);
       if(response.redirectUrl) {
         await sendEmail(formData, itemName);
+        // TODO: si erreur dans l'envoi du mail message et on ne redirige pas
         router.push(response.redirectUrl);
       }
       else {
