@@ -44,11 +44,11 @@ export async function POST(req) {
           ],
           Subject: subject,
           TextPart: text,
-          HTMLPart: `<p>${text.replace(/\n/g, '<br/>')}</p>`, // Si vous souhaitez également envoyer en HTML
           Attachments: attachments.length ? attachments : undefined, // Ajoute les pièces jointes si elles existent
         },
       ],
     });
+    //HTMLPart: `<p>${text.replace(/\n/g, '<br/>')}</p>`, // Si vous souhaitez également envoyer en HTML
 
   try {
     await request;

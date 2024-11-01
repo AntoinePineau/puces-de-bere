@@ -67,7 +67,7 @@ const Panier = () => {
       const { name, value, type, checked } = event.target;
       setFormData((prevData) => ({
           ...prevData,
-          [name]: type === 'checkbox' ? checked : value,
+          [name]: type === 'checkbox' ? checked : value.trim(),
       }));
   };
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -291,11 +291,11 @@ const Panier = () => {
           <form onSubmit={validateCart}>
             <div className="mt-4">
               <label htmlFor="firstName" className="block">Prénom</label>
-              <input type="text" name="firstName" id="firstName" className="border rounded p-2 w-full" placeholder="Entrez votre prénom" onChange={handleChange} required pattern="^[A-Za-zÀ-ÿ]+$" />
+              <input type="text" name="firstName" id="firstName" className="border rounded p-2 w-full" placeholder="Entrez votre prénom" onChange={handleChange} required pattern="^[A-Za-zÀ-ÿ -]+$" />
             </div>
             <div className="mt-4">
               <label htmlFor="lastName" className="block">NOM</label>
-              <input type="text" name="lastName" id="lastName" className="border rounded p-2 w-full" placeholder="Entrez votre nom de famille" onChange={handleChange} required pattern="^[A-Za-zÀ-ÿ]+$" />
+              <input type="text" name="lastName" id="lastName" className="border rounded p-2 w-full" placeholder="Entrez votre nom de famille" onChange={handleChange} required pattern="^[A-Za-zÀ-ÿ -]+$" />
             </div>
             <div className="mt-4">
               <label htmlFor="email" className="block">E-mail</label>
