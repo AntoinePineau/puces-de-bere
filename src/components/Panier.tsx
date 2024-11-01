@@ -31,7 +31,7 @@ const Panier = () => {
     // Ajoutez les informations de l'email
     const emailData = {
       to: formData.email, // Utilisez l'email du formulaire
-      subject: 'Confirmation de l\'inscription d\'un '+isPro ? "professionnel" : "particulier",
+      subject: 'Confirmation de l\'inscription d\'un '+(isPro ? "professionnel" : "particulier"),
       text: `Bonjour, voici une nouvelle inscription. Voici les détails :\n\nNom: ${formData.lastName}\nPrénom:  ${formData.firstName}\nEmail: ${formData.email}\nTéléphone: ${formData.tel}\n${emplacements}\n\nCordialement,\nL'équipe des Puces de Béré`,
     };
 
