@@ -34,7 +34,7 @@ export default function Confirmation() {
         {data ? data['order'] && data['order']['id'] == orderId ? (
           <>
             <span>Merci pour votre {data['order']['items'][0]['name']}.<br/>Vous recevrez prochainement votre confirmation par email avec votre QR code, qui vous permettra de bénéficier d&apos;une boisson chaude et d&apos;une viennoiserie.</span>
-            <Link href="/" className="mt-4 w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors flex items-center justify-center">Revenir à la page d'accueil</Link>
+            <Link href="/" className="mt-4 w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors flex items-center justify-center">Revenir à la page d&apos;accueil</Link>
           </>
         ) :(
           <span>Paiement échoué: <Link href={data['redirectUrl']}>recommencer ici</Link></span>
