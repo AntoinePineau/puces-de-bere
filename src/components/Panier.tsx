@@ -32,7 +32,7 @@ const Panier = () => {
     const emailData = {
       to: formData.email, // Utilisez l'email du formulaire
       subject: `Confirmation de l'inscription d'un ${isPro ? "professionnel" : "particulier"}: ${formData.firstName} ${formData.lastName} (${formData.email})`,
-      text: `Bonjour, voici une nouvelle inscription.\n\nVoici les détails :\n\nNom: ${formData.lastName}\nPrénom:  ${formData.firstName}\nEmail: ${formData.email}\nTéléphone: ${formData.tel}\n${emplacements}\n\nCordialement,\nL'équipe des Puces de Béré`,
+      text: `Bonjour, voici une nouvelle inscription.\n\nVoici les détails :\n\n- Nom: ${formData.lastName}\n- Prénom:  ${formData.firstName}\n- Email: ${formData.email}\n- Téléphone: ${formData.tel}\n${emplacements}\n\nCordialement,\nL'équipe des Puces de Béré`,
     };
 
     // Créer un objet FormData
