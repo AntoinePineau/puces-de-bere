@@ -34,7 +34,7 @@ export default function Confirmation() {
         {data ? data['order'] && data['order']['id'] == orderId ? (
           <span>Merci pour votre {data['order']['items'][0]['name']}.<br/>Vous recevrez prochainement votre confirmation par email avec votre QR code, qui vous permettra de bénéficier d&apos;une boisson chaude et d&apos;une viennoiserie.</span>
         ) :(
-          <span>Paiement échoué: <Link href={data['redirectURL']}>recommencer ici</Link></span>
+          <span>Paiement échoué: <Link href={data['redirectUrl']}>recommencer ici</Link></span>
         ) : (
           <p>Chargement des données...</p>
         )}
