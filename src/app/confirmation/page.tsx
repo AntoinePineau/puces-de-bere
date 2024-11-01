@@ -36,7 +36,7 @@ export default function Confirmation() {
         ) :(
           <span>Paiement échoué: <Link href={data['redirectURL']}>recommencer ici</Link></span>
         ) : (
-          <span>Pas le bon ID de commande {data['order']['id']}</span>
+          <span>Paiement échoué: <Link href={data['redirectURL']}>recommencer ici</Link></span>
         ) : (
           <p>Chargement des données...</p>
         )}
