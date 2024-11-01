@@ -31,11 +31,9 @@ export default function Confirmation() {
     <Suspense fallback={<p>Loading...</p>}>
       <div className="mx-2 max-w-[1024px] pb-4">
         <h2>Confirmation de commande</h2>
-        {data ? data['order'] ? data['order']['id'] == orderId ? (
+        {data ? data['order'] && data['order']['id'] == orderId ? (
           <span>Merci pour votre {data['order']['items'][0]['name']}.<br/>Vous recevrez prochainement votre confirmation par email avec votre QR code, qui vous permettra de bénéficier d&apos;une boisson chaude et d&apos;une viennoiserie.</span>
         ) :(
-          <span>Paiement échoué: <Link href={data['redirectURL']}>recommencer ici</Link></span>
-        ) : (
           <span>Paiement échoué: <Link href={data['redirectURL']}>recommencer ici</Link></span>
         ) : (
           <p>Chargement des données...</p>
