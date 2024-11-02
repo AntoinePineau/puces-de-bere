@@ -11,6 +11,8 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({children}: Readonly<{children: React.ReactNode}>) {
+  const branchName = process.env.BRANCH_NAME; // Récupérer le nom de la branche depuis les variables d'environnement
+  const mode = branchName ? ` (${branchName})` : '';
   return (
     <html lang="fr">
       <head>
@@ -24,7 +26,7 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
       <body className={inter.className}>
         <CartProvider>
           <main className="flex flex-col items-center justify-between">
-            <h1>Les Puces de Béré 2025</h1>
+            <h1> Les Puces de Béré 2025 ${mode}</h1>
             <div className="inline-flex" style={{ margin: '0 1em 1em 1em' }}>
               <img src="/logo-rotary-chateaubriant.png" alt="Logo du Rotary Club de Châteaubriant" title="Rotary Club de Châteaubriant" className="max-h-16" />
               <div className="border-r border-[rgb(190,196,201)] h-16 mx-2" /> {/* Vertical line */}
