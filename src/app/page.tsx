@@ -20,7 +20,7 @@ export default function Home() {
       <br/><br/>
       Vous avez 2 options pour vous inscrire en tant qu’exposant:
       <ul>
-        <li>Soit directement en ligne via ce site: <Link href="/reservation" className="mt-4 bg-green-500 text-white ml-4 px-4 py-2 rounded hover:bg-green-600 transition-colors items-center justify-center">Je veux réserver mes emplacements en ligne</Link></li>
+        <li>Soit directement en ligne via ce site: <Link href="/reservation" className="mt-4 bg-green-500 text-white ml-4 px-4 py-2 rounded hover:bg-green-600 transition-colors items-center justify-center">Je veux réserver mes emplacements</Link></li>
         <li>Soit par courrier :
           <ol>
             <li>télécharger les documents suivants (<Link target="_blank" href="/bulletin-d-inscription-puces-de-bere.pdf">Bulletin d’inscription</Link>, <Link target="_blank" href="/reglement-interieur-puces-de-bere.pdf">Règlement intérieur</Link>, <Link target="_blank" href="/plan-de-circulation-puces-de-bere.png">Plan de circulation</Link>)</li>
