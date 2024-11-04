@@ -1,5 +1,11 @@
 
+import { Metadata } from 'next';
 import React from 'react';
+
+export const metadata: Metadata = {
+  title: "Puces de Béré 2025 | Erreur",
+  description: "Réservez vos places en ligne pour la journée du 19 janvier 2025"
+};
 
 export default function Error() {
   return (

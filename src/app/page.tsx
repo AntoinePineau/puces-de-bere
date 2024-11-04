@@ -1,5 +1,11 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
 import React from 'react';
+
+export const metadata: Metadata = {
+  title: "Puces de Béré 2025 | Accueil",
+  description: "Réservez vos places en ligne pour la journée du 19 janvier 2025"
+};
 
 export default function Home() {
   const book = async (event: React.FormEvent) => {

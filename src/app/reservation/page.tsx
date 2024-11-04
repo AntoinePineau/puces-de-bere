@@ -1,6 +1,13 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
 import Panier from '@/components/Panier';
+import { Metadata } from 'next';
+
+
+export const metadata: Metadata = {
+  title: "Puces de Béré 2025 | Réservation",
+  description: "Réservez vos places en ligne pour la journée du 19 janvier 2025"
+};
 
 export default function Reservation() {
   const HalleDeBere = dynamic(() => import('@/components/HalleDeBere'), { 

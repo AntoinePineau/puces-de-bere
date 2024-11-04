@@ -2,6 +2,12 @@
 import React, { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation'; // Import useSearchParams
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Puces de Béré 2025 | Réservation confirmée",
+  description: "Réservez vos places en ligne pour la journée du 19 janvier 2025"
+};
 
 export default function Confirmation() {
   const searchParams = useSearchParams(); // Get search parameters
