@@ -52,3 +52,27 @@ h3 {
   margin-top: .5em;
   margin-bottom: .25em;
 }
+
+ul>li {
+  line-height: 3em;
+}
+ul>li:before {
+  content: '⚙';
+  font-weight: bold;
+  color: #f7a81b;
+  padding-right: .5em;
+  font-size: smaller;
+}
+ol>li {
+  list-style: decimal;
+  line-height: 1.5em;
+  margin-left: 2em;
+}
+ol>li::marker{
+  color: #17458f;
+  font-weight: bold;
+}
+pre {
+  text-align: center;
+  line-height: 1.5em;
+}
