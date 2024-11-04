@@ -25,7 +25,7 @@ export default function Home() {
           <ol>
             <li>télécharger les documents suivants (<Link target="_blank" href="/bulletin-d-inscription-puces-de-bere.pdf">Bulletin d’inscription</Link>, <Link target="_blank" href="/reglement-interieur-puces-de-bere.pdf">Règlement intérieur</Link>, <Link target="_blank" href="/plan-de-circulation-puces-de-bere.png">Plan de circulation</Link>)</li>
             <li>les remplir et les signer</li>
-            <li>envoyer le tout dans une enveloppe avec votre chèque de réservation et votre carte d’identité (carte professionnelle si vous êtes un professionnel) à l’adresse suivante:<br/>
+            <li>envoyer le tout dans une enveloppe avec votre chèque de réservation et une copie de votre carte d’identité (ou carte professionnelle si vous êtes un professionnel) à l’adresse suivante:<br/>
             <pre className='items-center'>Rotary Club de Châteaubriant<br/>46 Rue Annie Gautier Grosdoy<br/>44110 CHÂTEAUBRIANT</pre>
             </li>
           </ol>
