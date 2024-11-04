@@ -7,7 +7,7 @@ import Analytics from "@/components/Analytics";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Puces de Béré 2025",
+  title: "Puces de Béré 2025 | Réservation confirmée",
   description: "Réservez vos places en ligne pour la journée du 19 janvier 2025"
 };
 
