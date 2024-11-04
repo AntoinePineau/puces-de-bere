@@ -18,7 +18,20 @@ export default function Home() {
       <br/><br/>
       Venez nombreux ; l’entrée et le parking sont gratuits. Une restauration rapide et une buvette sont à votre disposition.
       <br/><br/>
-      <Link href="/reservation" className="mt-4 w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors flex items-center justify-center">Je veux réserver mes emplacements</Link>
+      Vous avez 2 options pour vous inscrire en tant qu’exposant:
+      <ul>
+        <li>Soit directement en ligne via ce site:<br/><Link href="/reservation" className="mt-4 w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors flex items-center justify-center">Je veux réserver mes emplacements</Link></li>
+        <li>Soit par courrier :
+          <ol>
+            <li>télécharger les documents suivants (<Link download href="/bulletin-d-inscription-puces-de-bere.pdf">Bulletin d’inscription</Link>, <Link download href="/reglement-interieur-puces-de-bere.pdf">Règlement intérieur</Link>, <Link download href="/plan-de-circulation-puces-de-bere.png">Plan de circulation</Link>)</li>
+            <li>les remplir et les signer</li>
+            <li>envoyer le tout dans une enveloppe avec votre chèque de réservation et votre carte d’identité (carte professionnelle si vous êtes un professionnel) à l’adresse suivante:<br/>
+            <pre className='items-center'>Rotary Club de Châteaubriant<br/>46 Rue Annie Gautier Grosdoy<br/>44110 CHÂTEAUBRIANT</pre>
+            </li>
+          </ol>
+        </li>
+      </ul>
+      
     </div>
   );
 }
