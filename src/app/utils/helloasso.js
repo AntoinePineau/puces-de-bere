@@ -33,7 +33,7 @@ export async function getAccessTokenWithoutAPI() {
 };
 
 export async function getSoldTickets(accessToken) {
-  const response = await fetch(`${process.env.HELLOASSO_BASE_URL}/v5/organizations/${process.env.HELLOASSO_ORGANIZATION_ID}/forms/event/${process.env.HELLOASSO_FORM_ID}/items`, {
+  const response = await fetch(`${process.env.HELLOASSO_BASE_URL}/v5/organizations/${process.env.HELLOASSO_ORGANIZATION_ID}/forms/event/${process.env.HELLOASSO_FORM_ID}/items?pageSize=100`, {
       headers: {
           Authorization: `Bearer ${accessToken}`,
       },
