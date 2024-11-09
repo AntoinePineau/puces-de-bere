@@ -12,9 +12,8 @@ export async function GET() {
       console.log(`Page ${index} Sold ${soldTickets.data.length} Tickets : total pages ${soldTickets.pagination.totalPages}`);
       enrichedTickets = enrichTickets(enrichedTickets, soldTickets);
       totalPages = soldTickets.pagination.totalPages;
-      index++;
     }
-    while(index<totalPages);
+    while(index++<totalPages);
 
     // Check the structure of tickets
     console.log('Enriched Tickets:', enrichedTickets.length);
