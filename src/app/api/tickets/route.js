@@ -6,16 +6,16 @@ export async function GET() {
     const token = await getAccessToken();
     const allTickets = await getAllTickets(token);
 
-    var index = 1, totalPages = 2, enrichedTickets = allTickets;
+    var index = 1, totalPages = 2, enrichedTickets = allTickets, soldTickets = [];
     do {
-      const soldTickets = await getSoldTickets(token, index);
-      console.log(`Page ${index} Sold ${soldTickets.data.length} Tickets : total pages ${soldTickets.pagination.totalPages}`);
-      enrichedTickets = enrichTickets(enrichedTickets, soldTickets);
-      totalPages = soldTickets.pagination.totalPages;
+      const soldTicketsTemp = await getSoldTickets(token, index);
+      console.log(`Page ${index} Sold ${soldTicketsTemp.data.length} Tickets : total pages ${soldTicketsTemp.pagination.totalPages}`);
+      totalPages = soldTicketsTemp.pagination.totalPages;
+      soldTickets.concat(soldTicketsTemp.data);
     }
     while(index++<totalPages);
 
-    // Check the structure of tickets
+    enrichedTickets = enrichTickets(enrichedTickets, soldTickets);
     console.log('Enriched Tickets:', enrichedTickets.length);
 
     return NextResponse.json(enrichedTickets);
@@ -27,7 +27,7 @@ export async function GET() {
 
 function enrichTickets(allTickets, soldTickets) {
   return allTickets.map(ticket => {
-      const soldTicket = soldTickets.data.find(p => p.tierId === ticket.id);
+      const soldTicket = soldTickets.find(p => p.tierId === ticket.id);
 
       if (soldTicket) {
           return {
