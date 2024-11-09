@@ -11,7 +11,7 @@ export async function GET() {
       const soldTicketsTemp = await getSoldTickets(token, index);
       console.log(`Page ${index} Sold ${soldTicketsTemp.data.length} Tickets : total pages ${soldTicketsTemp.pagination.totalPages}`);
       totalPages = soldTicketsTemp.pagination.totalPages;
-      soldTickets.concat(soldTicketsTemp.data);
+      soldTickets = soldTickets.concat(soldTicketsTemp.data);
     }
     while(index++<totalPages);
 
