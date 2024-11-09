@@ -1,4 +1,3 @@
-'use client'
 import { disableDblClickZoom } from "svg-pan-zoom";
 
 const descAvecInterieur = "1m20 linéaire avec angle sans table à l'intérieur"; const prixAvecInterieur = 2100;
