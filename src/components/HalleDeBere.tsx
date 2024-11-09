@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState, useRef } from 'react';
 import HalleDeBereVide from '@/atoms/HalleDeBereVide';
-import { Seat, UseGetSeats } from '@/atoms/getSeats';
+import { Seat, getSeats } from '@/atoms/getSeats';
 import { useCart } from '../context/CartContext';
 import 'svg-pan-zoom';
 
@@ -12,7 +12,7 @@ export default function HalleDeBere() {
 
   useEffect(() => {
     async function fetchSeats() {
-      const fetchedSeats = await UseGetSeats();
+      const fetchedSeats = await getSeats();
       setSeats(fetchedSeats);
     }
     fetchSeats();
