@@ -25,8 +25,8 @@ export async function GET() {
 }
 
 function enrichTickets(allTickets, soldTickets) {
-  return allTickets.data.map(ticket => {
-      const soldTicket = soldTickets.find(p => p.tierId === ticket.id);
+  return allTickets.map(ticket => {
+      const soldTicket = soldTickets.data.find(p => p.tierId === ticket.id);
 
       if (soldTicket) {
           return {
