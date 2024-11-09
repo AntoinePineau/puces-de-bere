@@ -1,4 +1,3 @@
-'use client'
 import { disableDblClickZoom } from "svg-pan-zoom";
 import { useEffect, useState } from 'react';
 
@@ -39,7 +38,7 @@ function addColumn(seats:any[], xCol:number, letter:String, startIndex:number, e
   addSeat(seats, `${letter}${startIndex+9}`, false, true, xCol, xy.y, true, existingSeatIds); // A18
 }
 
-export async function getSeats():Promise<Seat[]> {
+export async function useGetSeats():Promise<Seat[]> {
   const seats:Seat[] = [];
   const [existingSeats, setExistingSeats] = useState<[]>([]);
   
