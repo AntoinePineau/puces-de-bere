@@ -9,14 +9,15 @@ export async function GET() {
     var index = 1, totalPages = 2, enrichedTickets = allTickets;
     do {
       const soldTickets = await getSoldTickets(token, index);
-      console.log(`Page ${index} Sold Tickets:`, enrichedTickets);
+      console.log(`Page ${index} Sold ${soldTickets.data.length} Tickets : total pages ${soldTickets.pagination.totalPages}`);
       enrichedTickets = enrichTickets(enrichedTickets, soldTickets);
       totalPages = soldTickets.pagination.totalPages;
+      index++;
     }
     while(index<totalPages);
 
     // Check the structure of tickets
-    console.log('Enriched Tickets:', enrichedTickets);
+    console.log('Enriched Tickets:', enrichedTickets.length);
 
     return NextResponse.json(enrichedTickets);
   } catch (error) {
