@@ -6,16 +6,17 @@ export async function GET() {
     const token = await getAccessToken();
     const allTickets = await getAllTickets(token);
 
-    var index = 1, totalPages = 1000, enrichedTickets = allTickets;
+    var index = 1, totalPages = 2, enrichedTickets = allTickets;
     do {
       const soldTickets = await getSoldTickets(token, index);
+      console.log(`Page ${index} Sold Tickets:`, enrichedTickets);
       enrichedTickets = enrichTickets(enrichedTickets, soldTickets);
       totalPages = soldTickets.pagination.totalPages;
     }
     while(index<totalPages);
 
     // Check the structure of tickets
-    console.log('Tickets:', enrichedTickets);
+    console.log('Enriched Tickets:', enrichedTickets);
 
     return NextResponse.json(enrichedTickets);
   } catch (error) {
