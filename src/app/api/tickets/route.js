@@ -5,9 +5,14 @@ export async function GET() {
   try {
     const token = await getAccessToken();
     const allTickets = await getAllTickets(token);
-    const soldTickets = await getSoldTickets(token);
 
-    const enrichedTickets = enrichTickets(allTickets, soldTickets);
+    var index = 1, totalPages = 1000, enrichedTickets = allTickets;
+    do {
+      const soldTickets = await getSoldTickets(token, index);
+      enrichedTickets = enrichTickets(enrichedTickets, soldTickets);
+      totalPages = soldTickets.pagination.totalPages;
+    }
+    while(index<totalPages);
 
     // Check the structure of tickets
     console.log('Tickets:', enrichedTickets);
@@ -20,7 +25,7 @@ export async function GET() {
 }
 
 function enrichTickets(allTickets, soldTickets) {
-  return allTickets.map(ticket => {
+  return allTickets.data.map(ticket => {
       const soldTicket = soldTickets.find(p => p.tierId === ticket.id);
 
       if (soldTicket) {

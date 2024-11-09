@@ -32,15 +32,15 @@ export async function getAccessTokenWithoutAPI() {
   return data.access_token;
 };
 
-export async function getSoldTickets(accessToken) {
-  const response = await fetch(`${process.env.HELLOASSO_BASE_URL}/v5/organizations/${process.env.HELLOASSO_ORGANIZATION_ID}/forms/event/${process.env.HELLOASSO_FORM_ID}/items?pageSize=100`, {
+export async function getSoldTickets(accessToken, index) {
+  const response = await fetch(`${process.env.HELLOASSO_BASE_URL}/v5/organizations/${process.env.HELLOASSO_ORGANIZATION_ID}/forms/event/${process.env.HELLOASSO_FORM_ID}/items?pageIndex=${index}`, {
       headers: {
           Authorization: `Bearer ${accessToken}`,
       },
   });
 
   const data = await response.json();
-  return data.data; 
+  return data; 
 };
 
 export async function getAllTickets(accessToken) {
