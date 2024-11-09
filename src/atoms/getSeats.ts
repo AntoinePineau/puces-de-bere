@@ -38,7 +38,7 @@ function addColumn(seats:any[], xCol:number, letter:String, startIndex:number, e
   addSeat(seats, `${letter}${startIndex+9}`, false, true, xCol, xy.y, true, existingSeatIds); // A18
 }
 
-export async function useGetSeats():Promise<Seat[]> {
+export async function UseGetSeats():Promise<Seat[]> {
   const seats:Seat[] = [];
   const [existingSeats, setExistingSeats] = useState<[]>([]);
   
