@@ -1,3 +1,4 @@
+'use client'
 import { disableDblClickZoom } from "svg-pan-zoom";
 import { useEffect, useState } from 'react';
 
