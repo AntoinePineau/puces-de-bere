@@ -62,13 +62,12 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const storedCart = localStorage.getItem('cart');
-      if (storedCart) {
-        var cart = JSON.parse(storedCart);
-        if(cart.filter((i:CartItem)=>i.id==='Table').length===0) {
-          cart.push({id:'Table',tierId:12703282,description:'1m20 x 60cm', price:100, quantity:0});
-        }
-        dispatch({ type: 'INIT_CART', items: cart });
+      var cart = storedCart ? JSON.parse(storedCart) : [];
+      if(cart.filter((i:CartItem)=>i.id==='Table').length===0) {
+        cart.push({id:'Table',tierId:12703282,description:'1m20 x 60cm', price:100, quantity:0});
       }
+      dispatch({ type: 'INIT_CART', items: cart });
+      if (!storedCart) localStorage.setItem('cart', JSON.stringify(cart));
     }
   }, []);
 

@@ -146,7 +146,7 @@ const Panier = () => {
     if (!validateForm(event)) return;
     const { firstName, lastName, email, tel, ri, ci, cp, rule } = formData;
 
-    var cart = JSON.parse(localStorage.getItem('cart') ?? "[{id:'Table',tierId:12703282,description:'1m20 x 60cm', price:100, quantity:0}]") as CartItem[];
+    var cart = JSON.parse(localStorage.getItem('cart') ?? "[]") as CartItem[];
     var itemName = "Inscription en tant qu'exposant aux Puces de Béré 2025 - ";
     var tableCount = 0;
     var otherItems: string[] = [];
