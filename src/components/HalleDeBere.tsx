@@ -5,7 +5,7 @@ import { Seat, getSeats } from '@/atoms/getSeats';
 import { useCart } from '../context/CartContext';
 import 'svg-pan-zoom';
 
-export default function HalleDeBere() {
+export default function HalleDeBere({ exposantsMode = false }: { exposantsMode?: boolean }) {
   const [seats, setSeats] = useState<Seat[]>([]);
   const { state, dispatch } = useCart();
   const svgRef = useRef<SVGSVGElement | null>(null);
@@ -144,7 +144,7 @@ export default function HalleDeBere() {
               onTouchStart={seat.available ? () => toggleSeat(seat.id) : undefined}
               style={{ cursor: seat.available ? "pointer" : "not-allowed" }}
             >
-              {seat.id}
+              {exposantsMode ? seat.infoExposant: seat.id}
               <title>{seat.tip}</title>
             </text>
           ))}
