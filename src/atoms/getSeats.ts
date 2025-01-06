@@ -23,9 +23,10 @@ function addSeat(seats:Seat[], seatId:string, portrait:boolean, angle:boolean, x
   var width = angle ? portrait ? anglel : angleL : portrait ? seatHeight : seatWidth;
   var height = angle ? !portrait ? anglel : angleL : !portrait ? seatHeight : seatWidth;
   tip += available ? `Disponible pour ${price/100}€ (${description})` : `Déjà réservé à ${existingSeat.paymentDetails.user.firstName} ${existingSeat.paymentDetails.user.lastName}`;
-  var infoExposant = !available ? `${existingSeat.paymentDetails.user.lastName}\n${existingSeat.paymentDetails.user.firstName}` : '';
+  var infoExposantFirstName = !available ? `${existingSeat.paymentDetails.user.firstName}` : '';
+  var infoExposantLastName = !available ? `${existingSeat.paymentDetails.user.lastName}` : '';
   const seat:Seat = { tierId:tierId, id: seatId, isAngle: angle, description: description, available: available, 
-    price: price, x: xCol, y: yLine, w: width, h: height, inHelloAsso: existingSeat!==undefined, tip: tip, infoExposant: infoExposant };
+    price: price, x: xCol, y: yLine, w: width, h: height, inHelloAsso: existingSeat!==undefined, tip: tip, exposantFirstName: infoExposantFirstName, exposantLastName: infoExposantLastName };
   seats.push(seat);
   return {x: xCol + width + 1, y: yLine + height + 1};
 }
@@ -225,7 +226,8 @@ export type Seat = {
   inHelloAsso: boolean; // If the Seats exists in HelloAsso
   isAngle: boolean;
   tip: string; // Title to display on hover
-  infoExposant: string; // Information about the exposant
+  exposantFirstName: string; // Information about the exposant
+  exposantLastName: string; // Information about the exposant
   price: number;   // The price of the seat
   x: number;   // The x-coordinate of the seat
   y: number;   // The y-coordinate of the seat

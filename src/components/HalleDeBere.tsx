@@ -131,22 +131,44 @@ export default function HalleDeBere({ exposantsMode = false }: { exposantsMode?:
             </rect>
           ))}
           {seats.map(seat => (
-            <text 
-              key={'seat-'+seat.id}
-              id={'seat-'+seat.id}
-              data-for={seat.id}
-              x={seat.x} 
-              y={seat.y} 
-              fill="white" 
-              stroke="white"
-              fontSize="40"
-              onClick={seat.available ? () => toggleSeat(seat.id) : undefined}
-              onTouchStart={seat.available ? () => toggleSeat(seat.id) : undefined}
-              style={{ cursor: seat.available ? "pointer" : "not-allowed" }}
-            >
-              {exposantsMode ? seat.infoExposant: seat.id}
-              <title>{seat.tip}</title>
-            </text>
+            !exposantsMode && (
+              <text 
+                key={'seat-'+seat.id} 
+                id={'seat-'+seat.id}
+                data-for={seat.id}
+                x={seat.x} 
+                y={seat.y} 
+                fill="white" 
+                stroke="white"
+                fontSize="40"
+                onClick={seat.available ? () => toggleSeat(seat.id) : undefined}
+                onTouchStart={seat.available ? () => toggleSeat(seat.id) : undefined}
+                style={{ cursor: seat.available ? "pointer" : "not-allowed" }}
+              >
+                {seat.id}
+                <title>{seat.tip}</title>
+              </text>
+            )
+            || ( 
+            seat.available && (
+              <text key={'seat-'+seat.id} id={'seat-'+seat.id} data-for={seat.id} x={seat.x} y={seat.y} fill="white" stroke="white" fontSize="40" >
+                {seat.id}
+                <title>{seat.tip}</title>
+              </text>
+            )
+            || (
+              <>
+              <text key={'seat1-'+seat.id} id={'seat1-'+seat.id} data-for={seat.id} x={seat.x} y={seat.y} fill="white" stroke="white" fontSize="15" >
+                {seat.id}
+                <title>{seat.exposantLastName}</title>
+              </text>
+              <text key={'seat2-'+seat.id} id={'seat2-'+seat.id} data-for={seat.id} x={seat.x} y={seat.y} fill="white" stroke="white" fontSize="15" >
+                {seat.id}
+                <title>{seat.exposantFirstName}</title>
+              </text>
+              </>
+            )
+          )
           ))}
       </g>
     </svg>
