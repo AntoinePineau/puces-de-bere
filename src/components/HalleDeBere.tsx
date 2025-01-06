@@ -167,7 +167,7 @@ export default function HalleDeBere({ exposantsMode = false }: { exposantsMode?:
                 fill="white" 
                 stroke="white" 
                 fontSize="15" 
-                transform={seat.w < seat.h ? `rotate(90, ${seat.x}, ${seat.y})` : undefined}
+                transform={seat.w < seat.h ? `translate(115,20) rotate(90, ${seat.x}, ${seat.y})` : undefined}
                 >
                 {seat.exposantLastName}
                 <title>{seat.tip}</title>
