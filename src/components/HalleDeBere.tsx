@@ -109,7 +109,7 @@ export default function HalleDeBere({ exposantsMode = false }: { exposantsMode?:
 
   return (
     <div style={{ background:'#fff', border:'dashed 4px #f7a81b', padding: '.5em', width: '100%' }}>
-    <svg ref={svgRef} id="halledebere" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" width="100%" height="500px" viewBox="0 1370 9361.11 3800" preserveAspectRatio="xMidYMid meet" className="cursor-grab border-2" style={{ touchAction: 'manipulation', backgroundImage: `url(${new URL('/texture_bg.png', window.location.origin)})` }}>
+    <svg ref={svgRef} id="halledebere" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" width="100%" height={exposantsMode ? "1000px" : "500px"} viewBox="0 1370 9361.11 3800" preserveAspectRatio="xMidYMid meet" className="cursor-grab border-2" style={{ touchAction: 'manipulation', backgroundImage: `url(${new URL('/texture_bg.png', window.location.origin)})` }}>
         <g style={{/*transform: 'translate(-660pt, -370pt)'*/}}>
           <HalleDeBereVide/>
         </g>
