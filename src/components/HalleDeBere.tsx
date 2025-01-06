@@ -158,10 +158,20 @@ export default function HalleDeBere({ exposantsMode = false }: { exposantsMode?:
             )
             || (
               <>
-              <text key={'seat1-'+seat.id} id={'seat1-'+seat.id} data-for={seat.id} x={seat.x} y={seat.y} fill="white" stroke="white" fontSize="15" >
+                <text 
+                key={'seat1-'+seat.id} 
+                id={'seat1-'+seat.id} 
+                data-for={seat.id} 
+                x={seat.x} 
+                y={seat.y} 
+                fill="white" 
+                stroke="white" 
+                fontSize="15" 
+                transform={seat.w < seat.h ? `rotate(90, ${seat.x}, ${seat.y})` : undefined}
+                >
                 {seat.exposantLastName}
                 <title>{seat.tip}</title>
-              </text>
+                </text>
               </>
             )
           )
