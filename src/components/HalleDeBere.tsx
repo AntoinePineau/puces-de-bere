@@ -159,12 +159,12 @@ export default function HalleDeBere({ exposantsMode = false }: { exposantsMode?:
             || (
               <>
               <text key={'seat1-'+seat.id} id={'seat1-'+seat.id} data-for={seat.id} x={seat.x} y={seat.y} fill="white" stroke="white" fontSize="15" >
-                {seat.id}
-                <title>{seat.exposantLastName}</title>
+                {seat.exposantLastName}
+                <title>{seat.tip}</title>
               </text>
               <text key={'seat2-'+seat.id} id={'seat2-'+seat.id} data-for={seat.id} x={seat.x} y={seat.y} fill="white" stroke="white" fontSize="15" >
-                {seat.id}
-                <title>{seat.exposantFirstName}</title>
+                {seat.exposantFirstName}
+                <title>{seat.tip}</title>
               </text>
               </>
             )
