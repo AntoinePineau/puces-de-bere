@@ -123,7 +123,7 @@ export default function HalleDeBere({ exposantsMode = false }: { exposantsMode?:
               width={seat.w}
               height={seat.h}
               fill={!exposantsMode ? !seat.available ? 'gray' : isSeatSelected(seat.id) ? '#f7a81b' : seat.isAngle ? '#17458f' : !seat.inHelloAsso ? 'dimgrey' : 'black'
-                                   : seat.available ? 'white' : 'black'
+                                   : 'white'
               }
               onClick={seat.available ? () => toggleSeat(seat.id) : undefined}
               onTouchStart={seat.available ? () => toggleSeat(seat.id) : undefined}
@@ -166,14 +166,28 @@ export default function HalleDeBere({ exposantsMode = false }: { exposantsMode?:
                 data-for={seat.id} 
                 x={seat.x} 
                 y={seat.y} 
-                fill="white" 
-                stroke="white" 
+                fill="black" 
+                stroke="black" 
                 fontSize="15" 
                 transform={seat.w < seat.h ? `translate(115,20) rotate(90, ${seat.x}, ${seat.y})` : undefined}
                 >
                 {seat.exposantFirstName == "HUBERT" ? seat.exposantFirstName : seat.exposantLastName}
                 <title>{seat.tip}</title>
                 </text>
+              <text 
+                key={'seat-'+seat.id} 
+                id={'seat-'+seat.id}
+                data-for={seat.id}
+                x={seat.x} 
+                y={seat.y} 
+                fill="white" 
+                stroke="white"
+                fontSize="40"
+                transform={seat.w < seat.h ? `translate(115,20) rotate(90, ${seat.x}, ${seat.y})` : undefined}
+              >
+                {seat.id}
+                <title>{seat.tip}</title>
+              </text>
               </>
             )
           )
