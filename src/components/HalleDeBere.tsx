@@ -180,10 +180,10 @@ export default function HalleDeBere({ exposantsMode = false }: { exposantsMode?:
                 data-for={seat.id}
                 x={seat.x} 
                 y={seat.y} 
-                fill="white" 
-                stroke="white"
-                fontSize="40"
-                transform={seat.w < seat.h ? `translate(115,20) rotate(90, ${seat.x}, ${seat.y})` : undefined}
+                fill="#17458f" 
+                stroke="#17458f"
+                fontSize="15"
+                transform={seat.w < seat.h ? `translate(95,20) rotate(90, ${seat.x}, ${seat.y})` : `translate(0,20)`}
               >
                 {seat.id}
                 <title>{seat.tip}</title>
