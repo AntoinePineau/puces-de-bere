@@ -125,6 +125,7 @@ export default function HalleDeBere({ exposantsMode = false }: { exposantsMode?:
               fill={!exposantsMode ? !seat.available ? 'gray' : isSeatSelected(seat.id) ? '#f7a81b' : seat.isAngle ? '#17458f' : !seat.inHelloAsso ? 'dimgrey' : 'black'
                                    : 'white'
               }
+              stroke="gray"
               onClick={seat.available ? () => toggleSeat(seat.id) : undefined}
               onTouchStart={seat.available ? () => toggleSeat(seat.id) : undefined}
               style={{ cursor: seat.available ? "pointer" : "not-allowed" }}
