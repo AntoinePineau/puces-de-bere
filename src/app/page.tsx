@@ -103,7 +103,7 @@ export default function Home() {
     <div className="mx-2 max-w-[1024px] pb-4">
       <br/>
       <p>
-        La réservation pour les Puces de Béré 2026 le dimanche 18 janvier 2026 à la Halle de Béré de Châteaubriant ne sera disponible qu'à partir du 15 septembre 2026.
+        La réservation pour les Puces de Béré 2026 le dimanche 18 janvier 2026 à la Halle de Béré de Châteaubriant ne sera disponible qu&apos;à partir du 15 septembre 2026.
       </p>
       <p>
         Vous pouvez vous pré-inscrire pour être recontacté lorsque la réservation sera opérationnelle:
