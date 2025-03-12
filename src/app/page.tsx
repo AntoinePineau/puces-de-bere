@@ -109,7 +109,8 @@ export default function Home() {
       <p>
         Vous pouvez vous pré-inscrire pour être recontacté lorsque la réservation sera opérationnelle:
         
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} action="javascript:void(0)">
+          <h2>Pré-inscription</h2>
           <div className="mt-4">
             <label htmlFor="firstName" className="block">Prénom</label>
             <input type="text" name="firstName" id="firstName" className="border rounded p-2 w-full" placeholder="Entrez votre prénom" required onChange={handleChange}/>
@@ -127,7 +128,7 @@ export default function Home() {
             <input type="tel" name="tel" id="tel" className="border rounded p-2 w-full" placeholder="Entrez votre numero de téléphone" required onChange={handleChange}/>
           </div>
           <button
-            onClick={onSubmit}
+            type="submit"
             className="mt-4 w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors flex items-center justify-center"
           >
             Je veux être le premier informé
