@@ -40,8 +40,8 @@ export default function Home() {
         alert("Veuillez remplir votre prénom");
         return false;
     }
-    const firstNameInput = document.getElementById('firstName') as HTMLInputElement;
-    if (!firstNameInput.checkValidity()) {
+    const nameRegex = /^[A-Za-z\u00C0-\u017F' -]+$/;
+    if (!nameRegex.test(firstName.trim())) {
         alert("Veuillez ne pas insérer de caractères spéciaux dans votre prénom");
         return false;
     }
@@ -49,8 +49,7 @@ export default function Home() {
         alert("Veuillez remplir votre nom de famille");
         return false;
     }
-    const lastNameInput = document.getElementById('lastName') as HTMLInputElement;
-    if (!lastNameInput.checkValidity()) {
+    if (!nameRegex.test(lastName.trim())) {
         alert("Veuillez ne pas insérer de caractères spéciaux dans votre nom de famille");
         return false;
     }
@@ -67,8 +66,8 @@ export default function Home() {
         alert("Veuillez remplir votre numéro de téléphone");
         return false;
     }
-    const telInput = document.getElementById('tel') as HTMLInputElement;
-    if (!telInput.checkValidity()) {
+    const phoneRegex = /^(0[1-9]([-. ]?[0-9]{2}){4}|\+33[1-9]([-. ]?[0-9]{2}){4})$/;
+    if (!phoneRegex.test(tel.trim())) {
         alert("Veuillez entrer un numéro de téléphone valide");
         return false;
     }
@@ -113,11 +112,11 @@ export default function Home() {
         <form onSubmit={onSubmit}>
           <div className="mt-4">
             <label htmlFor="firstName" className="block">Prénom</label>
-            <input type="text" name="firstName" id="firstName" className="border rounded p-2 w-full" placeholder="Entrez votre prénom" required pattern="^[A-Za-z\u00C0-\u017F' -]+$" onChange={handleChange}/>
+            <input type="text" name="firstName" id="firstName" className="border rounded p-2 w-full" placeholder="Entrez votre prénom" required onChange={handleChange}/>
           </div>
           <div className="mt-4">
             <label htmlFor="lastName" className="block">NOM</label>
-            <input type="text" name="lastName" id="lastName" className="border rounded p-2 w-full" placeholder="Entrez votre nom de famille" required pattern="^[A-Za-z\u00C0-\u017F' -]+$" onChange={handleChange}/>
+            <input type="text" name="lastName" id="lastName" className="border rounded p-2 w-full" placeholder="Entrez votre nom de famille" required onChange={handleChange}/>
           </div>
           <div className="mt-4">
             <label htmlFor="email" className="block">E-mail</label>
@@ -125,7 +124,7 @@ export default function Home() {
           </div>
           <div className="mt-4">
             <label htmlFor="tel" className="block">Téléphone</label>
-            <input type="tel" name="tel" id="tel" className="border rounded p-2 w-full" placeholder="Entrez votre numero de téléphone" required pattern="^(0[1-9]([-. ]?[0-9]{2}){4}|\+33[1-9]([-. ]?[0-9]{2}){4})$" onChange={handleChange}/>
+            <input type="tel" name="tel" id="tel" className="border rounded p-2 w-full" placeholder="Entrez votre numero de téléphone" required onChange={handleChange}/>
           </div>
           <button
             onClick={onSubmit}
