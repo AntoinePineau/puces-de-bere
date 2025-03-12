@@ -10,7 +10,7 @@ export default function Home() {
       tel: '',
   });
   const onSubmit = async (event: React.FormEvent) => {
-    await validateForm(event);
+    if(! await validateForm(event)) return;
     const emailSent = await sendEmail(formData);
     if (emailSent) {  
       setFormData({
@@ -21,7 +21,7 @@ export default function Home() {
       });
       alert("Votre pré-inscription a été enregistrée avec succès !");
     } else {
-        alert("L'email n'a pas pu être envoyé. Veuillez vérifier vos informations.");
+      alert("L'email n'a pas pu être envoyé. Veuillez vérifier vos informations.");
     }
   };
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
