@@ -1,42 +1,143 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
+'use client';
 
 export const metadata: Metadata = {
-  title: "Puces de Béré 2025 | Accueil",
-  description: "Réservez vos places en ligne pour la journée du 19 janvier 2025"
+  title: "Puces de Béré 2026 | Accueil",
+  description: "Réservez vos places en ligne pour la journée du 18 janvier 2026"
 };
 
 export default function Home() {
-  const book = async (event: React.FormEvent) => {
-    window.location.href="/reservation/";
+  const [formData, setFormData] = useState({
+      firstName: '',
+      lastName: '',
+      email: '',
+      tel: '',
+  });
+  const onSubmit = async (event: React.FormEvent) => {
+    await validateForm(event);
+    const emailSent = await sendEmail(formData);
+    if (emailSent) {  
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        tel: '',
+      });
+      alert("Votre pré-inscription a été enregistrée avec succès !");
+    } else {
+        alert("L'email n'a pas pu être envoyé. Veuillez vérifier vos informations.");
+    }
+  };
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, checked } = event.target;
+    setFormData((prevData) => ({
+        ...prevData,
+        [name]: type === 'checkbox' ? checked : value.trim(),
+    }));
+  };
+    
+  const validateForm = (event: React.FormEvent) => {
+    const { firstName, lastName, email, tel} = formData;
+    // Vérification des champs obligatoires
+    if (!firstName) {
+        alert("Veuillez remplir votre prénom");
+        return false;
+    }
+    const firstNameInput = document.getElementById('firstName') as HTMLInputElement;
+    if (!firstNameInput.checkValidity()) {
+        alert("Veuillez ne pas insérer de caractères spéciaux dans votre prénom");
+        return false;
+    }
+    if (!lastName) {
+        alert("Veuillez remplir votre nom de famille");
+        return false;
+    }
+    const lastNameInput = document.getElementById('lastName') as HTMLInputElement;
+    if (!lastNameInput.checkValidity()) {
+        alert("Veuillez ne pas insérer de caractères spéciaux dans votre nom de famille");
+        return false;
+    }
+    if (!email) {
+        alert("Veuillez remplir votre adresse e-mail");
+        return false;
+    }
+    const emailInput = document.getElementById('email') as HTMLInputElement;
+    if (!emailInput.checkValidity()) {
+        alert("Veuillez entrer une adresse e-mail valide");
+        return false;
+    }
+    if (!tel) {
+        alert("Veuillez remplir votre numéro de téléphone");
+        return false;
+    }
+    const telInput = document.getElementById('tel') as HTMLInputElement;
+    if (!telInput.checkValidity()) {
+        alert("Veuillez entrer un numéro de téléphone valide");
+        return false;
+    }
+    return true;
+  };
+      
+  const sendEmail = async (formData: any) => {
+    // Ajoutez les informations de l'email
+    const emailData = {
+      to: formData.email, // Utilisez l'email du formulaire
+      subject: `Pré-inscription pour les Puces de Béré 2026`,
+      text: `Bonjour, voici une nouvelle pré-inscription.\n\nVoici les détails :\n\n- Nom: ${formData.lastName}\n- Prénom:  ${formData.firstName}\n- Email: ${formData.email}\n- Téléphone: ${formData.tel}\n\nCordialement,\nL'équipe des Puces de Béré`,
+    };
+
+    // Créer un objet FormData
+    const formDataToSend = new FormData();
+    formDataToSend.append('to', 'lespucesdebere@gmail.com');
+    formDataToSend.append('subject', emailData.subject);
+    formDataToSend.append('text', emailData.text);
+    
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        body: formDataToSend
+      });
+      if (!response.ok) throw new Error("Email sending failed");
+      return response.json();
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
   return (
     <div className="mx-2 max-w-[1024px] pb-4">
       <br/>
-      Bienvenue sur le site de réservation des emplacements des Puces de Béré du 19 janvier 2025 de 9h à 18h à la Halle de Béré à Châteaubriant. 
-      <br/><br/>
-      Cet événement est réalisé par le Rotary Club de Châteaubriant et ce site est réservé aux exposants des Puces de Béré.
-      <br/><br/>
-      Une tombola avec de beaux lots à gagner est organisée via la roue du Rotary.
-      <br/><br/>
-      Par votre participation, vous contribuez au succès de cette journée et vous apportez votre soutien aux actions internationales, nationales et locales menées par le Rotary. La plus emblématique étant l’éradication de la polio dans le monde (<a href="https://www.rotary.org/fr/our-causes/ending-polio" target="_blank">Polio Plus</a>).
-      <br/><br/>
-      Venez nombreux ; l’entrée et le parking sont gratuits. Une restauration rapide et une buvette sont à votre disposition.
-      <br/><br/>
-      Vous avez 2 options pour vous inscrire en tant qu’exposant:
-      <ul>
-        <li>Soit directement en ligne via ce site: <Link href="/reservation" className="block sm:inline text-center sm:text-left bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors items-center justify-center">Je veux réserver mes emplacements</Link></li>
-        <li>Soit par courrier :
-          <ol>
-            <li>télécharger les documents suivants (<Link target="_blank" href="/bulletin-d-inscription-puces-de-bere.pdf">Bulletin d’inscription</Link>, <Link target="_blank" href="/reglement-interieur-puces-de-bere.pdf">Règlement intérieur</Link>, <Link target="_blank" href="/plan-de-circulation-puces-de-bere.png">Plan de circulation</Link>)</li>
-            <li>les remplir et les signer</li>
-            <li>envoyer le tout dans une enveloppe avec votre chèque de réservation et une copie de votre carte d’identité (ou carte professionnelle si vous êtes un professionnel) à l’adresse suivante:<br/>
-            <pre className='items-center'>Rotary Club de Châteaubriant<br/>46 Rue Annie Gautier Grosdoy<br/>44110 CHÂTEAUBRIANT</pre>
-            </li>
-          </ol>
-        </li>
-      </ul>
+      <p>
+        La réservation pour les Puces de Béré 2026 le dimanche 18 janvier 2026 à la Halle de Béré de Châteaubriant ne sera disponible qu'à partir du 15 septembre 2026.
+      </p>
+      <p>
+        Vous pouvez vous pré-inscrire pour être recontacté lorsque la réservation sera opérationnelle:
+        
+        <form onSubmit={onSubmit}>
+          <div className="mt-4">
+            <label htmlFor="firstName" className="block">Prénom</label>
+            <input type="text" name="firstName" id="firstName" className="border rounded p-2 w-full" placeholder="Entrez votre prénom" required pattern="^[A-Za-zÀ-ÿ -]+$" onChange={handleChange}/>
+          </div>
+          <div className="mt-4">
+            <label htmlFor="lastName" className="block">NOM</label>
+            <input type="text" name="lastName" id="lastName" className="border rounded p-2 w-full" placeholder="Entrez votre nom de famille" required pattern="^[A-Za-zÀ-ÿ -]+$" onChange={handleChange}/>
+          </div>
+          <div className="mt-4">
+            <label htmlFor="email" className="block">E-mail</label>
+            <input type="email" name="email" id="email" className="border rounded p-2 w-full" placeholder="Entrez votre adresse e-mail" required onChange={handleChange}/>
+          </div>
+          <div className="mt-4">
+            <label htmlFor="tel" className="block">Téléphone</label>
+            <input type="tel" name="tel" id="tel" className="border rounded p-2 w-full" placeholder="Entrez votre numero de téléphone" required pattern="^(0[1-9]([-. ]?[0-9]{2}){4}|(\+33|0)[1-9]([-. ]?[0-9]{2}){4})$" onChange={handleChange}/>
+          </div>
+          <button
+            onClick={onSubmit}
+            className="mt-4 w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors flex items-center justify-center"
+          >
+            Je veux être le premier informé
+          </button>
+        </form>
+      </p>
       
     </div>
   );

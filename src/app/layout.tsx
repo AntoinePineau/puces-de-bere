@@ -7,8 +7,8 @@ import Analytics from "@/components/Analytics";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Puces de Béré 2025 | Réservation confirmée",
-  description: "Réservez vos places en ligne pour la journée du 19 janvier 2025"
+  title: "Puces de Béré 2026 | Réservation confirmée",
+  description: "Réservez vos places en ligne pour la journée du 18 janvier 2026"
 };
 
 export default function RootLayout({children}: Readonly<{children: React.ReactNode}>) {
@@ -28,7 +28,7 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
       <body className={inter.className}>
         <CartProvider>
           <main className="flex flex-col items-center justify-between">
-            <h1>Les Puces de Béré 2025{mode}</h1>
+            <h1>Les Puces de Béré 2026{mode}</h1>
             <div className="inline-flex" style={{ margin: '0 1em 1em 1em' }}>
               <img src="/logo-rotary-chateaubriant.png" alt="Logo du Rotary Club de Châteaubriant" title="Rotary Club de Châteaubriant" className="max-h-16" />
               <div className="border-r border-[rgb(190,196,201)] h-16 mx-2" /> {/* Vertical line */}

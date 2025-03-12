@@ -4,8 +4,8 @@ import { Metadata } from 'next';
 
 
 export const metadata: Metadata = {
-  title: "Puces de Béré 2025 | Exposants",
-  description: "liste des exposants pour la journée du 19 janvier 2025"
+  title: "Puces de Béré 2026 | Exposants",
+  description: "liste des exposants pour la journée du 18 janvier 2026"
 };
 
 export default function Reservation() {
