@@ -10,7 +10,7 @@ export default function Home() {
       tel: '',
   });
   const onSubmit = async (event: React.FormEvent) => {
-    if(! await validateForm(event)) return;
+    if(await validateForm(event)) return;
     const emailSent = await sendEmail(formData);
     if (emailSent) {  
       setFormData({
