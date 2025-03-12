@@ -1,6 +1,6 @@
+'use client';
 import { Metadata } from 'next';
 import React, { useState } from 'react';
-'use client';
 
 export const metadata: Metadata = {
   title: "Puces de Béré 2026 | Accueil",
