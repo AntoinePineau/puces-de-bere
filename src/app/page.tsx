@@ -113,11 +113,11 @@ export default function Home() {
         <form onSubmit={onSubmit}>
           <div className="mt-4">
             <label htmlFor="firstName" className="block">Prénom</label>
-            <input type="text" name="firstName" id="firstName" className="border rounded p-2 w-full" placeholder="Entrez votre prénom" required pattern="^[A-Za-zÀ-ÿ '-]+$" onChange={handleChange}/>
+            <input type="text" name="firstName" id="firstName" className="border rounded p-2 w-full" placeholder="Entrez votre prénom" required pattern="^[A-Za-zÀ-ÖØ-öø-ÿ '-]+$" onChange={handleChange}/>
           </div>
           <div className="mt-4">
             <label htmlFor="lastName" className="block">NOM</label>
-            <input type="text" name="lastName" id="lastName" className="border rounded p-2 w-full" placeholder="Entrez votre nom de famille" required pattern="^[A-Za-zÀ-ÿ '-]+$" onChange={handleChange}/>
+            <input type="text" name="lastName" id="lastName" className="border rounded p-2 w-full" placeholder="Entrez votre nom de famille" required pattern="^[A-Za-zÀ-ÖØ-öø-ÿ '-]+$" onChange={handleChange}/>
           </div>
           <div className="mt-4">
             <label htmlFor="email" className="block">E-mail</label>
@@ -125,7 +125,7 @@ export default function Home() {
           </div>
           <div className="mt-4">
             <label htmlFor="tel" className="block">Téléphone</label>
-            <input type="tel" name="tel" id="tel" className="border rounded p-2 w-full" placeholder="Entrez votre numero de téléphone" required pattern="^(0[1-9]([-. ]?[0-9]{2}){4}|(\+33[1-9]([-. ]?[0-9]{2}){4}))$" onChange={handleChange}/>
+            <input type="tel" name="tel" id="tel" className="border rounded p-2 w-full" placeholder="Entrez votre numero de téléphone" required pattern="^(0[1-9]([-. ]?[0-9]{2}){4}|\+33[1-9]([-. ]?[0-9]{2}){4})$" onChange={handleChange}/>
           </div>
           <button
             onClick={onSubmit}
