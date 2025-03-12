@@ -2,11 +2,6 @@
 import { Metadata } from 'next';
 import React, { useState } from 'react';
 
-export const metadata: Metadata = {
-  title: "Puces de Béré 2026 | Accueil",
-  description: "Réservez vos places en ligne pour la journée du 18 janvier 2026"
-};
-
 export default function Home() {
   const [formData, setFormData] = useState({
       firstName: '',
