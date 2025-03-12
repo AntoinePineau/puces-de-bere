@@ -95,10 +95,11 @@ export default function Home() {
         body: formDataToSend
       });
       if (!response.ok) throw new Error("Email sending failed");
-      return response.json();
+      return true;
     } catch (error) {
       console.error('Error:', error);
     }
+    return false;
   };
   return (
     <div className="mx-2 max-w-[1024px] pb-4">
