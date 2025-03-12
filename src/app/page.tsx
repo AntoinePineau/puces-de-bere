@@ -108,24 +108,24 @@ export default function Home() {
       </p>
       <p>
         Vous pouvez vous pré-inscrire pour être recontacté lorsque la réservation sera opérationnelle:
-        
+        <br/><br/>
         <form onSubmit={onSubmit} action="javascript:void(0)">
           <h2>Pré-inscription</h2>
           <div className="mt-4">
             <label htmlFor="firstName" className="block">Prénom</label>
-            <input type="text" name="firstName" id="firstName" className="border rounded p-2 w-full" placeholder="Entrez votre prénom" required onChange={handleChange}/>
+            <input type="text" name="firstName" id="firstName" className="border rounded p-2 w-full" placeholder="Entrez votre prénom" required onChange={handleChange} value={formData.firstName}/>
           </div>
           <div className="mt-4">
             <label htmlFor="lastName" className="block">NOM</label>
-            <input type="text" name="lastName" id="lastName" className="border rounded p-2 w-full" placeholder="Entrez votre nom de famille" required onChange={handleChange}/>
+            <input type="text" name="lastName" id="lastName" className="border rounded p-2 w-full" placeholder="Entrez votre nom de famille" required onChange={handleChange} value={formData.lastName}/>
           </div>
           <div className="mt-4">
             <label htmlFor="email" className="block">E-mail</label>
-            <input type="email" name="email" id="email" className="border rounded p-2 w-full" placeholder="Entrez votre adresse e-mail" required onChange={handleChange}/>
+            <input type="email" name="email" id="email" className="border rounded p-2 w-full" placeholder="Entrez votre adresse e-mail" required onChange={handleChange} value={formData.email}/>
           </div>
           <div className="mt-4">
             <label htmlFor="tel" className="block">Téléphone</label>
-            <input type="tel" name="tel" id="tel" className="border rounded p-2 w-full" placeholder="Entrez votre numero de téléphone" required onChange={handleChange}/>
+            <input type="tel" name="tel" id="tel" className="border rounded p-2 w-full" placeholder="Entrez votre numero de téléphone" required onChange={handleChange} value={formData.tel}/>
           </div>
           <button
             type="submit"
