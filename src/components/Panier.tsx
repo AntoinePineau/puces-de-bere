@@ -291,11 +291,11 @@ const Panier = () => {
           <form onSubmit={validateCart}>
             <div className="mt-4">
               <label htmlFor="firstName" className="block">Prénom</label>
-              <input type="text" name="firstName" id="firstName" className="border rounded p-2 w-full" placeholder="Entrez votre prénom" onChange={handleChange} required pattern="^[A-Za-zÀ-ÿ -]+$" />
+              <input type="text" name="firstName" id="firstName" className="border rounded p-2 w-full" placeholder="Entrez votre prénom" onChange={handleChange} required pattern="^[A-Za-z\u00C0-\u017F -]+$" />
             </div>
             <div className="mt-4">
               <label htmlFor="lastName" className="block">NOM</label>
-              <input type="text" name="lastName" id="lastName" className="border rounded p-2 w-full" placeholder="Entrez votre nom de famille" onChange={handleChange} required pattern="^[A-Za-zÀ-ÿ -]+$" />
+              <input type="text" name="lastName" id="lastName" className="border rounded p-2 w-full" placeholder="Entrez votre nom de famille" onChange={handleChange} required pattern="^[A-Za-z\u00C0-\u017F -]+$" />
             </div>
             <div className="mt-4">
               <label htmlFor="email" className="block">E-mail</label>
@@ -303,7 +303,7 @@ const Panier = () => {
             </div>
             <div className="mt-4">
               <label htmlFor="tel" className="block">Téléphone</label>
-              <input type="tel" name="tel" id="tel" className="border rounded p-2 w-full" placeholder="Entrez votre numero de téléphone" onChange={handleChange} required pattern="^(0[1-9]([-. ]?[0-9]{2}){4}|(\+33|0)[1-9]([-. ]?[0-9]{2}){4})$"/>
+              <input type="tel" name="tel" id="tel" className="border rounded p-2 w-full" placeholder="Entrez votre numero de téléphone" onChange={handleChange} required pattern="^(0[1-9]([-. ]?[0-9]{2}){4}|\+33[1-9]([-. ]?[0-9]{2}){4})$"/>
             </div>
             <div className="mt-4">
               <input type="checkbox" name="ri" id="ri" className="border rounded p-2" onChange={handleChange} required />&nbsp;
