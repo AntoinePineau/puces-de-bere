@@ -113,11 +113,11 @@ export default function Home() {
         <form onSubmit={onSubmit}>
           <div className="mt-4">
             <label htmlFor="firstName" className="block">Prénom</label>
-            <input type="text" name="firstName" id="firstName" className="border rounded p-2 w-full" placeholder="Entrez votre prénom" required pattern="^[A-Za-z\00C0-\017F -]+$" onChange={handleChange}/>
+            <input type="text" name="firstName" id="firstName" className="border rounded p-2 w-full" placeholder="Entrez votre prénom" required pattern="^[A-Za-zÀ-ÿ '-]+$" onChange={handleChange}/>
           </div>
           <div className="mt-4">
             <label htmlFor="lastName" className="block">NOM</label>
-            <input type="text" name="lastName" id="lastName" className="border rounded p-2 w-full" placeholder="Entrez votre nom de famille" required pattern="^[A-Za-z\00C0-\017F -]+$" onChange={handleChange}/>
+            <input type="text" name="lastName" id="lastName" className="border rounded p-2 w-full" placeholder="Entrez votre nom de famille" required pattern="^[A-Za-zÀ-ÿ '-]+$" onChange={handleChange}/>
           </div>
           <div className="mt-4">
             <label htmlFor="email" className="block">E-mail</label>
