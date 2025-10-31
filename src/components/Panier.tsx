@@ -239,7 +239,7 @@ const Panier = () => {
   return (
     <div className="bg-white shadow-md rounded-lg p-6 min-w-2xl max-w-2xl mx-auto">
       <h2 className="text-2xl font-bold mb-4">Votre Panier</h2>
-      <p>⚠️ <b>ATTENTION</b> : Le tarif du stand correspond uniquement à l'EMPLACEMENT AU SOL. Les TABLES sont en location supplémentaire (1€/table).<br/>
+      <p>⚠️ <b>ATTENTION</b> : Le tarif du stand correspond uniquement à l&apos;EMPLACEMENT AU SOL. Les TABLES sont en location supplémentaire (1€/table).<br/>
       - Si vous exposez sur des PORTANTS ou au SOL ou que vous amenez vos propres tables → Réservez uniquement le stand<br/>
       - Si vous exposez sur des TABLES → Réservez le stand + les tables (en supplément)</p>
       <p>💡 <b>CONSEIL</b> : Réservez vos tables dès maintenant !<br/>Un stock limité sera disponible le jour J, mais nous ne garantissons pas la disponibilité.</p>
