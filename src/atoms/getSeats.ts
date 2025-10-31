@@ -1,6 +1,6 @@
 import { disableDblClickZoom } from "svg-pan-zoom";
 
-const descAvecInterieur = "1m20 linéaire avec angle sans table à l'intérieur"; const prixAvecInterieur = 2100;
+const descAvecInterieur = "1m20 linéaire avec angle sans table à l'intérieur"; const prixAvecInterieur = 1000;
 const descSansInterieur = "1m20 linéaire sans angle sans table à l'intérieur"; const prixSansInterieur = 700;
 const descExterieur = "1m20 linéaire sans angle sans table à l'extérieur"; const prixExterieur = 500;
 const seatWidth = 141.6; //1m80 (table 60cm + 1m20 d'espace derrière)
@@ -32,11 +32,15 @@ function addSeat(seats:Seat[], seatId:string, portrait:boolean, angle:boolean, x
 }
 
 function addColumn(seats:any[], xCol:number, letter:String, startIndex:number, existingSeatIds:any) {
-  var xy = addSeat(seats, `${letter}${startIndex}`, false, true, xCol, topLeftY+seatWidth+space, true, existingSeatIds); // A11
-  for(var i=1;i<=8;i++) { // A12 ... A17
+  var xy = addSeat(seats, `${letter}${startIndex}`, false, true, xCol, topLeftY+seatWidth+space-10, true, existingSeatIds); 
+  for(var i=1;i<=4;i++) { 
     xy = addSeat(seats, `${letter}${startIndex+i}`, false, false, xCol, xy.y, true, existingSeatIds);
   }
-  addSeat(seats, `${letter}${startIndex+9}`, false, true, xCol, xy.y, true, existingSeatIds); // A18
+  xy.y += 60;
+  for(var i=5;i<=8;i++) { 
+    xy = addSeat(seats, `${letter}${startIndex+i}`, false, false, xCol, xy.y, true, existingSeatIds);
+  }
+  addSeat(seats, `${letter}${startIndex+9}`, false, true, xCol, xy.y, true, existingSeatIds); 
 }
 
 export async function getSeats():Promise<Seat[]> {
@@ -52,7 +56,7 @@ export async function getSeats():Promise<Seat[]> {
   // Column A1 ... A10
   var col = topLeftX;
   
-  xy = addSeat(seats, `A1`, false, true, col, topLeftY+seatWidth+15, true, existingSeatIds);
+  xy = addSeat(seats, `A1`, false, true, col, topLeftY+seatWidth+50, true, existingSeatIds);
   for(var i=2;i<=11;i++) { 
     xy = addSeat(seats, `A${i}`, false, false, col, xy.y,  true, existingSeatIds);
   }
@@ -81,7 +85,7 @@ export async function getSeats():Promise<Seat[]> {
 
   xy = addSeat(seats, `J11`, false, false, col+5, topLeftY+seatWidth,  true, existingSeatIds);
   xy = addSeat(seats, `J12`, false, true, col+5, xy.y,  true, existingSeatIds);
-  xy = addSeat(seats, `J13`, false, true, col+5, xy.y+seatHeight*2,  true, existingSeatIds);
+  xy = addSeat(seats, `J13`, false, true, col+5, xy.y+seatHeight*5/2,  true, existingSeatIds);
   // Column J12 ... J18
   for(var i=1;i<=7;i++) { 
     xy = addSeat(seats, `J${13+i}`, false, i==7, col+5, xy.y,  true, existingSeatIds);
@@ -119,7 +123,7 @@ export async function getSeats():Promise<Seat[]> {
   // Line S
   xy.x = topLeftX;
   for(var i=1;i<=6;i++) { 
-    xy = addSeat(seats, `S${i}`, true, i==1, xy.x, bottomRightY-seatWidth, true, existingSeatIds);
+    xy = addSeat(seats, `S${i}`, true, false, xy.x, bottomRightY-seatWidth, true, existingSeatIds);
   }
   xy = addSeat(seats, `S7`, true, false, xy.x+seatHeight/2, bottomRightY-seatWidth, true, existingSeatIds);
   xy = addSeat(seats, `S8`, true, true, xy.x, bottomRightY-seatWidth, true, existingSeatIds);

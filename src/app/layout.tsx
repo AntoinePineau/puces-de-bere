@@ -32,7 +32,7 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
             <div className="inline-flex" style={{ margin: '0 1em 1em 1em' }}>
               <img src="/logo-rotary-chateaubriant.png" alt="Logo du Rotary Club de Châteaubriant" title="Rotary Club de Châteaubriant" className="max-h-16" />
               <div className="border-r border-[rgb(190,196,201)] h-16 mx-2" /> {/* Vertical line */}
-              <img src="/la-magie-du-rotary.png" alt="Thème de l'année 2024-2025" title="La Magie du Rotary" className="max-h-16" />
+              <img src="/unis-pour-faire-le-bien.png" alt="Message présidentiel de l'année 2025-2026" title="Unis pour faire le bien" className="max-h-16" />
             </div>
             {children}
           </main>
