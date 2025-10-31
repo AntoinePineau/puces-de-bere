@@ -1,6 +1,6 @@
-import { Metadata } from 'next';
-import Link from 'next/link';
-import React from 'react';
+import { Metadata } from &apos;next&apos;;
+import Link from &apos;next/link&apos;;
+import React from &apos;react&apos;;
 
 
 export const metadata: Metadata = {
@@ -21,14 +21,14 @@ export default function ReglementInterieur() {
       <p>Les exposants devront se conformer, immédiatement, aux injonctions du responsable de sécurité, en particulier lors de sa visite du service de sécurité, avant l&apos;ouverture au public.</p>
       <p>Le badge fourni lors de la confirmation d&apos;inscription, doit être collé sur le pare brise du véhicule pour avoir accès au parking exposants.</p>
       <p>Les exposants sont tenus de nettoyer leurs emplacements avant de les quitter.</p>
-      <p>Les exposants non inscrits au registre du commerce ou des métiers, attestent sur l’honneur, sur le bulletin de réservation, qu’ils respectent la législation en vigueur, qui stipule qu’ils n’ont pas participé à 2 autres ventes ou brocantes ou vides-greniers depuis moins d’un an.</p>
+      <p>Les exposants non inscrits au registre du commerce ou des métiers, attestent sur l&apos;honneur, sur le bulletin de réservation, qu&apos;ils respectent la législation en vigueur, qui stipule qu&apos;ils n&apos;ont pas participé à 2 autres ventes ou brocantes ou vides-greniers depuis moins d&apos;un an.</p>
       <br/>
       <h3>COMMENT EXPOSER VOS ARTICLES ?</h3>
       <p>Vous avez 3 OPTIONS au choix :<br/>
          1️⃣ Vous amenez votre PROPRE TABLE → Réservez uniquement le stand<br/>
          2️⃣ Vous exposez sur PORTANTS ou AU SOL → Réservez uniquement le stand<br/>
          3️⃣ Vous louez nos TABLES → Réservez le stand + ajoutez la location de tables (1€/table)<br/><br/>
-         ⚠️ Le prix du stand = uniquement l'EMPLACEMENT AU SOL<br/>
+         ⚠️ Le prix du stand = uniquement l&apos;EMPLACEMENT AU SOL<br/>
          ⚠️ Les tables de location ne sont PAS incluses dans ce tarif</p>
       <br/>
       <h3>MARCHANDISES</h3>
@@ -38,9 +38,9 @@ export default function ReglementInterieur() {
       <br/>
       <h3>CONDITIONS SANITAIRES</h3>
       <p>Les règles sanitaires, seront celles décidées par le gouvernement et valables le jour de la manifestation.</p>
-      <p>Le Rotary de Châteaubriant se réserve la possibilité d’adapter l’organisation des Puces de Béré, en respect de ces règles ; dans ce cas nous vous informerons par email ou SMS exclusivement.</p>
+      <p>Le Rotary de Châteaubriant se réserve la possibilité d&apos;adapter l&apos;organisation des Puces de Béré, en respect de ces règles ; dans ce cas nous vous informerons par email ou SMS exclusivement.</p>
       <p>Les règles de circulation, éventuellement mises en place, devront impérativement être respectées. Dans ce cas, les règles seront remises à chaque exposant.</p>
-      <p>L’exposant devra prendre sur son stand toutes les mesures d’hygiène nécessaires ou obligatoires.</p>
+      <p>L&apos;exposant devra prendre sur son stand toutes les mesures d&apos;hygiène nécessaires ou obligatoires.</p>
       <br/>
       <h3>HORAIRES</h3>
       <p><b>Mise en place des objets sur les emplacements désignés: de 6 h 30 à 8 h 45</b></p>
