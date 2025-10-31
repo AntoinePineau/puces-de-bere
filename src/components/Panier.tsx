@@ -250,7 +250,7 @@ const Panier = () => {
           {state.items.map((item) => (
             <div id={""+item.tierId} key={item.id} className="flex items-center justify-between border-b py-4">
               <div className="flex-grow">
-                <h3 className="font-semibold">{item.id === "Table" ? 'Table' : `Emplacement ${item.id}`}</h3>
+                <h3 className="font-semibold">{item.id === "Table" ? "Table" : `Emplacement ${item.id}`}</h3>
                 <p className="text-sm text-gray-600">{item.description}</p>
               </div>
               <div className="flex items-center">
