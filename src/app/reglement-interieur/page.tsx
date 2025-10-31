@@ -1,6 +1,6 @@
-import { Metadata } from &apos;next&apos;;
-import Link from &apos;next/link&apos;;
-import React from &apos;react&apos;;
+import { Metadata } from "next";
+import Link from "next/link";
+import React from "react";
 
 
 export const metadata: Metadata = {
