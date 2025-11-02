@@ -22,7 +22,7 @@ function addSeat(seats:Seat[], seatId:string, portrait:boolean, angle:boolean, x
   var tip = `${seatId}: `;
   var width = angle ? portrait ? anglel : angleL : portrait ? seatHeight : seatWidth;
   var height = angle ? !portrait ? anglel : angleL : !portrait ? seatHeight : seatWidth;
-  tip += available ? `Disponible pour ${price/100}€ (${description})` : `Déjà réservé à ${existingSeat.paymentDetails.user.firstName} ${existingSeat.paymentDetails.user.lastName}`;
+  tip += available ? `Disponible pour ${price/100}€ (${description})` : `Déjà réservé à ${existingSeat.paymentDetails.user.firstName} ${existingSeat.paymentDetails.user.lastName.toUpperCase()}`;
   var infoExposantFirstName = !available ? `${existingSeat.paymentDetails.user.firstName}` : '';
   var infoExposantLastName = !available ? `${existingSeat.paymentDetails.user.lastName}` : '';
   const seat:Seat = { tierId:tierId, id: seatId, isAngle: angle, description: description, available: available, 
