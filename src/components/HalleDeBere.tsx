@@ -155,7 +155,7 @@ export default function HalleDeBere({ exposantsMode = false }: { exposantsMode?:
             || ( 
             seat.available && (
               <text key={'seat-'+seat.id} id={'seat-'+seat.id} data-for={seat.id} x={seat.x} y={seat.y} fill="white" stroke="white" fontSize="40" >
-                {seat.id}
+                {seat.id.toUpperCase()}
                 <title>{seat.tip}</title>
               </text>
             )
