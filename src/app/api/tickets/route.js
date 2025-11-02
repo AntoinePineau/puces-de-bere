@@ -6,14 +6,15 @@ export async function GET() {
     const token = await getAccessToken();
     const allTickets = await getAllTickets(token);
 
-    var index = 1, stopIterating = false, enrichedTickets = allTickets, soldTickets = [];
+    var index = 1, continueIterating = true, enrichedTickets = allTickets, soldTickets = [];
     do {
       const soldTicketsTemp = await getSoldTickets(token, index);
-      stopIterating = soldTickets == null;
+      continueIterating = soldTicketsTemp != null;
       console.log(`Page ${index} Sold ${soldTicketsTemp.data.length} Tickets : total pages ${soldTicketsTemp.pagination.totalPages}`);
       soldTickets = soldTickets.concat(soldTicketsTemp.data);
+      index = index + 1;
     }
-    while(!stopIterating);
+    while(continueIterating);
 
     enrichedTickets = enrichTickets(enrichedTickets, soldTickets);
     console.log('Enriched Tickets:', enrichedTickets.length);
