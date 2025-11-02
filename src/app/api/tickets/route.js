@@ -27,7 +27,7 @@ export async function GET() {
 
 function enrichTickets(allTickets, soldTickets) {
   return allTickets.map(ticket => {
-      const soldTicket = soldTickets.find(p => p.tierId === ticket.id && p.payer.email !== "Cinthia.salinas@laposte.net" && p.payer.email !== "annick.courgeon@wanadoo.fr");
+      const soldTicket = soldTickets.find(p => p.tierId === ticket.id);
 
       if (soldTicket) {
           return {
