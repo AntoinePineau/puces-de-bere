@@ -33,24 +33,32 @@ export async function getAccessTokenWithoutAPI() {
 };
 
 export async function getSoldTickets(accessToken, index) {
-  const response = await fetch(`${process.env.HELLOASSO_BASE_URL}/v5/organizations/${process.env.HELLOASSO_ORGANIZATION_ID}/forms/event/${process.env.HELLOASSO_FORM_ID}/items?pageIndex=${index}`, {
+  console.log(`getSoldTickets with accessToken ${accessToken} and index ${index}`);
+  const url = `${process.env.HELLOASSO_BASE_URL}/v5/organizations/${process.env.HELLOASSO_ORGANIZATION_ID}/forms/event/${process.env.HELLOASSO_FORM_ID}/items?pageIndex=${index}`;
+  console.log(`  [getSoldTickets] fetch ${url}`);
+  const response = await fetch(url, {
       headers: {
           Authorization: `Bearer ${accessToken}`,
       },
   });
 
   const data = await response.json();
+  console.log(`  [getSoldTickets] data : ${data}`);
   return data; 
 };
 
 export async function getAllTickets(accessToken) {
-  const response = await fetch(`${process.env.HELLOASSO_BASE_URL}/v5/organizations/${process.env.HELLOASSO_ORGANIZATION_ID}/forms/event/${process.env.HELLOASSO_FORM_ID}/public`, {
+  console.log(`getAllTickets with accessToken ${accessToken}`);
+  const url = `${process.env.HELLOASSO_BASE_URL}/v5/organizations/${process.env.HELLOASSO_ORGANIZATION_ID}/forms/event/${process.env.HELLOASSO_FORM_ID}/public`;
+  console.log(`  [getAllTickets] fetch ${url}`);
+  const response = await fetch(url, {
       headers: {
           Authorization: `Bearer ${accessToken}`,
       },
   });
 
   const data = await response.json();
+  console.log(`  [getAllTickets] data : ${data}`);
   return data.tiers; 
 };
 
