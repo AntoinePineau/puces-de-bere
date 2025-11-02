@@ -155,7 +155,7 @@ export default function HalleDeBere({ exposantsMode = false }: { exposantsMode?:
             || ( 
             seat.available && (
               <text key={'seat-'+seat.id} id={'seat-'+seat.id} data-for={seat.id} x={seat.x} y={seat.y} fill="white" stroke="white" fontSize="40" >
-                {seat.id.toUpperCase()}
+                {seat.id}
                 <title>{seat.tip}</title>
               </text>
             )
@@ -172,7 +172,7 @@ export default function HalleDeBere({ exposantsMode = false }: { exposantsMode?:
                 fontSize="15" 
                 transform={seat.w < seat.h ? `translate(115,20) rotate(90, ${seat.x}, ${seat.y})` : undefined}
                 >
-                {seat.exposantFirstName == "HUBERT" ? seat.exposantFirstName : seat.exposantLastName}
+                {seat.exposantLastName.toUpperCase()}
                 <title>{seat.tip}</title>
                 </text>
               <text 
