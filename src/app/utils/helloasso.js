@@ -41,7 +41,9 @@ export async function getSoldTickets(accessToken, index) {
           Authorization: `Bearer ${accessToken}`,
       },
   });
-
+  if(response.status == 404) {
+    return null;
+  }
   const data = await response.json();
   console.log(`  [getSoldTickets] data : ${data}`);
   return data; 
