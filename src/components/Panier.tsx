@@ -276,7 +276,7 @@ const Panier = () => {
                       >                    
                         <Trash2 size={18} />
                       </button>
-                    ):(<span className="ml-4"><Trash2 size={18} color='white'/></span>)}
+                    ):(<span className="ml-4"><Trash2 size={18} color="white"/></span>)}
                   </div>
               </div>
             </div>
