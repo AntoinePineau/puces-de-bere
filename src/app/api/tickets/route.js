@@ -6,7 +6,7 @@ export async function GET() {
     const token = await getAccessToken();
     const allTickets = await getAllTickets(token);
 
-    var index = 1, totalPages = 2, enrichedTickets = allTickets, soldTickets = [];
+    var index = 1, totalPages = 3, enrichedTickets = allTickets, soldTickets = [];
     do {
       const soldTicketsTemp = await getSoldTickets(token, index);
       console.log(`Page ${index} Sold ${soldTicketsTemp.data.length} Tickets : total pages ${soldTicketsTemp.pagination.totalPages}`);
