@@ -22,9 +22,20 @@ function addSeat(seats:Seat[], seatId:string, portrait:boolean, angle:boolean, x
   var tip = `${seatId}: `;
   var width = angle ? portrait ? anglel : angleL : portrait ? seatHeight : seatWidth;
   var height = angle ? !portrait ? anglel : angleL : !portrait ? seatHeight : seatWidth;
-  tip += available ? `Disponible pour ${price/100}€ (${description})` : `Déjà réservé à ${existingSeat.paymentDetails.user.firstName} ${existingSeat.paymentDetails.user.lastName.toUpperCase()}`;
   var infoExposantFirstName = !available ? `${existingSeat.paymentDetails.user.firstName}` : '';
   var infoExposantLastName = !available ? `${existingSeat.paymentDetails.user.lastName}` : '';
+  if(seatId=='N21' || seatId=='N22' || seatId=='N23' || seatId=='N24' || seatId=='N25' || seatId=='N26' || seatId=='N27' || seatId=='N28') {
+    available = false;
+    infoExposantFirstName = 'Michel';
+    infoExposantLastName = 'DELAHAYE';
+  }
+  if(seatId=='N14' || seatId=='N15' || seatId=='N16' || seatId=='N17' || seatId=='N18' || seatId=='N19' || seatId=='N20') {
+    available = false;
+    infoExposantFirstName = 'Marie';
+    infoExposantLastName = 'GENDRON';
+  }
+  tip += available ? `Disponible pour ${price/100}€ (${description})` : `Déjà réservé à ${infoExposantFirstName} ${infoExposantLastName.toUpperCase()}`;
+
   const seat:Seat = { tierId:tierId, id: seatId, isAngle: angle, description: description, available: available, 
     price: price, x: xCol, y: yLine, w: width, h: height, inHelloAsso: existingSeat!==undefined, tip: tip, exposantFirstName: infoExposantFirstName, exposantLastName: infoExposantLastName };
   seats.push(seat);
