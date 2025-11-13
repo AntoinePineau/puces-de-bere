@@ -24,7 +24,7 @@ function addSeat(seats:Seat[], seatId:string, portrait:boolean, angle:boolean, x
   var height = angle ? !portrait ? anglel : angleL : !portrait ? seatHeight : seatWidth;
   var infoExposantFirstName = !available ? `${existingSeat.paymentDetails.user.firstName}` : '';
   var infoExposantLastName = !available ? `${existingSeat.paymentDetails.user.lastName}` : '';
-  if(seatId=='N21' || seatId=='N22' || seatId=='N23' || seatId=='N24' || seatId=='N25' || seatId=='N26' || seatId=='N27' || seatId=='N28') {
+  /*if(seatId=='N21' || seatId=='N22' || seatId=='N23' || seatId=='N24' || seatId=='N25' || seatId=='N26' || seatId=='N27' || seatId=='N28') {
     available = false;
     infoExposantFirstName = 'Michel';
     infoExposantLastName = 'DELAHAYE';
@@ -33,7 +33,7 @@ function addSeat(seats:Seat[], seatId:string, portrait:boolean, angle:boolean, x
     available = false;
     infoExposantFirstName = 'Marie';
     infoExposantLastName = 'GENDRON';
-  }
+  }*/
   tip += available ? `Disponible pour ${price/100}€ (${description})` : `Déjà réservé à ${infoExposantFirstName} ${infoExposantLastName.toUpperCase()}`;
 
   const seat:Seat = { tierId:tierId, id: seatId, isAngle: angle, description: description, available: available, 
