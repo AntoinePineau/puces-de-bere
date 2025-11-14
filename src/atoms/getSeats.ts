@@ -28,11 +28,6 @@ function addSeat(seats:Seat[], seatId:string, portrait:boolean, angle:boolean, x
     available = false;
     infoExposantFirstName = 'Michel';
     infoExposantLastName = 'DELAHAYE';
-  }
-  if(seatId=='N14' || seatId=='N15' || seatId=='N16' || seatId=='N17' || seatId=='N18' || seatId=='N19' || seatId=='N20') {
-    available = false;
-    infoExposantFirstName = 'Marie';
-    infoExposantLastName = 'GENDRON';
   }*/
   tip += available ? `Disponible pour ${price/100}€ (${description})` : `Déjà réservé à ${infoExposantFirstName} ${infoExposantLastName.toUpperCase()}`;
 
