@@ -32,7 +32,7 @@ function addSeat(seats: Seat[], seatId: string, portrait: boolean, angle: boolea
   if (seatId == 'R48' || seatId == 'R49' || seatId == 'R50' || seatId == 'R51') {
     available = false;
     infoExposantFirstName = '';
-    infoExposantLastName = 'Secours Populaire';
+    infoExposantLastName = 'Secours Pop';
   }
   tip += available ? `Disponible pour ${price / 100}€ (${description})` : `Déjà réservé à ${infoExposantFirstName} ${infoExposantLastName.toUpperCase()}`;
 
